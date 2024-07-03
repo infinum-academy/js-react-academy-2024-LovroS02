@@ -30,4 +30,23 @@ function createReview(review) {
   return reviewRatingElement;
 }
 
+const newReviewButtonHandler = () => {
+  const reviewInput = document.getElementById("review");
+  const ratingInput = document.getElementById("rating");
+
+  if (!reviewInput.value || !ratingInput.value) {
+    return;
+  }
+
+  const newReview = {
+    review: reviewInput.value,
+    rating: ratingInput.value,
+  };
+
+  reviewsList.push(newReview);
+  renderReviewsList();
+  reviewInput.value = "";
+  ratingInput.value = "";
+};
+
 renderReviewsList();
