@@ -87,7 +87,11 @@ function calculateAverageRating() {
 
   const averageRatingElement = document.getElementById("average-rating");
   if (averageRating > 0) {
-    averageRatingElement.textContent = averageRating + " / 5";
+    if (Number(averageRating.toString()[2]) === 0) {
+      averageRatingElement.textContent = averageRating.toString()[0] + " / 5";
+    } else {
+      averageRatingElement.textContent = averageRating + " / 5";
+    }
   } else {
     averageRatingElement.textContent = "There are no ratings currently.";
   }
