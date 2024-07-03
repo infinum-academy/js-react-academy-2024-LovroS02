@@ -1,7 +1,7 @@
 let reviewsList = [
   {
     review: "Cool, cool, cool, cool. No doubt, no doubt, no doubt.",
-    rating: "5 / 5",
+    rating: 5,
   },
 ];
 
@@ -24,7 +24,7 @@ function createReview(review) {
   reviewRatingElement.appendChild(reviewElement);
 
   const ratingElement = document.createElement("span");
-  ratingElement.textContent = review.rating;
+  ratingElement.textContent = review.rating + " / 5";
   reviewRatingElement.appendChild(ratingElement);
 
   return reviewRatingElement;
