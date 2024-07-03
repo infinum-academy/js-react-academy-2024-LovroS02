@@ -27,12 +27,20 @@
           cols="93"
           rows="5"
         ></textarea>
-        <textarea
+        <!-- <textarea
           name="Rating"
           id="rating"
           placeholder="Add rating"
           rows="1"
-        ></textarea>
+        ></textarea> -->
+        <div id="star-rating">
+          <span id="rating">Rating</span>
+          <label for="rating">&star;</label>
+          <label for="rating">&star;</label>
+          <label for="rating">&star;</label>
+          <label for="rating">&star;</label>
+          <label for="rating">&star;</label>
+        </div>
         <button onclick="newReviewButtonHandler()">Post</button>
       </div>
       <div id="reviews-ratings-list"></div>

@@ -60,6 +60,12 @@ img {
   border-radius: 10px;
 }
 
+#star-rating {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: x-large;
+}
+
 #rating {
   padding: 10px;
   border-radius: 10px;
