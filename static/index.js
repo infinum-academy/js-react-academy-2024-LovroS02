@@ -41,6 +41,18 @@ function createReview(review) {
   ratingElement.textContent = review.rating + " / 5";
   reviewRatingElement.appendChild(ratingElement);
 
+  const ratingStarsElement = document.createElement("div");
+  ratingStarsElement.id = "rating-stars";
+  for (let i = 1; i <= 5; i++) {
+    const ratingStar = document.createElement("span");
+    ratingStar.textContent = "☆";
+    if (i <= review.rating) {
+      ratingStar.style.color = "gold";
+    }
+    ratingStarsElement.appendChild(ratingStar);
+  }
+  reviewRatingElement.appendChild(ratingStarsElement);
+
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Remove";
   deleteButton.onclick = () => {
@@ -56,21 +68,27 @@ function createReview(review) {
 
 const newReviewButtonHandler = () => {
   const reviewInput = document.getElementById("review");
-  const ratingInput = document.getElementById("rating");
+  const ratingInputList = document.querySelectorAll(".star");
+  let ratingValue = 0;
+  ratingInputList.forEach((ratingInput) => {
+    if (ratingInput.style.color === "gold") {
+      ratingInput.style.color = "gray";
+      ratingValue += 1;
+    }
+  });
 
-  if (!reviewInput.value || !ratingInput.value) {
+  if (!reviewInput.value || !ratingValue) {
     return;
   }
 
   const newReview = {
     review: reviewInput.value,
-    rating: ratingInput.value,
+    rating: ratingValue,
   };
 
   reviewsList.push(newReview);
   renderReviewsList();
   reviewInput.value = "";
-  ratingInput.value = "";
 };
 
 function calculateAverageRating() {
@@ -96,6 +114,23 @@ function calculateAverageRating() {
     averageRatingElement.textContent = "There are no ratings currently.";
   }
 }
+
+const addRating = (id) => {
+  const value = id.split("-")[1];
+  const starLabel = document.getElementById(id);
+
+  if (starLabel.style.color === "gray" || starLabel.style.color === "") {
+    for (let i = 1; i <= value; i++) {
+      const starLabel = document.getElementById("star-" + String(i));
+      starLabel.style.color = "gold";
+    }
+  } else {
+    for (let i = value; i <= 5; i++) {
+      const starLabel = document.getElementById("star-" + String(i));
+      starLabel.style.color = "gray";
+    }
+  }
+};
 
 reviewsList = loadFromLocalStorage();
 renderReviewsList();
