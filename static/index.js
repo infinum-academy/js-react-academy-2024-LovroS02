@@ -5,6 +5,17 @@ let reviewsList = [
   },
 ];
 
+function saveToLocalStorage(reviews) {
+  const reviewsString = JSON.stringify(reviews);
+  localStorage.setItem("reviews-list", reviewsString);
+}
+
+function loadFromLocalStorage() {
+  const reviewsString = localStorage.getItem("reviews-list");
+
+  return JSON.parse(reviewsString);
+}
+
 function renderReviewsList() {
   const reviewRatingListElement = document.getElementById(
     "reviews-ratings-list"
@@ -13,6 +24,8 @@ function renderReviewsList() {
   reviewsList.forEach((review) => {
     reviewRatingListElement.appendChild(createReview(review));
   });
+
+  saveToLocalStorage(reviewsList);
 }
 
 function createReview(review) {
@@ -26,6 +39,16 @@ function createReview(review) {
   const ratingElement = document.createElement("span");
   ratingElement.textContent = review.rating + " / 5";
   reviewRatingElement.appendChild(ratingElement);
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Remove";
+  deleteButton.onclick = () => {
+    reviewsList = reviewsList.filter((r) => {
+        return r !== review;
+    });
+    renderReviewsList();
+  };
+  reviewRatingElement.appendChild(deleteButton);
 
   return reviewRatingElement;
 }
@@ -49,4 +72,5 @@ const newReviewButtonHandler = () => {
   ratingInput.value = "";
 };
 
+reviewsList = loadFromLocalStorage();
 renderReviewsList();

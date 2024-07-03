@@ -66,6 +66,7 @@ img {
   height: 40px;
   background-color: white;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 #reviews-rating-list {
@@ -83,6 +84,14 @@ img {
   width: 650px;
   gap: 30px;
   border-radius: 20px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
+}
+
+#review-rating-item button {
+  border-radius: 20px;
+  width: 100px;
+  height: 40px;
+  background-color: white;
+  cursor: pointer;
 }
