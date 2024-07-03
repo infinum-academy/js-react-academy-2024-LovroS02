@@ -25,6 +25,7 @@ function renderReviewsList() {
     reviewRatingListElement.appendChild(createReview(review));
   });
 
+  calculateAverageRating();
   saveToLocalStorage(reviewsList);
 }
 
@@ -44,7 +45,7 @@ function createReview(review) {
   deleteButton.textContent = "Remove";
   deleteButton.onclick = () => {
     reviewsList = reviewsList.filter((r) => {
-        return r !== review;
+      return r !== review;
     });
     renderReviewsList();
   };
@@ -71,6 +72,26 @@ const newReviewButtonHandler = () => {
   reviewInput.value = "";
   ratingInput.value = "";
 };
+
+function calculateAverageRating() {
+  let averageRating = 0;
+  reviewsList.forEach((review) => {
+    averageRating += Number(review.rating);
+  });
+  if (!reviewsList.length) {
+    averageRating = 0;
+  } else {
+    averageRating /= reviewsList.length;
+    averageRating = averageRating.toPrecision(2);
+  }
+
+  const averageRatingElement = document.getElementById("average-rating");
+  if (averageRating > 0) {
+    averageRatingElement.textContent = averageRating + " / 5";
+  } else {
+    averageRatingElement.textContent = "There are no ratings currently.";
+  }
+}
 
 reviewsList = loadFromLocalStorage();
 renderReviewsList();
