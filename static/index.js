@@ -13,7 +13,7 @@ function saveToLocalStorage(reviews) {
 function loadFromLocalStorage() {
   const reviewsString = localStorage.getItem("reviews-list");
 
-  return JSON.parse(reviewsString);
+  return JSON.parse(reviewsString) || [];
 }
 
 function renderReviewsList() {
@@ -94,18 +94,16 @@ const newReviewButtonHandler = () => {
 function calculateAverageRating() {
   let averageRating = 0;
   reviewsList.forEach((review) => {
-    averageRating += Number(review.rating);
+    averageRating += parseInt(review.rating);
   });
-  if (!reviewsList.length) {
-    averageRating = 0;
-  } else {
+  if (reviewsList.length > 0) {
     averageRating /= reviewsList.length;
     averageRating = averageRating.toPrecision(2);
   }
 
   const averageRatingElement = document.getElementById("average-rating");
   if (averageRating > 0) {
-    if (Number(averageRating.toString()[2]) === 0) {
+    if (parseInt(averageRating.toString()[2]) === 0) {
       averageRatingElement.textContent = averageRating.toString()[0] + " / 5";
     } else {
       averageRatingElement.textContent = averageRating + " / 5";
@@ -117,19 +115,15 @@ function calculateAverageRating() {
 
 const addRating = (id) => {
   const value = id.split("-")[1];
-  const starLabel = document.getElementById(id);
+  const ratingStarElements = document.querySelectorAll(".star");
 
-  if (starLabel.style.color === "gray" || starLabel.style.color === "") {
-    for (let i = 1; i <= value; i++) {
-      const starLabel = document.getElementById("star-" + String(i));
-      starLabel.style.color = "gold";
+  ratingStarElements.forEach((ratingStar) => {
+    if (parseInt(ratingStar.id.split("-")[1]) <= value) {
+      ratingStar.style.color = "gold";
+    } else {
+      ratingStar.style.color = "gray";
     }
-  } else {
-    for (let i = value; i <= 5; i++) {
-      const starLabel = document.getElementById("star-" + String(i));
-      starLabel.style.color = "gray";
-    }
-  }
+  });
 };
 
 reviewsList = loadFromLocalStorage();
