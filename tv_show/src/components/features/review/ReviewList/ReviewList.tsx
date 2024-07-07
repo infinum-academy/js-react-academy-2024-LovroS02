@@ -11,9 +11,13 @@ export const ReviewList = ({ reviewList, onDeleteReview }: ReviewListProps) => {
   return (
     <Container>
       <Flex direction="column" gap={4}>
-        {reviewList.reviews.map((review) => {
+        {reviewList.reviews.map((review, index) => {
           return (
-            <ReviewItem review={review} onDelete={onDeleteReview}></ReviewItem>
+            <ReviewItem
+              review={review}
+              onDelete={onDeleteReview}
+              key={index}
+            ></ReviewItem>
           );
         })}
       </Flex>
