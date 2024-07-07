@@ -28,7 +28,8 @@ export const ShowDetails = ({ show }: ShowDetailsProps) => {
           {show.description}
         </Text>
         <Text pl={8} mb={8}>
-          {show.averageRating + " / 5" || "no ratings"}
+          {show.averageRating !== undefined &&
+            (show.averageRating !== 0 && show.averageRating + " / 5")}
         </Text>
       </Flex>
     </Container>

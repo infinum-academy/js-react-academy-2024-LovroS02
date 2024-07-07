@@ -1,7 +1,7 @@
 export interface IReview {
     email: string;
     avatar: string;
-    rating: Number;
+    rating: number;
     comment: string;
 }
 
