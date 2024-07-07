@@ -49,7 +49,7 @@ export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
         placeholder="Add rating"
       ></Input>
       <Button
-        width="15%"
+        width="10%"
         borderRadius="20px"
         variant="solid"
         bg="white"

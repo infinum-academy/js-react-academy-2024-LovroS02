@@ -1,11 +1,10 @@
 "use client";
 
-import { ReviewItem } from "@/components/features/review/ReviewItem/ReviewItem";
 import { ShowDetails } from "@/components/features/shows/ShowDetails/ShowDetails";
 import { ShowReviewSection } from "@/components/features/shows/ShowReviewSection/ShowReviewSection";
 import { IReview } from "@/typings/review";
-import { toNumber } from "lodash";
 import styles from "./page.module.css";
+import { Heading } from "@chakra-ui/react";
 
 export default function Home() {
   const calculateAverageRating = () => {
@@ -25,6 +24,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
+      <Heading mb="20px" color="white" size="xl">TV Shows App</Heading>
       <ShowDetails
         show={{
           imageUrl: "Brooklyn_nine_nine.png",

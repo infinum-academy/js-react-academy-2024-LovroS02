@@ -8,17 +8,26 @@ interface ReviewItemProps {
 
 export const ReviewItem = ({ review, onDelete }: ReviewItemProps) => {
   return (
-    <Flex direction="column" gap={4}>
-      <Flex direction="row" justifyContent="space-between">
+    <Flex
+      bg="blue"
+      direction="column"
+      padding="20px"
+      gap={4}
+      borderRadius="10px"
+    >
+      <Flex direction="row" justifyContent="space-between" alignItems="center">
         <Text>{review.email}</Text>
         <Avatar src={review.avatar} bg="darkblue"></Avatar>
       </Flex>
       <Text>{review.comment}</Text>
-      <Text>{review.rating}</Text>
+      <Text>{review.rating} / 5</Text>
       <Button
-        colorScheme="white"
+        width="15%"
+        bg="white"
+        color="black"
         variant="solid"
         onClick={() => onDelete(review)}
+        borderRadius="20px"
       >
         Remove
       </Button>

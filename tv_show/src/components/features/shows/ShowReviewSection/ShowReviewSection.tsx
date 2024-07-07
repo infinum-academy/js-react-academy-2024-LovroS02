@@ -48,11 +48,11 @@ export const ShowReviewSection = () => {
 
   return (
     <Fragment>
+      <ReviewForm addShowReview={addReview}></ReviewForm>
       <ReviewList
         reviewList={reviewList}
         onDeleteReview={onDeleteReview}
       ></ReviewList>
-      <ReviewForm addShowReview={addReview}></ReviewForm>
     </Fragment>
   );
 };

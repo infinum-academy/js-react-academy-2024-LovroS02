@@ -1,5 +1,5 @@
 import { IReview, IReviewList } from "@/typings/review";
-import { Container, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { ReviewItem } from "../ReviewItem/ReviewItem";
 
 interface ReviewListProps {
@@ -9,8 +9,7 @@ interface ReviewListProps {
 
 export const ReviewList = ({ reviewList, onDeleteReview }: ReviewListProps) => {
   return (
-    <Container>
-      <Flex direction="column" gap={4}>
+      <Flex mt={4} direction="column" gap={4} color="white" width="60%">
         {reviewList.reviews.map((review, index) => {
           return (
             <ReviewItem
@@ -21,6 +20,5 @@ export const ReviewList = ({ reviewList, onDeleteReview }: ReviewListProps) => {
           );
         })}
       </Flex>
-    </Container>
   );
 };
