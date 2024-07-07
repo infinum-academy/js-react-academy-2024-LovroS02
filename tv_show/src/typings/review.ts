@@ -4,3 +4,7 @@ export interface IReview {
     rating: Number;
     comment: string;
 }
+
+export interface IReviewList {
+    reviews: Array<IReview>;
+}
