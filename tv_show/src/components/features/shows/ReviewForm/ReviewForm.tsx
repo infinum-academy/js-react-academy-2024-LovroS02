@@ -14,6 +14,10 @@ export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
       "rating-input"
     ) as HTMLInputElement;
 
+    if (!commentInput.value || !ratingInput.value) {
+      return
+    }
+
     const newReview: IReview = {
       comment: commentInput.value,
       rating: parseInt(ratingInput.value),
