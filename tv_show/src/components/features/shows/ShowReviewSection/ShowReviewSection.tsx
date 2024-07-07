@@ -14,7 +14,8 @@ const testShow: IShow = {
   imageUrl: "Brooklyn_nine_nine.png",
   title: "Brooklyn Nine-nine",
   averageRating: 0,
-  description: "Bok",
+  description:
+    "Comedy series following the exploits of Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD's 99th Precinct.",
 };
 
 export const ShowReviewSection = () => {
