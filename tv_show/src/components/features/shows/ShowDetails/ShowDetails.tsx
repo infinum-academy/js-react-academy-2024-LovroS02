@@ -1,5 +1,5 @@
 import { IShow } from "@/typings/show";
-import { Container, Image, Heading, Text, Flex, Input } from "@chakra-ui/react";
+import { Container, Image, Heading, Text, Flex } from "@chakra-ui/react";
 
 interface ShowDetailsProps {
   show: IShow;
@@ -7,7 +7,13 @@ interface ShowDetailsProps {
 
 export const ShowDetails = ({ show }: ShowDetailsProps) => {
   return (
-    <Container padding={0} maxW="60%" bg="white" color="darkblue" borderRadius="20px">
+    <Container
+      padding={0}
+      maxW="60%"
+      bg="white"
+      color="darkblue"
+      borderRadius="20px"
+    >
       <Flex direction="column" gap={8}>
         <Image
           objectFit="contain"
@@ -21,12 +27,9 @@ export const ShowDetails = ({ show }: ShowDetailsProps) => {
         <Text pl={8} pr={8}>
           {show.description}
         </Text>
-        <Input
-          value={show.averageRating + " / 5" || "no ratings"}
-          pl={8}
-          variant="unstyled"
-          mb={8}
-        ></Input>
+        <Text pl={8} mb={8}>
+          {show.averageRating + " / 5" || "no ratings"}
+        </Text>
       </Flex>
     </Container>
   );
