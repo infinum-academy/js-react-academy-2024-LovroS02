@@ -9,17 +9,18 @@ interface ReviewFormProps {
 
 export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
 	const [internalValue, setInternalValue] = useState(0);
+  const [commentValue, setCommentvalue] = useState("");
 
 	const onClickHandler = () => {
-		const commentInput = document.getElementById('comment-input') as HTMLInputElement;
+		const commentInput = commentValue;
 		const ratingInput = internalValue;
 
-		if (!commentInput.value || !ratingInput) {
+		if (!commentInput || !ratingInput) {
 			return;
 		}
 
 		const newReview: IReview = {
-			comment: commentInput.value,
+			comment: commentInput,
 			rating: ratingInput,
 			email: 'test@gmail.com',
 			avatar: '',
@@ -31,6 +32,10 @@ export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
 	const onChange = (index: number) => {
 		setInternalValue(index);
 	};
+
+  const onChangeComment = (value: string) => {
+    setCommentvalue(value);
+  }
 
 	return (
 		<Flex direction="column" gap={4} width="60%">
@@ -46,6 +51,7 @@ export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
 				size="md"
 				placeholder="Add review"
 				padding="0px 0px 50px 10px"
+        onChange={(event) => onChangeComment(event.target.value)}
 			></Input>
 			<CustomRatingInput label="Rating" value={internalValue} onChange={onChange} />
 			<Button width="10%" borderRadius="20px" variant="solid" bg="white" color="black" onClick={onClickHandler}>
