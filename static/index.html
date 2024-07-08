@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>TV shows Vanilla</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="page-container">
+      <h1 id="title-1">TV shows APP</h1>
+      <div id="show-information">
+        <img src="media/Brooklyn_nine_nine.png" alt="Brooklyn_nine_nine" />
+        <h2 id="show-name">Brooklyn Nine-Nine</h2>
+        <p name="Show Description" id="show-description"
+          >Comedy series following the exploits of Det. Jake Peralta and his
+          diverse, lovable colleagues as they police the NYPD's 99th Precinct.
+      </p>
+        <span id="average-rating"></span>
+      </div>
+      <div id="review-form">
+        <h1 id="title-2">Reviews</h1>
+        <textarea
+          name="Review"
+          id="review"
+          placeholder="Add review"
+          cols="93"
+          rows="5"
+        ></textarea>
+        <div id="star-rating">
+          <span id="rating">Rating</span>
+          <label
+            for="rating"
+            class="star"
+            id="star-1"
+            onclick="addRating('star-1')"
+            >&star;</label
+          >
+          <label
+            for="rating"
+            class="star"
+            id="star-2"
+            onclick="addRating('star-2')"
+            >&star;</label
+          >
+          <label
+            for="rating"
+            class="star"
+            id="star-3"
+            onclick="addRating('star-3')"
+            >&star;</label
+          >
+          <label
+            for="rating"
+            class="star"
+            id="star-4"
+            onclick="addRating('star-4')"
+            >&star;</label
+          >
+          <label
+            for="rating"
+            class="star"
+            id="star-5"
+            onclick="addRating('star-5')"
+            >&star;</label
+          >
+        </div>
+        <button onclick="newReviewButtonHandler()">Post</button>
+      </div>
+      <div id="reviews-ratings-list"></div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

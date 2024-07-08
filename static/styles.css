@@ -1,0 +1,122 @@
+#page-container {
+  background-color: darkblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+#show-information {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: baseline;
+  color: darkblue;
+  border-radius: 20px;
+  max-width: min-content;
+}
+
+#title-1 {
+  margin: 0;
+  margin-right: 34%;
+  padding: 10px;
+}
+
+img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#show-name {
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+#show-description {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#average-rating {
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+#review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 10px;
+}
+
+#title-2 {
+  margin: 0;
+  margin-top: 10px;
+}
+
+#review {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#star-rating {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: x-large;
+}
+
+#rating {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.star {
+  color: gray;
+}
+
+.star:hover {
+  cursor: pointer;
+  color: gold;
+}
+
+#review-form button {
+  border-radius: 20px;
+  width: 70px;
+  height: 40px;
+  background-color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+#reviews-rating-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#review-rating-item {
+  background-color: darkslateblue;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  padding: 20px;
+  width: 650px;
+  gap: 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#review-rating-item button {
+  border-radius: 20px;
+  width: 100px;
+  height: 40px;
+  background-color: white;
+  cursor: pointer;
+}
+
+#rating-stars {
+  font-size: large;
+  margin-bottom: 20px;
+}
