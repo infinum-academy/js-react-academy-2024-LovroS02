@@ -16,11 +16,13 @@ export const CustomRatingInput = ({ label, value, onChange }: CustomRatingInputP
 	};
 
 	const setColor = (index: number) => {
-		if (hoveredIndex) {
-			if (index <= hoveredIndex) {
-				return 'gold';
+		if (label === 'Rating') {
+			if (hoveredIndex) {
+				if (index <= hoveredIndex) {
+					return 'gold';
+				}
+				return 'gray.300';
 			}
-			return 'gray.300';
 		}
 		if (index <= value) {
 			return 'gold';
