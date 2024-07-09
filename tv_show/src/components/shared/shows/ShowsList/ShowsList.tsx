@@ -2,11 +2,11 @@ import { SimpleGrid } from '@chakra-ui/react';
 import { ShowCard } from '../ShowCard/ShowCard';
 import { IShow } from '@/typings/show';
 
-interface IShowListProps {
+interface IShowsListProps {
 	shows: Array<IShow>;
 }
 
-export const ShowList = ({ shows }: IShowListProps) => {
+export const ShowsList = ({ shows }: IShowsListProps) => {
 	return (
 		<SimpleGrid>
 			{shows.map((show) => (
