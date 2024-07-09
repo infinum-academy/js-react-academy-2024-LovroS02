@@ -2,7 +2,7 @@
 
 import { ShowsList } from '@/components/shared/shows/ShowsList/ShowsList';
 import { IShow } from '@/typings/show';
-import { Box, Container } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 const shows: Array<IShow> = [
 	{ title: 'Bok', description: 'Bok', imageUrl: '', averageRating: 2 },
@@ -11,8 +11,8 @@ const shows: Array<IShow> = [
 
 export const ShowsListSection = () => {
 	return (
-		<Box bg="darkblue" maxW="80%" ml="20%">
+		<Flex bg="darkblue" maxW="80%" ml="20%">
 			<ShowsList shows={shows} />
-		</Box>
+		</Flex>
 	);
 };
