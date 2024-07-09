@@ -16,7 +16,7 @@ export const ShowDetails = ({ show }: ShowDetailsProps) => {
     >
       <Flex direction="column" gap={8}>
         <Image
-          src={show.imageUrl}
+          src={show.image_url}
           alt="Show image"
           fallbackSrc="https://fakeimg.pl/600x400"
           borderTopRadius="20px"
@@ -28,9 +28,10 @@ export const ShowDetails = ({ show }: ShowDetailsProps) => {
           {show.description}
         </Text>
         <Text pl={8} mb={8}>
-          {(show.averageRating !== undefined &&
-            show.averageRating !== 0 &&
-            show.averageRating + " / 5") ||
+          {(show.average_rating !== undefined &&
+            show.average_rating !== 0 &&
+            show.average_rating !== null &&
+            show.average_rating + " / 5") ||
             "no ratings"}
         </Text>
       </Flex>

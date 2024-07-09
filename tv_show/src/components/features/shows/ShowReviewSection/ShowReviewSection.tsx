@@ -3,33 +3,36 @@ import { IShow } from '@/typings/show';
 import { Fragment, useEffect, useState } from 'react';
 import { ReviewList } from '../../review/ReviewList/ReviewList';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
-import { Flex, Heading } from '@chakra-ui/react';
+import { Flex, Heading, Spinner } from '@chakra-ui/react';
 import { ShowDetails } from '../ShowDetails/ShowDetails';
+import { useParams } from 'next/navigation';
+import useSWR from 'swr';
+import { getShow } from '@/fetchers/show';
 
 const mockReviewList: IReviewList = {
 	reviews: [],
 };
 
-const testShow: IShow = {
-	no_of_reviews: 0,
-	id: '1',
-	image_url: 'Brooklyn_nine_nine.png',
-	title: 'Brooklyn Nine-nine',
-	average_rating: 4.5,
-	description:
-		"Comedy series following the exploits of Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD's 99th Precinct.",
-};
-
 export const ShowReviewSection = () => {
+	const params = useParams();
+
 	const [reviewList, setReviewList] = useState(mockReviewList);
-	const [show, setShow] = useState(testShow);
 
-	useEffect(() => {
-		const loadedReviewList = loadFromLocalStorage();
+	// useEffect(() => {
+	// 	const loadedReviewList = loadFromLocalStorage();
 
-		setShow({ ...show, average_rating: calculateAverageRating(loadedReviewList) });
-		setReviewList(loadedReviewList);
-	}, []);
+	// 	setReviewList(loadedReviewList);
+	// }, []);
+
+	const { data, isLoading, error } = useSWR(`/shows/${params.id}`, () => getShow(params.id as string));
+
+	if (error) {
+		return <div>Ups...something went wrong</div>;
+	}
+
+	if (isLoading || !data) {
+		return <Spinner thickness="8px" emptyColor="white" color="darkblue" boxSize={100} mx="50%"></Spinner>;
+	}
 
 	const saveToLocalStorage = (reviewList: IReviewList) => {
 		localStorage.setItem('reviewlist', JSON.stringify(reviewList));
@@ -58,7 +61,6 @@ export const ShowReviewSection = () => {
 			reviews: reviewList.reviews.filter((review) => review !== reviewToRemove),
 		};
 
-		setShow({ ...show, average_rating: calculateAverageRating(newReviewList) });
 		setReviewList(newReviewList);
 		saveToLocalStorage(newReviewList);
 	};
@@ -68,7 +70,6 @@ export const ShowReviewSection = () => {
 			reviews: [...reviewList.reviews, review],
 		};
 
-		setShow({ ...show, average_rating: calculateAverageRating(newReviewList) });
 		setReviewList(newReviewList);
 		saveToLocalStorage(newReviewList);
 	};
@@ -76,7 +77,7 @@ export const ShowReviewSection = () => {
 	return (
 		<Fragment>
 			<Flex direction="column" maxW="80%" ml="20%" bg="darkblue" padding={6}>
-				<ShowDetails show={show}></ShowDetails>
+				<ShowDetails show={data}></ShowDetails>
 				<ReviewForm addShowReview={addReview}></ReviewForm>
 				<ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview}></ReviewList>
 			</Flex>
