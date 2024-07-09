@@ -8,7 +8,15 @@ interface ISidebarNavigationItemProps {
 
 export const SidebarNavigationItem = ({ navigationItem }: ISidebarNavigationItemProps) => {
 	return (
-		<Button as={NextLink} href={`/${navigationItem.route}`} bg="darkblue" color="white" _hover={{ color: 'blue' }}>
+		<Button
+			as={NextLink}
+			href={`/${navigationItem.route}`}
+			bg="darkblue"
+			color="white"
+			maxW="100px"
+			ml={8}
+            borderRadius="20px"
+		>
 			{navigationItem.title}
 		</Button>
 	);
