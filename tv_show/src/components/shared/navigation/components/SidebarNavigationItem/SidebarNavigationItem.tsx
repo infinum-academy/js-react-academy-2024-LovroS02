@@ -1,15 +1,15 @@
+import { INavigationItem } from '@/typings/navigation';
 import { Button } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 interface ISidebarNavigationItemProps {
-	title: string;
-	route: string;
+	navigationItem: INavigationItem;
 }
 
-export const SidebarNavigationItem = ({ title, route }: ISidebarNavigationItemProps) => {
+export const SidebarNavigationItem = ({ navigationItem }: ISidebarNavigationItemProps) => {
 	return (
-		<Button as={NextLink} href={`/${route}`} bg="darkblue" _hover={{ color: 'blue' }}>
-			{title}
+		<Button as={NextLink} href={`/${navigationItem.route}`} bg="darkblue" _hover={{ color: 'blue' }}>
+			{navigationItem.title}
 		</Button>
 	);
 };
