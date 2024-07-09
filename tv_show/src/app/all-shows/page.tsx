@@ -1,5 +1,5 @@
 import { ShowsListSection } from "@/components/features/shows/ShowsListSection/ShowsListSection";
 
-export default function ShowListsPage() {
+export default function ShowsListPage() {
 	return <ShowsListSection />;
 }
