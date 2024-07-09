@@ -24,7 +24,7 @@ export const ShowCard = ({ show }: IShowCardProps) => {
 				alt={show.title + ' image'}
 				borderTopRadius="20px"
 			/>
-			<Heading size="md" fontFamily="bold" padding="15px 0px 0px 15px">
+			<Heading size="md" fontFamily="bold" padding="15px 0px 0px 15px" color="darkblue">
 				{show.title}
 			</Heading>
 			<Flex alignItems="center" direction="row" mb={4} padding="5px 0px 0px 15px">

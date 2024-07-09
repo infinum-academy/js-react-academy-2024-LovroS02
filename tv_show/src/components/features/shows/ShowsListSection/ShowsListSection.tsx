@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
 import { ShowsList } from '@/components/shared/shows/ShowsList/ShowsList';
 import { IShow } from '@/typings/show';
-import { Container } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react';
 
 const shows: Array<IShow> = [
 	{ title: 'Bok', description: 'Bok', imageUrl: '', averageRating: 2 },
@@ -11,8 +11,8 @@ const shows: Array<IShow> = [
 
 export const ShowsListSection = () => {
 	return (
-		<Container>
+		<Box bg="darkblue" maxW="80%" ml="20%">
 			<ShowsList shows={shows} />
-		</Container>
+		</Box>
 	);
 };
