@@ -3,6 +3,8 @@
 import { IShow } from '@/typings/show';
 import { StarIcon } from '@chakra-ui/icons';
 import { Heading, Text, Image, Card, CardBody, Flex } from '@chakra-ui/react';
+import NextLink from 'next/link';
+
 
 interface IShowCardProps {
 	show: IShow;
@@ -11,11 +13,10 @@ interface IShowCardProps {
 export const ShowCard = ({ show }: IShowCardProps) => {
 	return (
 		<Card
+            as={NextLink}
+			href={`/all-shows/${show.id}`}
 			maxW="2xs"
 			borderRadius="20px"
-			onClick={() => {
-				console.log('Bok');
-			}}
 			cursor="pointer"
 		>
 			<Image
