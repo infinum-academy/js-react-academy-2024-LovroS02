@@ -1,3 +1,5 @@
+"use client";
+
 import { SimpleGrid } from '@chakra-ui/react';
 import { ShowCard } from '../ShowCard/ShowCard';
 import { IShow } from '@/typings/show';
