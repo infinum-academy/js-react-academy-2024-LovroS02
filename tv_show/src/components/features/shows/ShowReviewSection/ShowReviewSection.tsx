@@ -11,10 +11,11 @@ const mockReviewList: IReviewList = {
 };
 
 const testShow: IShow = {
+	no_of_reviews: 0,
 	id: '1',
-	imageUrl: 'Brooklyn_nine_nine.png',
+	image_url: 'Brooklyn_nine_nine.png',
 	title: 'Brooklyn Nine-nine',
-	averageRating: 4.5,
+	average_rating: 4.5,
 	description:
 		"Comedy series following the exploits of Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD's 99th Precinct.",
 };
@@ -26,7 +27,7 @@ export const ShowReviewSection = () => {
 	useEffect(() => {
 		const loadedReviewList = loadFromLocalStorage();
 
-		setShow({ ...show, averageRating: calculateAverageRating(loadedReviewList) });
+		setShow({ ...show, average_rating: calculateAverageRating(loadedReviewList) });
 		setReviewList(loadedReviewList);
 	}, []);
 
@@ -57,7 +58,7 @@ export const ShowReviewSection = () => {
 			reviews: reviewList.reviews.filter((review) => review !== reviewToRemove),
 		};
 
-		setShow({ ...show, averageRating: calculateAverageRating(newReviewList) });
+		setShow({ ...show, average_rating: calculateAverageRating(newReviewList) });
 		setReviewList(newReviewList);
 		saveToLocalStorage(newReviewList);
 	};
@@ -67,7 +68,7 @@ export const ShowReviewSection = () => {
 			reviews: [...reviewList.reviews, review],
 		};
 
-		setShow({ ...show, averageRating: calculateAverageRating(newReviewList) });
+		setShow({ ...show, average_rating: calculateAverageRating(newReviewList) });
 		setReviewList(newReviewList);
 		saveToLocalStorage(newReviewList);
 	};
