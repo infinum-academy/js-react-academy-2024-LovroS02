@@ -1,5 +1,7 @@
 "use client";
 
+import { TopRatedShowsListSection } from "@/components/features/shows/TopRatedShowsListSection/TopRatedShowsListSection";
+
 export default function TopRatedShowsPage() {
-	return <div>Top rated shows</div>;
+	return <TopRatedShowsListSection />;
 }
