@@ -1,3 +1,5 @@
+"use client";
+
 export default function ShowCardPage() {
-    return;
+	return <div>Show details</div>;
 }
