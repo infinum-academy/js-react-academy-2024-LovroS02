@@ -11,7 +11,7 @@ interface IShowCardProps {
 
 export const ShowCard = ({ show }: IShowCardProps) => {
 	const checkAverageRating = (rating?: number) => {
-		if (rating !== undefined && rating !== 0) {
+		if (rating !== undefined && rating !== 0 && rating !== null) {
 			return rating + ' / 5';
 		}
 		return 'no rating';
