@@ -9,7 +9,7 @@ export const ShowDetails = ({ show }: ShowDetailsProps) => {
   return (
     <Container
       padding={0}
-      maxW="60%"
+      maxW="100%"
       bg="white"
       color="darkblue"
       borderRadius="20px"

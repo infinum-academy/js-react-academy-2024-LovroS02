@@ -3,7 +3,7 @@ import { IShow } from '@/typings/show';
 import { Fragment, useEffect, useState } from 'react';
 import { ReviewList } from '../../review/ReviewList/ReviewList';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
-import { Heading } from '@chakra-ui/react';
+import { Flex, Heading } from '@chakra-ui/react';
 import { ShowDetails } from '../ShowDetails/ShowDetails';
 
 const mockReviewList: IReviewList = {
@@ -11,9 +11,10 @@ const mockReviewList: IReviewList = {
 };
 
 const testShow: IShow = {
+	id: '1',
 	imageUrl: 'Brooklyn_nine_nine.png',
 	title: 'Brooklyn Nine-nine',
-	averageRating: 0,
+	averageRating: 4.5,
 	description:
 		"Comedy series following the exploits of Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD's 99th Precinct.",
 };
@@ -73,12 +74,11 @@ export const ShowReviewSection = () => {
 
 	return (
 		<Fragment>
-			<Heading mb="20px" color="white" size="xl">
-				TV Shows App
-			</Heading>
-			<ShowDetails show={show}></ShowDetails>
-			<ReviewForm addShowReview={addReview}></ReviewForm>
-			<ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview}></ReviewList>
+			<Flex direction="column" maxW="80%" ml="20%" bg="darkblue" padding={6}>
+				<ShowDetails show={show}></ShowDetails>
+				<ReviewForm addShowReview={addReview}></ReviewForm>
+				<ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview}></ReviewList>
+			</Flex>
 		</Fragment>
 	);
 };

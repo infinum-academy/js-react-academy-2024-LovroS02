@@ -12,7 +12,7 @@ export const ShowsList = ({ shows }: IShowsListProps) => {
 	return (
 		<SimpleGrid columns={4} padding={6} gap={6}>
 			{shows.map((show) => (
-				<ShowCard key={show.title} show={show}></ShowCard>
+				<ShowCard key={show.id} show={show}></ShowCard>
 			))}
 		</SimpleGrid>
 	);
