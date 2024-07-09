@@ -3,6 +3,7 @@
 import { ShowsList } from '@/components/shared/shows/ShowsList/ShowsList';
 import { getTopRatedShowsList } from '@/fetchers/show';
 import { IShow } from '@/typings/show';
+import { WarningIcon } from '@chakra-ui/icons';
 import { Flex, Spinner } from '@chakra-ui/react';
 import useSWR from 'swr';
 
@@ -10,7 +11,7 @@ export const TopRatedShowsListSection = () => {
 	const { data, isLoading, error } = useSWR('/shows/top-rated', getTopRatedShowsList);
 
 	if (error) {
-		return <div>Ups....something went wrong</div>;
+		return <WarningIcon boxSize={100} mx="50%" />;
 	}
 
 	if (isLoading) {

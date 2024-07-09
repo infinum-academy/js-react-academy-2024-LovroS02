@@ -8,6 +8,7 @@ import { ShowDetails } from '../ShowDetails/ShowDetails';
 import { useParams } from 'next/navigation';
 import useSWR from 'swr';
 import { getShow } from '@/fetchers/show';
+import { WarningIcon } from '@chakra-ui/icons';
 
 const mockReviewList: IReviewList = {
 	reviews: [],
@@ -27,7 +28,7 @@ export const ShowReviewSection = () => {
 	const { data, isLoading, error } = useSWR(`/shows/${params.id}`, () => getShow(params.id as string));
 
 	if (error) {
-		return <div>Ups...something went wrong</div>;
+		return <WarningIcon boxSize={100} mx="50%" />;
 	}
 
 	if (isLoading || !data) {
