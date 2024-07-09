@@ -10,15 +10,29 @@ interface IShowCardProps {
 
 export const ShowCard = ({ show }: IShowCardProps) => {
 	return (
-		<Card maxW="2xs" borderRadius="20px">
-			<Image src={show.imageUrl} fallbackSrc="https://fakeimg.pl/600x400" alt={show.title + ' image'} borderTopRadius="20px" />
+		<Card
+			maxW="2xs"
+			borderRadius="20px"
+			onClick={() => {
+				console.log('Bok');
+			}}
+			cursor="pointer"
+		>
+			<Image
+				src={show.imageUrl}
+				fallbackSrc="https://fakeimg.pl/600x400"
+				alt={show.title + ' image'}
+				borderTopRadius="20px"
+			/>
 			<Heading size="md" fontFamily="bold" padding="15px 0px 0px 15px">
 				{show.title}
 			</Heading>
 			<Flex alignItems="center" direction="row" mb={4} padding="5px 0px 0px 15px">
-                <StarIcon boxSize={3} color="darkblue" />
-                <Text fontSize="sm" pl={1}>{show.averageRating + "/5"}</Text>
-            </Flex>
+				<StarIcon boxSize={3} color="darkblue" />
+				<Text fontSize="sm" pl={1}>
+					{show.averageRating + '/5'}
+				</Text>
+			</Flex>
 		</Card>
 	);
 };
