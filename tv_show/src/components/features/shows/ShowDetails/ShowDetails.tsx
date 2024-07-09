@@ -17,6 +17,7 @@ export const ShowDetails = ({ show }: ShowDetailsProps) => {
       <Flex direction="column" gap={8}>
         <Image
           src={show.imageUrl}
+          alt="Show image"
           fallbackSrc="https://fakeimg.pl/600x400"
           borderTopRadius="20px"
         />

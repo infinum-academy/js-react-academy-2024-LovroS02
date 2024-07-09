@@ -1,89 +1,84 @@
-import { IReview, IReviewList } from "@/typings/review";
-import { IShow } from "@/typings/show";
-import { Fragment, useEffect, useState } from "react";
-import { ReviewList } from "../../review/ReviewList/ReviewList";
-import { ReviewForm } from "../ReviewForm/ReviewForm";
-import { Heading } from "@chakra-ui/react";
-import { ShowDetails } from "../ShowDetails/ShowDetails";
+import { IReview, IReviewList } from '@/typings/review';
+import { IShow } from '@/typings/show';
+import { Fragment, useEffect, useState } from 'react';
+import { ReviewList } from '../../review/ReviewList/ReviewList';
+import { ReviewForm } from '../ReviewForm/ReviewForm';
+import { Heading } from '@chakra-ui/react';
+import { ShowDetails } from '../ShowDetails/ShowDetails';
 
 const mockReviewList: IReviewList = {
-  reviews: [],
+	reviews: [],
 };
 
 const testShow: IShow = {
-  imageUrl: "Brooklyn_nine_nine.png",
-  title: "Brooklyn Nine-nine",
-  averageRating: 0,
-  description:
-    "Comedy series following the exploits of Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD's 99th Precinct.",
+	imageUrl: 'Brooklyn_nine_nine.png',
+	title: 'Brooklyn Nine-nine',
+	averageRating: 0,
+	description:
+		"Comedy series following the exploits of Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD's 99th Precinct.",
 };
 
 export const ShowReviewSection = () => {
-  const [reviewList, setReviewList] = useState(mockReviewList);
-  const [show, setShow] = useState(testShow);
+	const [reviewList, setReviewList] = useState(mockReviewList);
+	const [show, setShow] = useState(testShow);
 
-  useEffect(() => {
-    const loadedReviewList = loadFromLocalStorage();
-    testShow.averageRating = calculateAverageRating(loadedReviewList);
-    setShow(testShow);
-    setReviewList(loadedReviewList);
-  }, []);
+	useEffect(() => {
+		const loadedReviewList = loadFromLocalStorage();
 
-  const saveToLocalStorage = (reviewList: IReviewList) => {
-    localStorage.setItem("reviewlist", JSON.stringify(reviewList));
-  };
+		setShow({ ...show, averageRating: calculateAverageRating(loadedReviewList) });
+		setReviewList(loadedReviewList);
+	}, []);
 
-  const loadFromLocalStorage = () => {
-    const reviewListString = localStorage.getItem("reviewlist");
-    if (!reviewListString) {
-      return reviewList;
-    }
+	const saveToLocalStorage = (reviewList: IReviewList) => {
+		localStorage.setItem('reviewlist', JSON.stringify(reviewList));
+	};
 
-    return JSON.parse(reviewListString);
-  };
+	const loadFromLocalStorage = () => {
+		const reviewListString = localStorage.getItem('reviewlist');
+		if (!reviewListString) {
+			return reviewList;
+		}
 
-  const calculateAverageRating = (rl: IReviewList) => {
-    let avg = 0;
-    rl.reviews.forEach((review: IReview) => {
-      avg += review.rating;
-    });
+		return JSON.parse(reviewListString);
+	};
 
-    return parseFloat((avg / rl.reviews.length).toPrecision(2)) || 0;
-  };
+	const calculateAverageRating = (rl: IReviewList) => {
+		let avg = 0;
+		rl.reviews.forEach((review: IReview) => {
+			avg += review.rating;
+		});
 
-  const onDeleteReview = (reviewToRemove: IReview) => {
-    const newReviewList = {
-      reviews: reviewList.reviews.filter((review) => review !== reviewToRemove),
-    };
+		return parseFloat((avg / rl.reviews.length).toPrecision(2)) || 0;
+	};
 
-    testShow.averageRating = calculateAverageRating(newReviewList);
-    setShow(testShow);
-    setReviewList(newReviewList);
-    saveToLocalStorage(newReviewList);
-  };
+	const onDeleteReview = (reviewToRemove: IReview) => {
+		const newReviewList = {
+			reviews: reviewList.reviews.filter((review) => review !== reviewToRemove),
+		};
 
-  const addReview = (review: IReview) => {
-    const newReviewList = {
-      reviews: [...reviewList.reviews, review],
-    };
+		setShow({ ...show, averageRating: calculateAverageRating(newReviewList) });
+		setReviewList(newReviewList);
+		saveToLocalStorage(newReviewList);
+	};
 
-    testShow.averageRating = calculateAverageRating(newReviewList);
-    setShow(testShow);
-    setReviewList(newReviewList);
-    saveToLocalStorage(newReviewList);
-  };
+	const addReview = (review: IReview) => {
+		const newReviewList = {
+			reviews: [...reviewList.reviews, review],
+		};
 
-  return (
-    <Fragment>
-      <Heading mb="20px" color="white" size="xl">
-        TV Shows App
-      </Heading>
-      <ShowDetails show={show}></ShowDetails>
-      <ReviewForm addShowReview={addReview}></ReviewForm>
-      <ReviewList
-        reviewList={reviewList}
-        onDeleteReview={onDeleteReview}
-      ></ReviewList>
-    </Fragment>
-  );
+		setShow({ ...show, averageRating: calculateAverageRating(newReviewList) });
+		setReviewList(newReviewList);
+		saveToLocalStorage(newReviewList);
+	};
+
+	return (
+		<Fragment>
+			<Heading mb="20px" color="white" size="xl">
+				TV Shows App
+			</Heading>
+			<ShowDetails show={show}></ShowDetails>
+			<ReviewForm addShowReview={addReview}></ReviewForm>
+			<ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview}></ReviewList>
+		</Fragment>
+	);
 };
