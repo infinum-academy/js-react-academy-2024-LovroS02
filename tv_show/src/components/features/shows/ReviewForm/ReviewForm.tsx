@@ -38,7 +38,7 @@ export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
 	};
 
 	return (
-		<Flex direction="column" gap={4} width="60%">
+		<Flex direction="column" as="form" gap={4} width="60%" onSubmit={onClickHandler}>
 			<Heading mt="10px" borderRadius="10px" color="white" size="lg">
 				Reviews
 			</Heading>
@@ -52,9 +52,9 @@ export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
 				placeholder="Add review"
 				padding="0px 0px 50px 10px"
 				onChange={(event) => onChangeComment(event.target.value)}
-			></Input>
+			/>
 			<CustomRatingInput label="Rating" value={internalValue} onChange={onChange} />
-			<Button width="10%" borderRadius="20px" variant="solid" bg="white" color="black" onClick={onClickHandler}>
+			<Button width="10%" borderRadius="20px" variant="solid" bg="white" color="black" type="submit">
 				Post
 			</Button>
 		</Flex>

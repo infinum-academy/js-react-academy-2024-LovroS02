@@ -10,12 +10,12 @@ interface ReviewItemProps {
 export const ReviewItem = ({ review, onDelete }: ReviewItemProps) => {
 	return (
 		<Flex bg="blue" direction="column" padding="20px" gap={4} borderRadius="10px">
-			<Flex direction="row" justifyContent="space-between" alignItems="center">
+			<Flex justifyContent="space-between" alignItems="center">
 				<Text>{review.email}</Text>
-				<Avatar src={review.avatar} bg="darkblue"></Avatar>
+				<Avatar src={review.avatar} bg="darkblue" />
 			</Flex>
 			<Text>{review.comment}</Text>
-			<CustomRatingInput label={review.rating + ' / 5'} value={review.rating} onChange={() => {}} />
+			<CustomRatingInput label={review.rating + '/5'} value={review.rating} />
 			<Button width="15%" bg="white" color="black" variant="solid" onClick={() => onDelete(review)} borderRadius="20px">
 				Remove
 			</Button>

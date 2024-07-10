@@ -78,9 +78,9 @@ export const ShowReviewSection = () => {
 	return (
 		<Fragment>
 			<Flex direction="column" maxW="80%" ml="20%" bg="darkblue" padding={6}>
-				<ShowDetails show={data}></ShowDetails>
-				<ReviewForm addShowReview={addReview}></ReviewForm>
-				<ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview}></ReviewList>
+				<ShowDetails show={data} />
+				<ReviewForm addShowReview={addReview} />
+				<ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview} />
 			</Flex>
 		</Fragment>
 	);

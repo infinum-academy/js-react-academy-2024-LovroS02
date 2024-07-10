@@ -5,7 +5,7 @@ import { useState } from 'react';
 interface CustomRatingInputProps {
 	label: string;
 	value: number;
-	onChange: (index: number) => void;
+	onChange?: (index: number) => void;
 }
 
 export const CustomRatingInput = ({ label, value, onChange }: CustomRatingInputProps) => {
@@ -15,8 +15,8 @@ export const CustomRatingInput = ({ label, value, onChange }: CustomRatingInputP
 		setHoveredIndex(index);
 	};
 
-	const setColor = (index: number) => {
-		if (label === 'Rating') {
+	const getColor = (index: number) => {
+		if (onChange) {
 			if (hoveredIndex) {
 				if (index <= hoveredIndex) {
 					return 'gold';
@@ -31,18 +31,19 @@ export const CustomRatingInput = ({ label, value, onChange }: CustomRatingInputP
 	};
 
 	return (
-		<Flex direction="row" alignItems="center">
+		<Flex alignItems="center">
 			<Input color="white" value={label} variant="unstyled" size="lg" maxW="15%" />
-			<Flex direction="row" gap={1} onMouseLeave={() => setHoveredIndex(0)}>
+			<Flex gap={1} onMouseLeave={() => setHoveredIndex(0)}>
 				{Array.from(Array(5)).map((_, index) => {
 					return (
 						<StarIcon
 							key={index}
 							boxSize={6}
-							color={setColor(index + 1)}
+							color={getColor(index + 1)}
 							onMouseOver={() => onHover(index + 1)}
-							cursor={label === 'Rating' ? 'pointer' : 'default'}
-							onClick={() => onChange(index + 1)}
+							cursor={onChange ? 'pointer' : 'default'}
+							pointerEvents={onChange ? 'initial' : 'none'}
+							onClick={() => onChange?.(index + 1)}
 						/>
 					);
 				})}
