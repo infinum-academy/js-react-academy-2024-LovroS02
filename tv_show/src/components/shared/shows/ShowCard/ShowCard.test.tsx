@@ -14,30 +14,30 @@ describe('ShowCard', () => {
 	it('should contain Image element with provided url', () => {
 		render(<ShowCard show={mockShow} />);
 
-        const image = screen.getByRole("img");
-        expect(image).toBeInTheDocument();
+		const image = screen.getByRole('img');
+		expect(image).toBeInTheDocument();
 	});
 
-    it('should render show title', () => {
-        render(<ShowCard show={mockShow}/>)
+	it('should render show title', () => {
+		render(<ShowCard show={mockShow} />);
 
-        const heading = screen.getByRole("heading");
-        expect(heading).toBeInTheDocument();
-        expect(heading).toHaveTextContent(mockShow.title);
-    })
+		const heading = screen.getByRole('heading');
+		expect(heading).toBeInTheDocument();
+		expect(heading).toHaveTextContent(mockShow.title);
+	});
 
-    it('should render show average rating', () => {
-        render(<ShowCard show={mockShow} />);
+	it('should render show average rating', () => {
+		render(<ShowCard show={mockShow} />);
 
-        const checkAverageRating = (rating?: number) => {
-            if (rating !== undefined && rating !== 0 && rating !== null) {
-                return rating + ' / 5';
-            }
-            return 'no rating';
-        };
+		const checkAverageRating = (rating?: number) => {
+			if (rating !== undefined && rating !== 0 && rating !== null) {
+				return rating + ' / 5';
+			}
+			return 'no rating';
+		};
 
-        const text = screen.getByRole("paragraph");
-        expect(text).toBeInTheDocument();
-        expect(text).toHaveTextContent(checkAverageRating(mockShow.average_rating));
-    })
+		const text = screen.getByRole('paragraph');
+		expect(text).toBeInTheDocument();
+		expect(text).toHaveTextContent(checkAverageRating(mockShow.average_rating));
+	});
 });
