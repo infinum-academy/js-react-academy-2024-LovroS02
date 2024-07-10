@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { INavigationItem } from '@/typings/navigation';
 import { Flex, Image, Text } from '@chakra-ui/react';
@@ -15,14 +15,19 @@ const sidebarNavigationItems: Array<INavigationItem> = [
 
 export const SidebarNavigation = () => {
 	return (
-		<Flex direction="column" bg="darkblue" maxW="20%" mr="80%">
-			<Flex direction="row" fontStyle="italic" color="white" alignItems="center">
-                <CIcon icon={cilTv} size='sm'></CIcon>
-				<Text>TV SHOW APP</Text>
+		<Flex direction="column" bg="darkblue" width="300px" padding={6}>
+			<Flex fontStyle="italic" color="white" alignItems="center">
+				<CIcon icon={cilTv} size="sm" height={30} />
+				<Text ml={2} fontFamily="cursive" fontSize="20px">
+					TV SHOW APP
+				</Text>
 			</Flex>
-			{sidebarNavigationItems.map((navigationItem) => (
-				<SidebarNavigationItem key={navigationItem.title} navigationItem={navigationItem} />
-			))}
+			<Flex direction="column" gap={4} mt={8} height="100%">
+				<SidebarNavigationItem navigationItem={sidebarNavigationItems[0]} />
+				<SidebarNavigationItem navigationItem={sidebarNavigationItems[1]} />
+				<SidebarNavigationItem navigationItem={sidebarNavigationItems[2]} />
+			</Flex>
+			<SidebarNavigationItem navigationItem={sidebarNavigationItems[3]} />
 		</Flex>
 	);
 };

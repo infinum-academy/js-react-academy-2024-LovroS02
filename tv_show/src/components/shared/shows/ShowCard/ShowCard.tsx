@@ -18,12 +18,11 @@ export const ShowCard = ({ show }: IShowCardProps) => {
 	};
 
 	return (
-		<Card as={NextLink} href={`/all-shows/${show.id}`} maxW="2xs" borderRadius="20px" cursor="pointer">
+		<Card as={NextLink} href={`/all-shows/${show.id}`} maxW="2xs" borderRadius="20px" overflow="hidden" cursor="pointer">
 			<Image
 				src={show.image_url}
 				fallbackSrc="https://fakeimg.pl/600x400"
 				alt={show.title + ' image'}
-				borderTopRadius="20px"
 			/>
 			<Heading size="md" fontFamily="bold" padding="15px 0px 0px 15px" color="darkblue">
 				{show.title}

@@ -14,8 +14,8 @@ export const SidebarNavigationItem = ({ navigationItem }: ISidebarNavigationItem
 			bg="darkblue"
 			color="white"
 			maxW="100px"
-			ml={8}
-            borderRadius="20px"
+			borderRadius="20px"
+			height="30px"
 		>
 			{navigationItem.title}
 		</Button>
