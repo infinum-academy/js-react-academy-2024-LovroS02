@@ -1,5 +1,5 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { color, Flex, Input } from '@chakra-ui/react';
+import { color, Flex, Input, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 
 interface CustomRatingInputProps {
@@ -32,7 +32,7 @@ export const CustomRatingInput = ({ label, value, onChange }: CustomRatingInputP
 
 	return (
 		<Flex alignItems="center">
-			<Input color="white" value={label} variant="unstyled" size="lg" maxW="15%" />
+			<Text color="white" size="lg" pr={4}>{label}</Text>
 			<Flex gap={1} onMouseLeave={() => setHoveredIndex(0)}>
 				{Array.from(Array(5)).map((_, index) => {
 					return (

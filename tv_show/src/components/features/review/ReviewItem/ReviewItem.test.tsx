@@ -2,37 +2,30 @@ import { render, screen } from '@testing-library/react';
 import { ReviewItem } from './ReviewItem';
 
 describe('ReviewItem', () => {
-	const mockReview = { email: 'test@gmail.com', avatar: '', rating: 0, comment: 'test test test' };
+	const mockReview = { email: 'test@gmail.com', avatar: '', rating: 1, comment: 'test test test' };
 
 	it('should render review/user email', () => {
 		render(<ReviewItem review={mockReview} onDelete={() => {}} />);
 
-		const userEmail = screen.getByText(mockReview.email);
-		expect(userEmail).toBeInTheDocument();
-		expect(userEmail).toHaveTextContent(mockReview.email);
+		expect(screen.getByText(mockReview.email)).toBeInTheDocument();
 	});
 
 	it('should render review rating', () => {
 		render(<ReviewItem review={mockReview} onDelete={() => {}} />);
 
-		const rating = screen.getByRole('textbox');
-		expect(rating).toBeInTheDocument();
-		expect(rating).toHaveValue(mockReview.rating + ' / 5');
+		expect(screen.getByText(mockReview.rating + '/5')).toBeInTheDocument();
 	});
 
 	it('should render review comment', () => {
 		render(<ReviewItem review={mockReview} onDelete={() => {}} />);
 
-		const comment = screen.getByText(mockReview.comment);
-		expect(comment).toBeInTheDocument();
-		expect(comment).toHaveTextContent(mockReview.comment);
+		expect(screen.getByText(mockReview.comment)).toBeInTheDocument();
 	});
 
 	it('should render delete Button', () => {
 		render(<ReviewItem review={mockReview} onDelete={() => {}} />);
 
-		const deleteButton = screen.getByRole('button');
-		expect(deleteButton).toBeInTheDocument();
+		expect(screen.getByRole('button')).toBeInTheDocument();
 	});
 
 	it('should call onDelete when delete button is clicked', () => {
@@ -41,6 +34,7 @@ describe('ReviewItem', () => {
 
 		const deleteButton = screen.getByText('Remove');
 		deleteButton.click();
+		
 		expect(mockOnDelete).toHaveBeenCalled();
         expect(mockOnDelete).toHaveBeenCalledTimes(1);
         expect(mockOnDelete).toHaveBeenCalledWith(mockReview);
