@@ -21,7 +21,7 @@ export const ShowsListSection = () => {
 	const shows = data?.shows || [];
 
 	return (
-		<Flex bg="darkblue" width="100%" justifyContent="center">
+		<Flex overflowY="auto" height="100vh" bg="darkblue" width="100%" justifyContent="center">
 			<ShowsList shows={shows} />
 		</Flex>
 	);

@@ -8,7 +8,7 @@ interface SidebarNavigationItemProps {
 	children: React.ReactNode;
 }
 
-export const SidebarNavigationItem = ({href, children}: SidebarNavigationItemProps) => {
+export const SidebarNavigationItem = ({ href, children }: SidebarNavigationItemProps) => {
 	return (
 		<Button as={NextLink} href={href} bg="darkblue" color="white" maxW="100px" borderRadius="20px" height="30px">
 			{children}

@@ -7,7 +7,7 @@ import { SWRConfig } from 'swr';
 export function Providers({ children }: { children: React.ReactNode }) {
 	return (
 		<SWRConfig>
-			<ChakraProvider>{children}</ChakraProvider>;
+			<ChakraProvider>{children}</ChakraProvider>
 		</SWRConfig>
 	);
 }
