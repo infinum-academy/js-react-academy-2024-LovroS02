@@ -14,18 +14,40 @@ const mockReviewList: IReviewList = {
 	reviews: [],
 };
 
+const mockShow: IShow = {
+	id: '',
+	image_url: '',
+	title: '',
+	description: '',
+	average_rating: 0,
+	no_of_reviews: 0,
+};
+
 export const ShowReviewSection = () => {
 	const params = useParams();
 
-	const [reviewList, setReviewList] = useState(mockReviewList);
-
-	// useEffect(() => {
-	// 	const loadedReviewList = loadFromLocalStorage();
-
-	// 	setReviewList(loadedReviewList);
-	// }, []);
-
 	const { data, isLoading, error } = useSWR(`/shows/${params.id}`, () => getShow(params.id as string));
+
+	const [reviewList, setReviewList] = useState(mockReviewList);
+	const [show, setShow] = useState(mockShow);
+
+	const loadFromLocalStorage = (id: string) => {
+		const reviewListString = localStorage.getItem(`reviewlist-${id}`);
+		if (!reviewListString) {
+			return reviewList;
+		}
+
+		return JSON.parse(reviewListString);
+	};
+
+	useEffect(() => {
+		const loadedReviewList = loadFromLocalStorage(params.id as string);
+		if (data) {
+			const newShow = { ...data, average_rating: calculateAverageRating(loadedReviewList) };
+			setShow(newShow);
+		}
+		setReviewList(loadedReviewList);
+	}, [data]);
 
 	if (error) {
 		return <WarningIcon boxSize={100} mx="50%" />;
@@ -35,17 +57,8 @@ export const ShowReviewSection = () => {
 		return <Spinner thickness="8px" emptyColor="white" color="darkblue" boxSize={100} mx="50%"></Spinner>;
 	}
 
-	const saveToLocalStorage = (reviewList: IReviewList) => {
-		localStorage.setItem('reviewlist', JSON.stringify(reviewList));
-	};
-
-	const loadFromLocalStorage = () => {
-		const reviewListString = localStorage.getItem('reviewlist');
-		if (!reviewListString) {
-			return reviewList;
-		}
-
-		return JSON.parse(reviewListString);
+	const saveToLocalStorage = (reviewList: IReviewList, id: string) => {
+		localStorage.setItem(`reviewlist-${id}`, JSON.stringify(reviewList));
 	};
 
 	const calculateAverageRating = (rl: IReviewList) => {
@@ -62,8 +75,10 @@ export const ShowReviewSection = () => {
 			reviews: reviewList.reviews.filter((review) => review !== reviewToRemove),
 		};
 
+		const newShow = { ...data, average_rating: calculateAverageRating(newReviewList) };
+		setShow(newShow);
 		setReviewList(newReviewList);
-		saveToLocalStorage(newReviewList);
+		saveToLocalStorage(newReviewList, params.id as string);
 	};
 
 	const addReview = (review: IReview) => {
@@ -71,14 +86,16 @@ export const ShowReviewSection = () => {
 			reviews: [...reviewList.reviews, review],
 		};
 
+		const newShow = { ...data, average_rating: calculateAverageRating(newReviewList) };
+		setShow(newShow);
 		setReviewList(newReviewList);
-		saveToLocalStorage(newReviewList);
+		saveToLocalStorage(newReviewList, params.id as string);
 	};
 
 	return (
 		<Fragment>
 			<Flex direction="column" bg="darkblue" padding={6}>
-				<ShowDetails show={data} />
+				<ShowDetails show={show} />
 				<ReviewForm addShowReview={addReview} />
 				<ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview} />
 			</Flex>

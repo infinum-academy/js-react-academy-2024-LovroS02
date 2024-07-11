@@ -11,7 +11,8 @@ export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
 	const [internalValue, setInternalValue] = useState(0);
 	const [commentValue, setCommentvalue] = useState('');
 
-	const onClickHandler = () => {
+	const onClickHandler = (event: React.FormEvent) => {
+		event.preventDefault();
 		const commentInput = commentValue;
 		const ratingInput = internalValue;
 
