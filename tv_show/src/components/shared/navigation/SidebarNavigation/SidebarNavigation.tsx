@@ -23,11 +23,11 @@ export const SidebarNavigation = () => {
 				</Text>
 			</Flex>
 			<Flex direction="column" gap={4} mt={8} height="100%">
-				<SidebarNavigationItem navigationItem={sidebarNavigationItems[0]} />
-				<SidebarNavigationItem navigationItem={sidebarNavigationItems[1]} />
-				<SidebarNavigationItem navigationItem={sidebarNavigationItems[2]} />
+				<SidebarNavigationItem href='/all-shows'>All shows</SidebarNavigationItem>
+				<SidebarNavigationItem href='/top-rated'>Top rated</SidebarNavigationItem>
+				<SidebarNavigationItem href='/'>My profile</SidebarNavigationItem>
 			</Flex>
-			<SidebarNavigationItem navigationItem={sidebarNavigationItems[3]} />
+			<SidebarNavigationItem href='/'>Log out</SidebarNavigationItem>
 		</Flex>
 	);
 };
