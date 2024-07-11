@@ -11,11 +11,11 @@ export const TopRatedShowsListSection = () => {
 	const { data, isLoading, error } = useSWR('/shows/top-rated', getTopRatedShowsList);
 
 	if (error) {
-		return <WarningIcon boxSize={100} mx="50%" />;
+		return <WarningIcon color="white" boxSize={100} mx="50%" />;
 	}
 
 	if (isLoading) {
-		return <Spinner thickness="8px" emptyColor="white" color="darkblue" boxSize={100} mx="50%"></Spinner>;
+		return <Spinner thickness="8px" emptyColor="darkblue" color="white" boxSize={100} mx="50%"></Spinner>;
 	}
 
 	const shows = data?.shows || [];
