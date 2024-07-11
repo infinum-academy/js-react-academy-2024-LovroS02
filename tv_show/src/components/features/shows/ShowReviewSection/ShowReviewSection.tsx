@@ -5,7 +5,7 @@ import { ReviewList } from '../../review/ReviewList/ReviewList';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
 import { Flex, Heading, Spinner } from '@chakra-ui/react';
 import { ShowDetails } from '../ShowDetails/ShowDetails';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import useSWR from 'swr';
 import { getShow } from '@/fetchers/show';
 import { WarningIcon } from '@chakra-ui/icons';
