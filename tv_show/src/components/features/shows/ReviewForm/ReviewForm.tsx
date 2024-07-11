@@ -48,7 +48,6 @@ export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
 				borderRadius="10px"
 				bg="white"
 				color="black"
-				id="comment-input"
 				size="md"
 				placeholder="Add review"
 				padding="0px 0px 50px 10px"
