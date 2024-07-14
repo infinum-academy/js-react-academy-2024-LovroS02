@@ -5,7 +5,7 @@ module.exports = {
 			{
 				source: '/',
 				destination: '/all-shows',
-				permanent: true,
+				permanent: false,
 			},
 		];
 	},
