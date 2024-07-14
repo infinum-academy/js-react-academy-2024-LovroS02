@@ -18,5 +18,5 @@ export async function mutator(url: string, { arg }: { arg: props }) {
 		throw new Error(`Failed to mutate on ${url}`);
 	}
 
-	return await response.json();
+	return await response;
 }
