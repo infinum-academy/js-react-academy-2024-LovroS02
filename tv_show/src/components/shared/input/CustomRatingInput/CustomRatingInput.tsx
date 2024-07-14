@@ -1,5 +1,5 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { color, Flex, Input } from '@chakra-ui/react';
+import { color, Flex, Input, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 
 interface CustomRatingInputProps {
@@ -31,9 +31,9 @@ export const CustomRatingInput = ({ label, value, onChange }: CustomRatingInputP
 	};
 
 	return (
-		<Flex direction="row" alignItems="center">
-			<Input color="white" value={label} variant="unstyled" size="lg" maxW="15%" />
-			<Flex direction="row" gap={1} onMouseLeave={() => setHoveredIndex(0)}>
+		<Flex alignItems="center">
+			<Text color="white" size="lg" pr={4}>{label}</Text>
+			<Flex gap={1} onMouseLeave={() => setHoveredIndex(0)}>
 				{Array.from(Array(5)).map((_, index) => {
 					return (
 						<StarIcon
@@ -42,7 +42,7 @@ export const CustomRatingInput = ({ label, value, onChange }: CustomRatingInputP
 							color={getColor(index + 1)}
 							onMouseOver={() => onHover(index + 1)}
 							cursor={onChange ? 'pointer' : 'default'}
-							pointerEvents={onChange ? 'initial' : 'none'} 
+							pointerEvents={onChange ? 'initial' : 'none'}
 							onClick={() => onChange?.(index + 1)}
 						/>
 					);
