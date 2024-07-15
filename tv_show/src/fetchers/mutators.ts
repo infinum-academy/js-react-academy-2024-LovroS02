@@ -18,5 +18,9 @@ export async function mutator(url: string, { arg }: { arg: props }) {
 		throw new Error(`Failed to mutate on ${url}`);
 	}
 
-	return await response;
+	const client = response.headers.get('client');
+	const accessToken = response.headers.get('access-token');
+	const uid = response.headers.get('uid');
+
+	return await { response: response.json(), client, accessToken, uid };
 }

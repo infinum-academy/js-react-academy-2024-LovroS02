@@ -3,6 +3,7 @@
 import { AppLogo } from '@/components/shared/navigation/AppLogo/AppLogo';
 import { mutator } from '@/fetchers/mutators';
 import { swrKeys } from '@/fetchers/swrKeys';
+import { useUser } from '@/hooks/useUser';
 import { LockIcon } from '@chakra-ui/icons';
 import {
 	Alert,
@@ -34,16 +35,24 @@ interface ILoginFormInputs {
 
 export const LoginForm = () => {
 	const { register, handleSubmit } = useForm<ILoginFormInputs>();
-	const { trigger, error } = useSWRMutation(swrKeys.signIn, mutator);
+	const { mutate } = useUser();
+	const { trigger, error } = useSWRMutation(swrKeys.signIn, mutator, {
+		onSuccess: (data) => {
+			mutate(data.response, { revalidate: false });
+		},
+	});
 
 	const onSignUp = async (data: ILoginFormInputs) => {
-		const response = await trigger(data);
+		const responseObject = await trigger(data);
 
-		const client = response.headers.get('client');
-		const accessToken = response.headers.get('access-token');
-		const uid = response.headers.get('uid');
-
-		localStorage.setItem('authorization-header', JSON.stringify({ client, accessToken, uid }));
+		localStorage.setItem(
+			'authorization-header',
+			JSON.stringify({
+				client: responseObject.client,
+				accessToken: responseObject.accessToken,
+				uid: responseObject.uid,
+			})
+		);
 	};
 
 	return (
