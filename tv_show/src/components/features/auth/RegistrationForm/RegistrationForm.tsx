@@ -5,7 +5,7 @@ import { mutator } from '@/fetchers/mutators';
 import { swrKeys } from '@/fetchers/swrKeys';
 import { LockIcon } from '@chakra-ui/icons';
 import {
-    Alert,
+	Alert,
 	Avatar,
 	Button,
 	Container,
@@ -38,7 +38,7 @@ export const RegistrationForm = () => {
 	const [selectedPass, setSelectedPass] = useState(false);
 	const [selectedConfirmPass, setSelectedConfirmPass] = useState(false);
 
-	const { register, handleSubmit } = useForm<IRegistrationFormInputs>();
+	const { register, handleSubmit, formState } = useForm<IRegistrationFormInputs>();
 	const { trigger, error } = useSWRMutation(swrKeys.signUp, mutator);
 
 	const onSignUp = async (data: IRegistrationFormInputs) => {
@@ -63,7 +63,11 @@ export const RegistrationForm = () => {
 			gap={10}
 			justifyItems="center"
 		>
-            {error && <Alert status="error" bg="blue" color="red">Something went wrong, try again</Alert>}
+			{error && (
+				<Alert status="error" bg="blue" color="red">
+					Something went wrong, try again
+				</Alert>
+			)}
 			<AppLogo />
 			<FormControl isRequired={true}>
 				<InputGroup size="md">
@@ -122,7 +126,15 @@ export const RegistrationForm = () => {
 					</FormHelperText>
 				)}
 			</FormControl>
-			<Button type="submit" borderRadius="20px" fontSize={12} bg="white" color="blue" width="100px">
+			<Button
+				isLoading={formState.isSubmitting ? true : false}
+				type="submit"
+				borderRadius="20px"
+				fontSize={12}
+				bg="white"
+				color="blue"
+				width="100px"
+			>
 				SIGN UP
 			</Button>
 			<Text fontSize={12}>

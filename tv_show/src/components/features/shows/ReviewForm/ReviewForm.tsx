@@ -16,10 +16,10 @@ interface IReviewFormInputs {
 }
 
 export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
-	const authorizationHeader = JSON.parse(localStorage.getItem('authorization-header') || '')
+	const authorizationHeader = JSON.parse(localStorage.getItem('authorization-header') || '');
 	const [internalValue, setInternalValue] = useState(0);
 
-	const { register, handleSubmit, setValue } = useForm<IReviewFormInputs>();
+	const { register, handleSubmit, setValue, formState } = useForm<IReviewFormInputs>();
 
 	const onClickHandler = async (data: IReviewFormInputs) => {
 		if (!data.comment || !data.rating) {
@@ -27,7 +27,7 @@ export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
 		}
 
 		if (authorizationHeader) {
-			addShowReview({...data, email: authorizationHeader.uid || ""});
+			addShowReview({ ...data, email: authorizationHeader.uid || '' });
 		}
 	};
 
@@ -58,7 +58,15 @@ export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
 			<FormControl>
 				<CustomRatingInput {...register('rating')} label="Rating" value={internalValue} onChange={onChange} />
 			</FormControl>
-			<Button width="10%" borderRadius="20px" variant="solid" bg="white" color="black" type="submit">
+			<Button
+				isLoading={formState.isSubmitting ? true : false}
+				width="10%"
+				borderRadius="20px"
+				variant="solid"
+				bg="white"
+				color="black"
+				type="submit"
+			>
 				Post
 			</Button>
 		</Flex>

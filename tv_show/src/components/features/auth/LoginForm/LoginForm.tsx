@@ -34,7 +34,7 @@ interface ILoginFormInputs {
 }
 
 export const LoginForm = () => {
-	const { register, handleSubmit } = useForm<ILoginFormInputs>();
+	const { register, handleSubmit, formState } = useForm<ILoginFormInputs>();
 	const { mutate } = useUser();
 	const { trigger, error } = useSWRMutation(swrKeys.signIn, mutator, {
 		onSuccess: (data) => {
@@ -93,7 +93,15 @@ export const LoginForm = () => {
 					<Input {...register('password')} required type="password" placeholder="Password" borderRadius="20px" />
 				</InputGroup>
 			</FormControl>
-			<Button type="submit" borderRadius="20px" fontSize={12} bg="white" color="blue" width="100px">
+			<Button
+				isLoading={formState.isSubmitting ? true : false}
+				type="submit"
+				borderRadius="20px"
+				fontSize={12}
+				bg="white"
+				color="blue"
+				width="100px"
+			>
 				LOG IN
 			</Button>
 			<Text fontSize={12}>
