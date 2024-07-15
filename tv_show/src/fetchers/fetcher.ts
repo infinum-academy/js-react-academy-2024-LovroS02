@@ -1,6 +1,15 @@
 export async function fetcher<T>(input: string | URL | globalThis.Request, init?: RequestInit): Promise<T> {
 	try {
-		const response = await fetch(input, init);
+		const authorizationHeader = JSON.parse(localStorage.getItem('authorization-header') || '');
+
+		const response = await fetch(input, {
+			headers: {
+				client: authorizationHeader.client,
+				'access-token': authorizationHeader.accessToken,
+				uid: authorizationHeader.uid,
+			},
+			...init,
+		});
 		if (!response.ok) {
 			throw new Error(`Response status: ${response.status}`);
 		}
