@@ -1,10 +1,10 @@
-interface props {
+interface IProps {
 	email: string;
 	password: string;
 	confirmation_password?: string;
 }
 
-export async function mutator(url: string, { arg }: { arg: props }) {
+export async function mutator(url: string, { arg }: { arg: IProps }) {
 	const response = await fetch(url, {
 		method: 'POST',
 		headers: {

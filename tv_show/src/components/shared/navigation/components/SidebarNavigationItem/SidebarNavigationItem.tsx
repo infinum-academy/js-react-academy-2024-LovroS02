@@ -4,12 +4,13 @@ import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-interface SidebarNavigationItemProps {
+interface ISidebarNavigationItemProps {
 	href: string;
 	children: React.ReactNode;
+	onClickHandler?: () => void;
 }
 
-export const SidebarNavigationItem = ({ href, children }: SidebarNavigationItemProps) => {
+export const SidebarNavigationItem = ({ href, children, onClickHandler }: ISidebarNavigationItemProps) => {
 	const path = usePathname();
 
 	return (
@@ -22,6 +23,7 @@ export const SidebarNavigationItem = ({ href, children }: SidebarNavigationItemP
 			borderRadius="20px"
 			height="30px"
 			_hover={{ bg: 'blue' }}
+			onClick={onClickHandler}
 		>
 			{children}
 		</Button>

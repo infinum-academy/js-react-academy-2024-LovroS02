@@ -1,13 +1,19 @@
 'use client';
 
-import { INavigationItem } from '@/typings/navigation';
-import { Flex, Image, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { SidebarNavigationItem } from '../components/SidebarNavigationItem/SidebarNavigationItem';
-import CIcon from '@coreui/icons-react';
-import { cilTv } from '@coreui/icons';
 import { AppLogo } from '../AppLogo/AppLogo';
+import { mutate } from 'swr';
+import { swrKeys } from '@/fetchers/swrKeys';
+import { revalidatePath } from 'next/cache';
 
 export const SidebarNavigation = () => {
+	const logout = () => {
+		localStorage.removeItem('authorization-header');
+		mutate(swrKeys.allShows);
+		revalidatePath('/all-shows');
+	};
+
 	return (
 		<Flex direction="column" bg="darkblue" width="300px" padding={6}>
 			<AppLogo />
@@ -16,7 +22,9 @@ export const SidebarNavigation = () => {
 				<SidebarNavigationItem href="/top-rated">Top rated</SidebarNavigationItem>
 				<SidebarNavigationItem href="/">My profile</SidebarNavigationItem>
 			</Flex>
-			<SidebarNavigationItem href="/logout">Log out</SidebarNavigationItem>
+			<SidebarNavigationItem href="/" onClickHandler={logout}>
+				Log out
+			</SidebarNavigationItem>
 		</Flex>
 	);
 };
