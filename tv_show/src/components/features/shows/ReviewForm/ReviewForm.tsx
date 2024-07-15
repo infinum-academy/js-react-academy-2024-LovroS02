@@ -16,25 +16,19 @@ interface IReviewFormInputs {
 }
 
 export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
+	const authorizationHeader = JSON.parse(localStorage.getItem('authorization-header') || '')
 	const [internalValue, setInternalValue] = useState(0);
 
 	const { register, handleSubmit, setValue } = useForm<IReviewFormInputs>();
 
 	const onClickHandler = async (data: IReviewFormInputs) => {
-		// const commentInput = commentValue;
-		// const ratingInput = internalValue;
 		if (!data.comment || !data.rating) {
 			return;
 		}
 
-		console.log(data);
-
-		// const newReview: IReview = {
-		// 	comment: commentInput,
-		// 	rating: ratingInput,
-		// 	email: 'test@gmail.com',
-		// 	avatar: '',
-		// };
+		if (authorizationHeader) {
+			addShowReview({...data, email: authorizationHeader.uid || ""});
+		}
 	};
 
 	const onChange = (index: number) => {

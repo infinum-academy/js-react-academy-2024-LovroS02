@@ -9,27 +9,23 @@ import { useParams, usePathname } from 'next/navigation';
 import useSWR from 'swr';
 import { getShow } from '@/fetchers/show';
 import { WarningIcon } from '@chakra-ui/icons';
+import { swrKeys } from '@/fetchers/swrKeys';
+import { fetcher } from '@/fetchers/fetcher';
 
 const mockReviewList: IReviewList = {
 	reviews: [],
 };
 
-const mockShow: IShow = {
-	id: '',
-	image_url: '',
-	title: '',
-	description: '',
-	average_rating: 0,
-	no_of_reviews: 0,
-};
+interface IShowReviewResponse {
+	show: IShow;
+}
 
 export const ShowReviewSection = () => {
 	const params = useParams();
 
-	const { data, isLoading, error } = useSWR(`/shows/${params.id}`, () => getShow(params.id as string));
+	const { data, isLoading, error } = useSWR<IShowReviewResponse>(swrKeys.allShows + `/${params.id}`, fetcher);
 
 	const [reviewList, setReviewList] = useState(mockReviewList);
-	const [show, setShow] = useState(mockShow);
 
 	const loadFromLocalStorage = (id: string) => {
 		const reviewListString = localStorage.getItem(`reviewlist-${id}`);
@@ -42,10 +38,6 @@ export const ShowReviewSection = () => {
 
 	useEffect(() => {
 		const loadedReviewList = loadFromLocalStorage(params.id as string);
-		if (data) {
-			const newShow = { ...data, average_rating: calculateAverageRating(loadedReviewList) };
-			setShow(newShow);
-		}
 		setReviewList(loadedReviewList);
 	}, [data]);
 
@@ -75,8 +67,6 @@ export const ShowReviewSection = () => {
 			reviews: reviewList.reviews.filter((review) => review !== reviewToRemove),
 		};
 
-		const newShow = { ...data, average_rating: calculateAverageRating(newReviewList) };
-		setShow(newShow);
 		setReviewList(newReviewList);
 		saveToLocalStorage(newReviewList, params.id as string);
 	};
@@ -86,8 +76,6 @@ export const ShowReviewSection = () => {
 			reviews: [...reviewList.reviews, review],
 		};
 
-		const newShow = { ...data, average_rating: calculateAverageRating(newReviewList) };
-		setShow(newShow);
 		setReviewList(newReviewList);
 		saveToLocalStorage(newReviewList, params.id as string);
 	};
@@ -95,7 +83,7 @@ export const ShowReviewSection = () => {
 	return (
 		<Fragment>
 			<Flex direction="column" bg="darkblue" padding={6}>
-				<ShowDetails show={show} />
+				{data && <ShowDetails show={data.show} />}
 				<ReviewForm addShowReview={addReview} />
 				<ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview} />
 			</Flex>
