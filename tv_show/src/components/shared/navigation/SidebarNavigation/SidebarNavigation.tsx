@@ -16,7 +16,7 @@ export const SidebarNavigation = () => {
 				<SidebarNavigationItem href="/top-rated">Top rated</SidebarNavigationItem>
 				<SidebarNavigationItem href="/">My profile</SidebarNavigationItem>
 			</Flex>
-			<SidebarNavigationItem href="/">Log out</SidebarNavigationItem>
+			<SidebarNavigationItem href="/logout">Log out</SidebarNavigationItem>
 		</Flex>
 	);
 };
