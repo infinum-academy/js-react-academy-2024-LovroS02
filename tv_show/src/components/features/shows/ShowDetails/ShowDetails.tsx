@@ -7,31 +7,24 @@ interface ShowDetailsProps {
 
 export const ShowDetails = ({ show }: ShowDetailsProps) => {
 	const rating = () => {
-		if (show.averageRating !== undefined && show.averageRating !== 0 && show.averageRating !== null) {
-			return show.averageRating + '/5';
+		if (show.average_rating !== undefined && show.average_rating !== 0 && show.average_rating !== null) {
+			return show.average_rating + '/5';
 		}
 		return 'no ratings';
 	};
 
 	return (
-		<Container padding={0} maxW="60%" bg="white" color="darkblue" borderRadius="20px">
-			<Flex direction="column" gap={8}>
-				<Image
-					src={show.imageUrl}
-					alt={show.title + ' image'}
-					fallbackSrc="https://fakeimg.pl/600x400"
-					borderTopRadius="20px"
-				/>
-				<Heading pl={8} size="lg">
-					{show.title}
-				</Heading>
-				<Text pl={8} pr={8}>
-					{show.description}
-				</Text>
-				<Text pl={8} mb={8}>
-					{rating()}
-				</Text>
-			</Flex>
-		</Container>
+		<Flex direction="column" gap={8} bg="white" borderRadius="20px" overflow="hidden" color="darkblue">
+			<Image src={show.image_url} alt="Show image" fallbackSrc="https://fakeimg.pl/600x400" />
+			<Heading pl={8} size="lg">
+				{show.title}
+			</Heading>
+			<Text pl={8} pr={8}>
+				{show.description}
+			</Text>
+			<Text pl={8} mb={8}>
+				{rating()}
+			</Text>
+		</Flex>
 	);
 };

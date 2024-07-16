@@ -15,7 +15,7 @@ export const ReviewItem = ({ review, onDelete }: ReviewItemProps) => {
 				<Avatar src={review.avatar} bg="darkblue" />
 			</Flex>
 			<Text>{review.comment}</Text>
-			<CustomRatingInput label={review.rating + ' / 5'} value={review.rating} />
+			<CustomRatingInput label={review.rating + '/5'} value={review.rating} />
 			<Button width="15%" bg="white" color="black" variant="solid" onClick={() => onDelete(review)} borderRadius="20px">
 				Remove
 			</Button>

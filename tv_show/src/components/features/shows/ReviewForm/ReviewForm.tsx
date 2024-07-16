@@ -11,7 +11,8 @@ export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
 	const [internalValue, setInternalValue] = useState(0);
 	const [commentValue, setCommentvalue] = useState('');
 
-	const onClickHandler = () => {
+	const onClickHandler = (event: React.FormEvent) => {
+		event.preventDefault();
 		const commentInput = commentValue;
 		const ratingInput = internalValue;
 
@@ -47,14 +48,13 @@ export const ReviewForm = ({ addShowReview }: ReviewFormProps) => {
 				borderRadius="10px"
 				bg="white"
 				color="black"
-				id="comment-input"
 				size="md"
 				placeholder="Add review"
 				padding="0px 0px 50px 10px"
 				onChange={(event) => onChangeComment(event.target.value)}
 			/>
 			<CustomRatingInput label="Rating" value={internalValue} onChange={onChange} />
-			<Button width="10%" borderRadius="20px" variant="solid" bg="white" color="black" type='submit'>
+			<Button width="10%" borderRadius="20px" variant="solid" bg="white" color="black" type="submit">
 				Post
 			</Button>
 		</Flex>

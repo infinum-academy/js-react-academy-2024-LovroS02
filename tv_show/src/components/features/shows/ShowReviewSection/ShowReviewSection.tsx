@@ -3,43 +3,62 @@ import { IShow } from '@/typings/show';
 import { Fragment, useEffect, useState } from 'react';
 import { ReviewList } from '../../review/ReviewList/ReviewList';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
-import { Heading } from '@chakra-ui/react';
+import { Flex, Heading, Spinner } from '@chakra-ui/react';
 import { ShowDetails } from '../ShowDetails/ShowDetails';
+import { useParams, usePathname } from 'next/navigation';
+import useSWR from 'swr';
+import { getShow } from '@/fetchers/show';
+import { WarningIcon } from '@chakra-ui/icons';
 
 const mockReviewList: IReviewList = {
 	reviews: [],
 };
 
-const testShow: IShow = {
-	imageUrl: 'Brooklyn_nine_nine.png',
-	title: 'Brooklyn Nine-nine',
-	averageRating: 0,
-	description:
-		"Comedy series following the exploits of Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD's 99th Precinct.",
+const mockShow: IShow = {
+	id: '',
+	image_url: '',
+	title: '',
+	description: '',
+	average_rating: 0,
+	no_of_reviews: 0,
 };
 
 export const ShowReviewSection = () => {
+	const params = useParams();
+
+	const { data, isLoading, error } = useSWR(`/shows/${params.id}`, () => getShow(params.id as string));
+
 	const [reviewList, setReviewList] = useState(mockReviewList);
-	const [show, setShow] = useState(testShow);
+	const [show, setShow] = useState(mockShow);
 
-	useEffect(() => {
-		const loadedReviewList = loadFromLocalStorage();
-		testShow.averageRating = calculateAverageRating(loadedReviewList);
-		setShow(testShow);
-		setReviewList(loadedReviewList);
-	}, []);
-
-	const saveToLocalStorage = (reviewList: IReviewList) => {
-		localStorage.setItem('reviewlist', JSON.stringify(reviewList));
-	};
-
-	const loadFromLocalStorage = () => {
-		const reviewListString = localStorage.getItem('reviewlist');
+	const loadFromLocalStorage = (id: string) => {
+		const reviewListString = localStorage.getItem(`reviewlist-${id}`);
 		if (!reviewListString) {
 			return reviewList;
 		}
 
 		return JSON.parse(reviewListString);
+	};
+
+	useEffect(() => {
+		const loadedReviewList = loadFromLocalStorage(params.id as string);
+		if (data) {
+			const newShow = { ...data, average_rating: calculateAverageRating(loadedReviewList) };
+			setShow(newShow);
+		}
+		setReviewList(loadedReviewList);
+	}, [data]);
+
+	if (error) {
+		return <WarningIcon color="white" boxSize={100} mx="50%" />;
+	}
+
+	if (isLoading || !data) {
+		return <Spinner thickness="8px" emptyColor="darkblue" color="white" boxSize={100} mx="50%"></Spinner>;
+	}
+
+	const saveToLocalStorage = (reviewList: IReviewList, id: string) => {
+		localStorage.setItem(`reviewlist-${id}`, JSON.stringify(reviewList));
 	};
 
 	const calculateAverageRating = (rl: IReviewList) => {
@@ -56,10 +75,10 @@ export const ShowReviewSection = () => {
 			reviews: reviewList.reviews.filter((review) => review !== reviewToRemove),
 		};
 
-		testShow.averageRating = calculateAverageRating(newReviewList);
-		setShow(testShow);
+		const newShow = { ...data, average_rating: calculateAverageRating(newReviewList) };
+		setShow(newShow);
 		setReviewList(newReviewList);
-		saveToLocalStorage(newReviewList);
+		saveToLocalStorage(newReviewList, params.id as string);
 	};
 
 	const addReview = (review: IReview) => {
@@ -67,20 +86,19 @@ export const ShowReviewSection = () => {
 			reviews: [...reviewList.reviews, review],
 		};
 
-		testShow.averageRating = calculateAverageRating(newReviewList);
-		setShow(testShow);
+		const newShow = { ...data, average_rating: calculateAverageRating(newReviewList) };
+		setShow(newShow);
 		setReviewList(newReviewList);
-		saveToLocalStorage(newReviewList);
+		saveToLocalStorage(newReviewList, params.id as string);
 	};
 
 	return (
 		<Fragment>
-			<Heading mb="20px" color="white" size="xl">
-				TV Shows App
-			</Heading>
-			<ShowDetails show={show} />
-			<ReviewForm addShowReview={addReview} />
-			<ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview} />
+			<Flex direction="column" bg="darkblue" padding={6}>
+				<ShowDetails show={show} />
+				<ReviewForm addShowReview={addReview} />
+				<ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview} />
+			</Flex>
 		</Fragment>
 	);
 };
