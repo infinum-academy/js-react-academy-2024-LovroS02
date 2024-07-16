@@ -27,6 +27,8 @@ import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
+import { PasswordInput } from '../components/PasswordInput/PasswordInput';
+import { register } from 'module';
 
 interface ILoginFormInputs {
 	email: string;
@@ -73,7 +75,7 @@ export const LoginForm = () => {
 		>
 			{error && (
 				<Alert status="error" bg="blue" color="red">
-					Something went wrong, try again
+					Invalid login credentials. Please try again.
 				</Alert>
 			)}
 			<AppLogo />
@@ -85,14 +87,10 @@ export const LoginForm = () => {
 					<Input {...register('email')} required type="email" placeholder="Email" borderRadius="20px" />
 				</InputGroup>
 			</FormControl>
-			<FormControl isRequired={true}>
-				<InputGroup size="md">
-					<InputLeftElement>
-						<LockIcon />
-					</InputLeftElement>
-					<Input {...register('password')} required type="password" placeholder="Password" borderRadius="20px" />
-				</InputGroup>
-			</FormControl>
+			<PasswordInput
+				placeholder="Password"
+				expression={register('password')}
+			/>
 			<Button
 				isLoading={formState.isSubmitting ? true : false}
 				type="submit"
