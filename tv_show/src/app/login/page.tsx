@@ -1,3 +1,5 @@
+"use client";
+
 import { LoginForm } from '@/components/features/auth/LoginForm/LoginForm';
 import { AuthRedirect } from '@/components/shared/navigation/AuthRedirect/AuthRedirect';
 import { Flex } from '@chakra-ui/react';

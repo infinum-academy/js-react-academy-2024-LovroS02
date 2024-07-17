@@ -1,5 +1,7 @@
+"use client";
+
 import { RegistrationForm } from '@/components/features/auth/RegistrationForm/RegistrationForm';
-import { Container, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 export default function Register() {
 	return (

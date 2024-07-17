@@ -1,5 +1,5 @@
 import { IShow } from '@/typings/show';
-import { Container, Image, Heading, Text, Flex } from '@chakra-ui/react';
+import { Image, Heading, Text, Flex } from '@chakra-ui/react';
 
 interface ShowDetailsProps {
 	show: IShow;
