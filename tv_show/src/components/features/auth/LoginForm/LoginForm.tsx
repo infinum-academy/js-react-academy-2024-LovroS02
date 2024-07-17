@@ -10,6 +10,7 @@ import {
 	Button,
 	Flex,
 	FormControl,
+	FormErrorMessage,
 	Input,
 	InputGroup,
 	InputLeftElement,
@@ -26,7 +27,11 @@ interface ILoginFormInputs {
 }
 
 export const LoginForm = () => {
-	const { register, handleSubmit, formState } = useForm<ILoginFormInputs>();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+	} = useForm<ILoginFormInputs>();
 	const { mutate } = useUser();
 	const { trigger, error } = useSWRMutation(swrKeys.signIn, mutator, {
 		onSuccess: (data) => {
@@ -45,7 +50,7 @@ export const LoginForm = () => {
 			onSubmit={handleSubmit(onSignUp)}
 			bg="blue"
 			color="white"
-			height="400px"
+			height="60vh"
 			width="400px"
 			alignItems="center"
 			borderRadius="20px"
@@ -60,17 +65,24 @@ export const LoginForm = () => {
 				</Alert>
 			)}
 			<AppLogo />
-			<FormControl isRequired={true}>
-				<InputGroup size="md">
-					<InputLeftElement>
-						<Avatar size="xs" bg="blue" />
-					</InputLeftElement>
-					<Input {...register('email')} required type="email" placeholder="Email" borderRadius="20px" />
-				</InputGroup>
+			<FormControl isInvalid={Boolean(errors?.email)}>
+				<Flex direction="column">
+					<InputGroup size="md">
+						<InputLeftElement>
+							<Avatar size="xs" bg="blue" />
+						</InputLeftElement>
+						<Input {...register('email', { required: true })} type="email" placeholder="Email" borderRadius="20px" />
+					</InputGroup>
+					<FormErrorMessage pl={3}>Email is required!</FormErrorMessage>
+				</Flex>
 			</FormControl>
-			<PasswordInput placeholder="Password" expression={register('password')} />
+			<PasswordInput
+				placeholder="Password"
+				expression={register('password', { required: true })}
+				error={errors?.password?.type}
+			/>
 			<Button
-				isLoading={formState.isSubmitting ? true : false}
+				isLoading={isSubmitting}
 				type="submit"
 				borderRadius="20px"
 				fontSize={12}
