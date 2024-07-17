@@ -2,7 +2,6 @@
 
 import { ShowsList } from '@/components/shared/shows/ShowsList/ShowsList';
 import { fetcher } from '@/fetchers/fetcher';
-import { getTopRatedShowsList } from '@/fetchers/show';
 import { swrKeys } from '@/fetchers/swrKeys';
 import { IShow } from '@/typings/show';
 import { WarningIcon } from '@chakra-ui/icons';
@@ -21,7 +20,7 @@ export const TopRatedShowsListSection = () => {
 	}
 
 	if (isLoading) {
-		return <Spinner thickness="8px" emptyColor="darkblue" color="white" boxSize={100} mx="50%"></Spinner>;
+		return <Spinner thickness="8px" emptyColor="darkblue" color="white" boxSize={100} mx="50%" />;
 	}
 
 	return (

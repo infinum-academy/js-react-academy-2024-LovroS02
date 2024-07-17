@@ -7,12 +7,10 @@ import { Flex } from '@chakra-ui/react';
 
 export default function ShowsListPage() {
 	return (
-		<>
-			<Flex>
-				<AuthRedirect to="/login" condition="isLoggedOut" />
-				<SidebarNavigation />
-				<ShowsListSection />
-			</Flex>
-		</>
+		<Flex>
+			<AuthRedirect to="/login" condition="isLoggedOut" />
+			<SidebarNavigation />
+			<ShowsListSection />
+		</Flex>
 	);
 }

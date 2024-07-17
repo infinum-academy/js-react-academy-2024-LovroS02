@@ -14,13 +14,22 @@ export async function mutator(url: string, { arg }: { arg: IProps }) {
 		body: JSON.stringify(arg),
 	});
 
-	if (!response.ok) {
-		throw new Error(`Failed to mutate on ${url}`);
-	}
-
 	const client = response.headers.get('client');
 	const accessToken = response.headers.get('access-token');
 	const uid = response.headers.get('uid');
 
-	return await { response: response.json(), client, accessToken, uid };
+	if (!response.ok) {
+		throw new Error(`Failed to mutate on ${url}`);
+	}
+
+	localStorage.setItem(
+		'authorization-header',
+		JSON.stringify({
+			client,
+			accessToken,
+			uid,
+		})
+	);
+
+	return await response.json();
 }

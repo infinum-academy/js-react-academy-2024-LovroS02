@@ -5,13 +5,11 @@ import { SidebarNavigationItem } from '../components/SidebarNavigationItem/Sideb
 import { AppLogo } from '../AppLogo/AppLogo';
 import { mutate } from 'swr';
 import { swrKeys } from '@/fetchers/swrKeys';
-import { revalidatePath } from 'next/cache';
 
 export const SidebarNavigation = () => {
 	const logout = () => {
 		localStorage.removeItem('authorization-header');
-		mutate(swrKeys.allShows);
-		revalidatePath('/all-shows');
+		mutate(swrKeys.getUser, null, { revalidate: false });
 	};
 
 	return (
@@ -22,7 +20,7 @@ export const SidebarNavigation = () => {
 				<SidebarNavigationItem href="/top-rated">Top rated</SidebarNavigationItem>
 				<SidebarNavigationItem href="/">My profile</SidebarNavigationItem>
 			</Flex>
-			<SidebarNavigationItem href="/" onClickHandler={logout}>
+			<SidebarNavigationItem href="/login" onClickHandler={logout}>
 				Log out
 			</SidebarNavigationItem>
 		</Flex>

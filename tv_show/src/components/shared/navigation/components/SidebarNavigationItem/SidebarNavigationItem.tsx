@@ -1,4 +1,3 @@
-import { INavigationItem } from '@/typings/navigation';
 import { Button } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';

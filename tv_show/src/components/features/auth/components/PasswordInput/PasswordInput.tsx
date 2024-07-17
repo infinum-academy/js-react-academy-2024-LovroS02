@@ -1,22 +1,14 @@
 import { LockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import {
-	FormControl,
-	InputGroup,
-	InputLeftElement,
-	Input,
-	InputRightElement,
-	IconButton,
-	FormErrorMessage,
-} from '@chakra-ui/react';
+import { FormControl, InputGroup, InputLeftElement, Input, InputRightElement, IconButton } from '@chakra-ui/react';
 import { useState } from 'react';
-import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface IPasswordInputProps {
 	placeholder: string;
 	expression: UseFormRegisterReturn<string>;
 }
 
-export const PasswordInput = ({ placeholder, expression}: IPasswordInputProps) => {
+export const PasswordInput = ({ placeholder, expression }: IPasswordInputProps) => {
 	const [visible, setVisible] = useState(false);
 
 	const onClickHandler = () => {
@@ -42,7 +34,7 @@ export const PasswordInput = ({ placeholder, expression}: IPasswordInputProps) =
 						aria-label="Show or hide password button"
 						onClick={onClickHandler}
 						variant="unstyled"
-					></IconButton>
+					/>
 				</InputRightElement>
 			</InputGroup>
 		</FormControl>

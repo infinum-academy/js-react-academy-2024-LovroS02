@@ -1,5 +1,5 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { color, Flex, Input, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 
 interface CustomRatingInputProps {

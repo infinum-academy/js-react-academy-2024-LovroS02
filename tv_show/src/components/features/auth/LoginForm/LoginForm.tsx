@@ -4,31 +4,21 @@ import { AppLogo } from '@/components/shared/navigation/AppLogo/AppLogo';
 import { mutator } from '@/fetchers/mutators';
 import { swrKeys } from '@/fetchers/swrKeys';
 import { useUser } from '@/hooks/useUser';
-import { LockIcon } from '@chakra-ui/icons';
 import {
 	Alert,
 	Avatar,
 	Button,
-	Container,
 	Flex,
 	FormControl,
-	FormErrorMessage,
-	FormHelperText,
-	FormLabel,
-	Heading,
-	Icon,
 	Input,
 	InputGroup,
 	InputLeftElement,
 	Link,
 	Text,
 } from '@chakra-ui/react';
-import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 import { PasswordInput } from '../components/PasswordInput/PasswordInput';
-import { register } from 'module';
 
 interface ILoginFormInputs {
 	email: string;
@@ -40,21 +30,12 @@ export const LoginForm = () => {
 	const { mutate } = useUser();
 	const { trigger, error } = useSWRMutation(swrKeys.signIn, mutator, {
 		onSuccess: (data) => {
-			mutate(data.response, { revalidate: false });
+			mutate(data, { revalidate: false });
 		},
 	});
 
 	const onSignUp = async (data: ILoginFormInputs) => {
-		const responseObject = await trigger(data);
-
-		localStorage.setItem(
-			'authorization-header',
-			JSON.stringify({
-				client: responseObject.client,
-				accessToken: responseObject.accessToken,
-				uid: responseObject.uid,
-			})
-		);
+		await trigger(data);
 	};
 
 	return (
@@ -87,10 +68,7 @@ export const LoginForm = () => {
 					<Input {...register('email')} required type="email" placeholder="Email" borderRadius="20px" />
 				</InputGroup>
 			</FormControl>
-			<PasswordInput
-				placeholder="Password"
-				expression={register('password')}
-			/>
+			<PasswordInput placeholder="Password" expression={register('password')} />
 			<Button
 				isLoading={formState.isSubmitting ? true : false}
 				type="submit"

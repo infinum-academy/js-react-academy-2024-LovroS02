@@ -3,11 +3,10 @@ import { IShow } from '@/typings/show';
 import { Fragment, useEffect, useState } from 'react';
 import { ReviewList } from '../../review/ReviewList/ReviewList';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
-import { Flex, Heading, Spinner } from '@chakra-ui/react';
+import { Flex, Spinner } from '@chakra-ui/react';
 import { ShowDetails } from '../ShowDetails/ShowDetails';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import useSWR from 'swr';
-import { getShow } from '@/fetchers/show';
 import { WarningIcon } from '@chakra-ui/icons';
 import { swrKeys } from '@/fetchers/swrKeys';
 import { fetcher } from '@/fetchers/fetcher';
@@ -23,7 +22,7 @@ interface IShowReviewResponse {
 export const ShowReviewSection = () => {
 	const params = useParams();
 
-	const { data, isLoading, error } = useSWR<IShowReviewResponse>(swrKeys.allShows + `/${params.id}`, fetcher);
+	const { data, isLoading, error } = useSWR<IShowReviewResponse>(`${swrKeys.allShows}/${params.id}`, fetcher);
 
 	const [reviewList, setReviewList] = useState(mockReviewList);
 
@@ -46,20 +45,11 @@ export const ShowReviewSection = () => {
 	}
 
 	if (isLoading || !data) {
-		return <Spinner thickness="8px" emptyColor="darkblue" color="white" boxSize={100} mx="50%"></Spinner>;
+		return <Spinner thickness="8px" emptyColor="darkblue" color="white" boxSize={100} mx="50%" />;
 	}
 
 	const saveToLocalStorage = (reviewList: IReviewList, id: string) => {
 		localStorage.setItem(`reviewlist-${id}`, JSON.stringify(reviewList));
-	};
-
-	const calculateAverageRating = (rl: IReviewList) => {
-		let avg = 0;
-		rl.reviews.forEach((review: IReview) => {
-			avg += review.rating;
-		});
-
-		return parseFloat((avg / rl.reviews.length).toPrecision(2)) || 0;
 	};
 
 	const onDeleteReview = (reviewToRemove: IReview) => {
