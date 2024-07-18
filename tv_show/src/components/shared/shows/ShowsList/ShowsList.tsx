@@ -1,6 +1,6 @@
 "use client";
 
-import { Flex, SimpleGrid } from '@chakra-ui/react';
+import { SimpleGrid } from '@chakra-ui/react';
 import { ShowCard } from '../ShowCard/ShowCard';
 import { IShow } from '@/typings/show';
 
