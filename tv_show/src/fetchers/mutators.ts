@@ -1,7 +1,16 @@
+import { IReview } from '@/typings/review';
+import { fetcher } from './fetcher';
+
 interface IProps {
 	email: string;
 	password: string;
 	confirmation_password?: string;
+}
+
+interface IReviewProps {
+	comment: string;
+	rating: number;
+	show_id: string;
 }
 
 export async function mutator(url: string, { arg }: { arg: IProps }) {
@@ -32,4 +41,17 @@ export async function mutator(url: string, { arg }: { arg: IProps }) {
 	);
 
 	return await response.json();
+}
+
+export function createReview(url: string, { arg }: { arg: IReviewProps }) {
+	return fetcher(url, {
+		method: 'POST',
+		body: JSON.stringify(arg),
+	});
+}
+
+export function deleteReview(url: string) {
+	return fetcher(url, {
+		method: 'DELETE',
+	});
 }

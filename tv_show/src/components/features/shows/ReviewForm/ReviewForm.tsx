@@ -1,33 +1,41 @@
 import { CustomRatingInput } from '@/components/shared/input/CustomRatingInput/CustomRatingInput';
-import { IReview } from '@/typings/review';
-import { Flex, Heading, Input, Button, FormControl } from '@chakra-ui/react';
+import { createReview } from '@/fetchers/mutators';
+import { swrKeys } from '@/fetchers/swrKeys';
+import { Flex, Heading, Input, Button, FormControl, FormErrorMessage } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { mutate } from 'swr';
+import useSWRMutation from 'swr/mutation';
 
 interface IReviewFormProps {
-	addShowReview: (review: IReview) => void;
+	id: string;
 }
 
 interface IReviewFormInputs {
 	comment: string;
 	rating: number;
-	email: 'test@gmail.com';
-	avatar: '';
 }
 
-export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
+export const ReviewForm = ({ id }: IReviewFormProps) => {
 	const authorizationHeader = JSON.parse(localStorage.getItem('authorization-header') || '');
 	const [internalValue, setInternalValue] = useState(0);
 
-	const { register, handleSubmit, setValue, formState } = useForm<IReviewFormInputs>();
+	const { trigger } = useSWRMutation(swrKeys.createReview, createReview, {
+		onSuccess: () => {
+			mutate(swrKeys.getReviews(id));
+		},
+	});
+
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		formState: { errors, isSubmitting },
+	} = useForm<IReviewFormInputs>();
 
 	const onClickHandler = async (data: IReviewFormInputs) => {
-		if (!data.comment || !data.rating) {
-			return;
-		}
-
 		if (authorizationHeader) {
-			addShowReview({ ...data, email: authorizationHeader.uid || '' });
+			await trigger({ ...data, show_id: id });
 		}
 	};
 
@@ -41,25 +49,35 @@ export const ReviewForm = ({ addShowReview }: IReviewFormProps) => {
 			<Heading mt="10px" borderRadius="10px" color="white" size="lg">
 				Reviews
 			</Heading>
-			<FormControl isRequired={true}>
-				<Input
-					{...register('comment')}
-					required
-					type="text"
-					height="100px"
-					borderRadius="10px"
-					bg="white"
-					color="black"
-					size="md"
-					placeholder="Add review"
-					padding="0px 0px 50px 10px"
-				/>
+			<FormControl isInvalid={Boolean(errors.comment)}>
+				<Flex direction="column">
+					<Input
+						{...register('comment', { required: true })}
+						type="text"
+						height="100px"
+						borderRadius="10px"
+						bg="white"
+						color="black"
+						size="md"
+						placeholder="Add review"
+						padding="0px 0px 50px 10px"
+					/>
+					<FormErrorMessage>Comment is required!</FormErrorMessage>
+				</Flex>
 			</FormControl>
-			<FormControl>
-				<CustomRatingInput {...register('rating')} label="Rating" value={internalValue} onChange={onChange} />
+			<FormControl isInvalid={Boolean(errors.rating)}>
+				<Flex direction="column">
+					<CustomRatingInput
+						{...register('rating', { required: true })}
+						label="Rating"
+						value={internalValue}
+						onChange={onChange}
+					/>
+					<FormErrorMessage>Rating is required!</FormErrorMessage>
+				</Flex>
 			</FormControl>
 			<Button
-				isLoading={formState.isSubmitting ? true : false}
+				isLoading={isSubmitting}
 				width="10%"
 				borderRadius="20px"
 				variant="solid"
