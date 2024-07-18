@@ -1,6 +1,7 @@
 import { CustomRatingInput } from '@/components/shared/input/CustomRatingInput/CustomRatingInput';
 import { createReview } from '@/fetchers/mutators';
 import { swrKeys } from '@/fetchers/swrKeys';
+import { useUser } from '@/hooks/useUser';
 import { Flex, Heading, Input, Button, FormControl, FormErrorMessage } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -17,7 +18,7 @@ interface IReviewFormInputs {
 }
 
 export const ReviewForm = ({ id }: IReviewFormProps) => {
-	const authorizationHeader = JSON.parse(localStorage.getItem('authorization-header') || '');
+	const { data: uid } = useUser();
 	const [internalValue, setInternalValue] = useState(0);
 
 	const { trigger } = useSWRMutation(swrKeys.createReview, createReview, {
@@ -34,7 +35,7 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 	} = useForm<IReviewFormInputs>();
 
 	const onClickHandler = async (data: IReviewFormInputs) => {
-		if (authorizationHeader) {
+		if (uid) {
 			await trigger({ ...data, show_id: id });
 		}
 	};
