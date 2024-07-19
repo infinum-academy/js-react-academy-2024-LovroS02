@@ -12,7 +12,7 @@ jest.mock('@/fetchers/mutators', () => {
 
 jest.mock('@/hooks/useUser', () => {
 	return {
-		useUser: jest.fn().mockResolvedValue({ data: { id: 'test@gmail.com' } }),
+		useUser: jest.fn().mockResolvedValue({ data: { user: { id: '1', email: 'test@gmail.com', image_url: '' } } }),
 	};
 });
 
@@ -54,7 +54,7 @@ describe('ReviewItem', () => {
 
 		const { result } = renderHook(useUser);
 
-		if (result.current.data?.id) {
+		if (result.current.data?.user.email) {
 			expect(screen.getByRole('button')).toBeInTheDocument();
 		}
 	});
@@ -64,7 +64,7 @@ describe('ReviewItem', () => {
 
 		const { result } = renderHook(useUser);
 
-		if (result.current.data?.id) {
+		if (result.current.data?.user.email) {
 			const deleteButton = await screen.findByRole('button');
 
 			act(() => {

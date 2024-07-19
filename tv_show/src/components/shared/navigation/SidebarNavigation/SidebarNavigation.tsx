@@ -5,7 +5,6 @@ import { SidebarNavigationItem } from '../components/SidebarNavigationItem/Sideb
 import { AppLogo } from '../AppLogo/AppLogo';
 import { mutate } from 'swr';
 import { swrKeys } from '@/fetchers/swrKeys';
-import { useUser } from '@/hooks/useUser';
 
 export const SidebarNavigation = () => {
 	const logout = () => {
@@ -14,7 +13,7 @@ export const SidebarNavigation = () => {
 	};
 
 	return (
-		<Flex direction="column" bg="darkblue" width="1000px" padding={6}>
+		<Flex direction="column" bg="darkblue" width="500px" padding={6}>
 			<AppLogo />
 			<Flex direction="column" gap={4} mt={8} height="100%">
 				<SidebarNavigationItem href="/all-shows">All shows</SidebarNavigationItem>

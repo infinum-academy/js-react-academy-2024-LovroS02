@@ -1,17 +1,18 @@
 import { CustomRatingInput } from '@/components/shared/input/CustomRatingInput/CustomRatingInput';
 import { deleteReview } from '@/fetchers/mutators';
 import { swrKeys } from '@/fetchers/swrKeys';
-import { useUser } from '@/hooks/useUser';
 import { IReview } from '@/typings/review';
 import { Flex, Text, Avatar, Button } from '@chakra-ui/react';
 import { mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
+import { UpdateReviewButton } from '../UpdateReviewButton/UpdateReviewButton';
+import { useUser } from '@/hooks/useUser';
 
-interface ReviewItemProps {
+interface IReviewItemProps {
 	review: IReview;
 }
 
-export const ReviewItem = ({ review }: ReviewItemProps) => {
+export const ReviewItem = ({ review }: IReviewItemProps) => {
 	const { data } = useUser();
 
 	const { trigger } = useSWRMutation(swrKeys.deleteReview(review.id), deleteReview, {
@@ -32,12 +33,13 @@ export const ReviewItem = ({ review }: ReviewItemProps) => {
 			</Flex>
 			<Text>{review.comment}</Text>
 			<CustomRatingInput label={review.rating + '/5'} value={review.rating} />
-			{data?.id === review.user?.email ? (
-				<Button width="15%" bg="white" color="black" variant="solid" borderRadius="20px" onClick={onDelete}>
-					Remove
-				</Button>
-			) : (
-				<></>
+			{data?.user.email === review.user?.email && (
+				<Flex gap={4}>
+					<Button width="15%" bg="white" color="black" variant="solid" borderRadius="20px" onClick={onDelete}>
+						Remove
+					</Button>
+					<UpdateReviewButton comment={review.comment} rating={review.rating} id={review.id} show_id={review.show_id} />
+				</Flex>
 			)}
 		</Flex>
 	);
