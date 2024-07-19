@@ -1,5 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { ShowsList } from './ShowsList';
+import { ShowCard } from '../ShowCard/ShowCard';
+
+jest.mock('../ShowCard/ShowCard', () => {
+	return { ShowCard: jest.fn().mockReturnValue(null) };
+});
 
 describe('ShowsList', () => {
 	const mockShows = [
@@ -24,6 +29,16 @@ describe('ShowsList', () => {
 	it('should render all provided shows', () => {
 		render(<ShowsList shows={mockShows} />);
 
-		expect(screen.getAllByRole('link').length).toEqual(mockShows.length);
+		expect(ShowCard).toHaveBeenCalledTimes(2);
+	});
+
+	it('should render ShowCard', () => {
+		render(<ShowsList shows={mockShows} />);
+
+		{
+			mockShows.map((show) => {
+				expect(ShowCard).toHaveBeenCalledWith({ show }, expect.anything());
+			});
+		}
 	});
 });
