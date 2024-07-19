@@ -1,6 +1,7 @@
 import { CustomRatingInput } from '@/components/shared/input/CustomRatingInput/CustomRatingInput';
 import { deleteReview } from '@/fetchers/mutators';
 import { swrKeys } from '@/fetchers/swrKeys';
+import { useUser } from '@/hooks/useUser';
 import { IReview } from '@/typings/review';
 import { Flex, Text, Avatar, Button } from '@chakra-ui/react';
 import { mutate } from 'swr';
@@ -11,7 +12,7 @@ interface ReviewItemProps {
 }
 
 export const ReviewItem = ({ review }: ReviewItemProps) => {
-	const authorizationHeader = JSON.parse(localStorage.getItem('authorization-header') || '');
+	const { data } = useUser();
 
 	const { trigger } = useSWRMutation(swrKeys.deleteReview(review.id), deleteReview, {
 		onSuccess: () => {
@@ -31,7 +32,7 @@ export const ReviewItem = ({ review }: ReviewItemProps) => {
 			</Flex>
 			<Text>{review.comment}</Text>
 			<CustomRatingInput label={review.rating + '/5'} value={review.rating} />
-			{authorizationHeader.uid === review.user?.email ? (
+			{data?.id === review.user?.email ? (
 				<Button width="15%" bg="white" color="black" variant="solid" borderRadius="20px" onClick={onDelete}>
 					Remove
 				</Button>
