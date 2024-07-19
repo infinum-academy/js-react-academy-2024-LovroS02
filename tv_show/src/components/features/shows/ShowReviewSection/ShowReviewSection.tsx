@@ -41,8 +41,10 @@ export const ShowReviewSection = () => {
 
 	return (
 		<Fragment>
-			<Flex direction="column" bg="darkblue" padding={6}>
-				{data && <ShowDetails show={{ ...data.show, average_rating: calculateAverageRating(reviews.reviews) }} />}
+			<Flex overflowY="auto" height="100vh" direction="column" bg="darkblue" padding={6}>
+				<Flex>
+					{data && <ShowDetails show={{ ...data.show, average_rating: calculateAverageRating(reviews.reviews) }} />}
+				</Flex>
 				<ReviewForm id={data.show.id} />
 				<ReviewList reviewList={reviews.reviews} />
 			</Flex>
