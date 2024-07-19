@@ -35,10 +35,8 @@ describe('ShowsList', () => {
 	it('should render ShowCard', () => {
 		render(<ShowsList shows={mockShows} />);
 
-		{
-			mockShows.map((show) => {
-				expect(ShowCard).toHaveBeenCalledWith({ show }, expect.anything());
-			});
-		}
+		mockShows.forEach((show, index) => {
+			expect(ShowCard).toHaveBeenNthCalledWith(index + 1, { show }, expect.anything());
+		});
 	});
 });

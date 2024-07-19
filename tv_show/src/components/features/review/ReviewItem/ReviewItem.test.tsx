@@ -10,6 +10,12 @@ jest.mock('@/fetchers/mutators', () => {
 	};
 });
 
+jest.mock('@/hooks/useUser', () => {
+	return {
+		useUser: jest.fn().mockResolvedValue({ data: { id: 'test@gmail.com' } }),
+	};
+});
+
 jest.mock('swr', () => {
 	return {
 		mutate: jest.fn(),
@@ -53,19 +59,19 @@ describe('ReviewItem', () => {
 		}
 	});
 
-	it('should call deleteReview and mutate on success', () => {
+	it('should call deleteReview and mutate on success', async () => {
 		render(<ReviewItem review={mockReview} />);
 
 		const { result } = renderHook(useUser);
 
 		if (result.current.data?.id) {
-			const deleteButton = screen.getByRole('button');
+			const deleteButton = await screen.findByRole('button');
 
 			act(() => {
 				deleteButton.click();
 			});
 
-			waitFor(() => {
+			await waitFor(() => {
 				expect(deleteReview).toHaveBeenCalled();
 				expect(mutate).toHaveBeenCalled();
 			});
