@@ -13,7 +13,7 @@ export const SidebarNavigation = () => {
 	};
 
 	return (
-		<Flex direction="column" bg="darkblue" width="500px" padding={6}>
+		<Flex direction="column" bg="darkblue" width="300px" padding={6}>
 			<AppLogo />
 			<Flex direction="column" gap={4} mt={8} height="100%">
 				<SidebarNavigationItem href="/all-shows">All shows</SidebarNavigationItem>
