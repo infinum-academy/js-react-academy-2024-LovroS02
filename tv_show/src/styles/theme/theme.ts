@@ -1,6 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/700.css';
+import '@fontsource/roboto';
 
 const colors = {
 	white: '#ffffff',
@@ -24,8 +23,8 @@ const fontSizes = {
 	title: '24px',
 	body: { web: '20px', mobile: '14px' },
 	subtitle: '18px',
-	small_caption: { web: '16px', mobile: '14px' },
-	button_or_caption: '14px',
+	smallCaption: { web: '16px', mobile: '14px' },
+	buttonOrCaption: '14px',
 	note: '12px',
 };
 
