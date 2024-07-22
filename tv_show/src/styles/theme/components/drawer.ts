@@ -22,7 +22,9 @@ const Drawer = helpers.defineMultiStyleConfig({
 		body: {
 			bg: 'purple.400',
 			borderTopLeftRadius: '24px',
-			marginTop: '24px',
+			paddingTop: '84px',
+			paddingBottom: '56px',
+			paddingLeft: '12px',
 		},
 		dialog: {
 			bg: 'purple.400',

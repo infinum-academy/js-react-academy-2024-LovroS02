@@ -12,7 +12,7 @@ export const SidebarNavigationContent = () => {
 
 	return (
 		<Flex direction="column" justifyContent="space-between" height="100%">
-			<Flex direction="column" gap={4} mt={8}>
+			<Flex direction="column" gap={4}>
 				<SidebarNavigationItem href="/all-shows">All shows</SidebarNavigationItem>
 				<SidebarNavigationItem href="/top-rated">Top rated</SidebarNavigationItem>
 				<SidebarNavigationItem href="/">My profile</SidebarNavigationItem>
