@@ -4,6 +4,7 @@ import colors from './foundations/colors';
 import fontSizes from './foundations/fontSizes';
 import fontWeights from './foundations/fontWeights';
 import Drawer from './components/drawer';
+import Card from './components/card';
 
 const fonts = {
 	body: 'Roboto, sans-serif',
@@ -11,7 +12,7 @@ const fonts = {
 };
 
 const theme = extendTheme({
-	components: { Drawer },
+	components: { Drawer, Card },
 	colors,
 	fonts,
 	fontSizes,
