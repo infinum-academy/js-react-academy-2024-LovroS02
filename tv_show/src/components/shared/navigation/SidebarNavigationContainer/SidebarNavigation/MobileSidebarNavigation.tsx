@@ -26,7 +26,7 @@ export const MobileSidebarNavigation = () => {
 			</IconButton>
 			<Drawer isOpen={isOpen} placement="right" onClose={onClose}>
 				<DrawerOverlay />
-				<DrawerContent bg="blue" borderTopLeftRadius="20px">
+				<DrawerContent>
 					<DrawerCloseButton />
 					<DrawerBody>
 						<SidebarNavigationContent />

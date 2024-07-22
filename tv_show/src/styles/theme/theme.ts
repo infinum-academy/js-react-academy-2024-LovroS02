@@ -3,6 +3,7 @@ import '@fontsource/roboto';
 import colors from './foundations/colors';
 import fontSizes from './foundations/fontSizes';
 import fontWeights from './foundations/fontWeights';
+import Drawer from './components/drawer';
 
 const fonts = {
 	body: 'Roboto, sans-serif',
@@ -10,7 +11,7 @@ const fonts = {
 };
 
 const theme = extendTheme({
-	components: {},
+	components: { Drawer },
 	colors,
 	fonts,
 	fontSizes,
