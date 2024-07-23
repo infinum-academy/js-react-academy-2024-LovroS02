@@ -31,6 +31,7 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 		register,
 		handleSubmit,
 		setValue,
+		getValues,
 		formState: { errors, isSubmitting },
 	} = useForm<IReviewFormInputs>();
 
@@ -82,7 +83,12 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 								<FormErrorMessage>Rating is required!</FormErrorMessage>
 							</Flex>
 						</FormControl>
-						<Button isLoading={isSubmitting} type="submit" variant={{ base: 'mobilePostForm', sm: 'postForm' }}>
+						<Button
+							isLoading={isSubmitting}
+							type="submit"
+							variant={{ base: 'mobilePostForm', sm: 'postForm' }}
+							isDisabled={getValues('comment') === '' ? true : getValues('rating') === 0 ? true : false}
+						>
 							POST
 						</Button>
 					</Flex>

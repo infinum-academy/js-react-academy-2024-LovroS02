@@ -36,6 +36,12 @@ const Button = defineStyleConfig({
 			width: '144px',
 			height: '52px',
 			padding: '18px 52px 18px 52px',
+
+			_disabled: {
+				_hover: {
+					bg: "white",
+				},
+			},
 		},
 
 		mobilePostForm: {
