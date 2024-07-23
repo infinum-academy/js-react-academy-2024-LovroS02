@@ -1,5 +1,6 @@
 'use client';
 
+import { MobileShowsList } from '@/components/shared/shows/ShowsList/MobileShowsList';
 import { ShowsList } from '@/components/shared/shows/ShowsList/ShowsList';
 import { fetcher } from '@/fetchers/fetcher';
 import { swrKeys } from '@/fetchers/swrKeys';
@@ -24,10 +25,15 @@ export const ShowsListSection = () => {
 	}
 
 	return (
-		<>
-			<Flex overflowY="auto" height="100vh" bg="purple.700" width="100%" justifyContent="center">
+			<Flex
+				direction={{ base: 'column', sm: 'row' }}
+				overflowY="auto"
+				height="100vh"
+				bg="purple.700"
+				width="100%"
+			>
 				{data && <ShowsList shows={data.shows} />}
+				{data && <MobileShowsList shows={data.shows} />}
 			</Flex>
-		</>
 	);
 };

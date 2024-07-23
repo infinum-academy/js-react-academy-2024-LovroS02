@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { SimpleGrid } from '@chakra-ui/react';
 import { ShowCard } from '../ShowCard/ShowCard';
@@ -10,7 +10,16 @@ interface IShowsListProps {
 
 export const ShowsList = ({ shows }: IShowsListProps) => {
 	return (
-		<SimpleGrid columns={4} display="flex" flexWrap="wrap" padding={6} gap={6} justifyContent="center">
+		<SimpleGrid
+			hideBelow="sm"
+			columns={4}
+			display="flex"
+			flexWrap="wrap"
+			padding="30px 30px 30px 30px"
+			gap="30px"
+			justifyContent="center"
+			width="100%"
+		>
 			{shows.map((show) => (
 				<ShowCard key={show.id} show={show} />
 			))}
