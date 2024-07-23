@@ -3,20 +3,19 @@ import { ReviewForm } from './ReviewForm';
 
 describe('ReviewForm', () => {
 	it('should render input comment', () => {
-		render(<ReviewForm addShowReview={() => {}} />);
+		render(<ReviewForm id='106' />);
 
 		expect(screen.getByRole('textbox')).toBeInTheDocument();
 	});
 
 	it('should render input rating', () => {
-		render(<ReviewForm addShowReview={() => {}} />);
+		render(<ReviewForm id="106" />);
 
 		expect(screen.getByText('Rating')).toBeInTheDocument();
 	});
 
 	it('should render button', () => {
-		const mockAddShowReview = jest.fn();
-		render(<ReviewForm addShowReview={mockAddShowReview} />);
+		render(<ReviewForm id="106" />);
 
 		expect(screen.getByText('Post')).toBeInTheDocument();
 	});

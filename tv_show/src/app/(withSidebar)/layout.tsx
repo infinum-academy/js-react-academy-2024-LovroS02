@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { Providers } from './providers';
-
-const inter = Inter({ subsets: ['latin'] });
+import { SidebarNavigation } from '@/components/shared/navigation/SidebarNavigation/SidebarNavigation';
+import { Flex } from '@chakra-ui/react';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -15,10 +13,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body className={inter.className}>
-				<Providers>{children}</Providers>
-			</body>
-		</html>
+		<Flex bg="darkblue">
+			<SidebarNavigation />
+			{children}
+		</Flex>
 	);
 }

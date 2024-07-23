@@ -3,5 +3,5 @@ import { swrKeys } from '@/fetchers/swrKeys';
 import useSWR from 'swr';
 
 export const useUser = () => {
-	return useSWR<{ id: string }>(swrKeys.getUser, fetcher);
+	return useSWR<{ user: { id: string; email: string; image_url: string } }>(swrKeys.getUser, fetcher);
 };
