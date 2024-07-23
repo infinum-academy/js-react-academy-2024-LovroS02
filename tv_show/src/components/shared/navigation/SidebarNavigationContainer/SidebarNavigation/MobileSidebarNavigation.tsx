@@ -19,16 +19,14 @@ export const MobileSidebarNavigation = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
-		<Flex hideFrom="sm" bg="darkblue" padding={6} justifyContent="space-between">
+		<Flex hideFrom="sm" bg="purple.700" padding={6} justifyContent="space-between">
 			<AppLogo />
-			<IconButton aria-label="drawer-button" icon={<HamburgerIcon />} colorScheme="darkblue" onClick={onOpen}>
-				Open
-			</IconButton>
+			<IconButton aria-label="drawer-button" icon={<HamburgerIcon />} variant="hamburger" onClick={onOpen} />
 			<Drawer isOpen={isOpen} placement="right" onClose={onClose}>
 				<DrawerOverlay />
 				<DrawerContent>
 					<DrawerCloseButton />
-					<DrawerBody>
+					<DrawerBody padding="84px 0px 56px 0px">
 						<SidebarNavigationContent />
 					</DrawerBody>
 				</DrawerContent>

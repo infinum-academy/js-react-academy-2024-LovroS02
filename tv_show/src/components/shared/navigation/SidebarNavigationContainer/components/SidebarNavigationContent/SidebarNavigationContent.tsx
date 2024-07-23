@@ -1,5 +1,4 @@
 import { Flex } from '@chakra-ui/react';
-import { AppLogo } from '../../../AppLogo/AppLogo';
 import { SidebarNavigationItem } from '../SidebarNavigationItem/SidebarNavigationItem';
 import { mutate } from 'swr';
 import { swrKeys } from '@/fetchers/swrKeys';
@@ -11,8 +10,13 @@ export const SidebarNavigationContent = () => {
 	};
 
 	return (
-		<Flex direction="column" justifyContent="space-between" height="100%">
-			<Flex direction="column" gap={4}>
+		<Flex
+			direction="column"
+			justifyContent="space-between"
+			height="100%"
+			padding={{ base: '0px 0px 0px 16px', sm: '78px 0px 0px 0px' }}
+		>
+			<Flex direction="column" gap="18px">
 				<SidebarNavigationItem href="/all-shows">All shows</SidebarNavigationItem>
 				<SidebarNavigationItem href="/top-rated">Top rated</SidebarNavigationItem>
 				<SidebarNavigationItem href="/">My profile</SidebarNavigationItem>

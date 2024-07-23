@@ -26,10 +26,10 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
 	};
 
 	return (
-		<Flex bg="blue" direction="column" padding="20px" gap={4} borderRadius="10px">
+		<Flex bg="purple.400" direction="column" padding="20px" gap={4} borderRadius="10px">
 			<Flex justifyContent="space-between" alignItems="center">
 				<Text>{review.user?.email}</Text>
-				<Avatar src={review.user?.image_url} bg="darkblue" />
+				<Avatar src={review.user?.image_url} bg="purple.400" />
 			</Flex>
 			<Text>{review.comment}</Text>
 			<CustomRatingInput label={review.rating + '/5'} value={review.rating} />

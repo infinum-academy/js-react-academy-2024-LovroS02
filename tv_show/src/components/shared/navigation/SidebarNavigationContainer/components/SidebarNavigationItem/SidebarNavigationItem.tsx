@@ -16,13 +16,9 @@ export const SidebarNavigationItem = ({ href, children, onClickHandler }: ISideb
 		<Button
 			as={NextLink}
 			href={href}
-			bg={path === href ? 'blue' : 'darkblue'}
-			color="white"
-			maxW="100px"
-			borderRadius="20px"
-			height="30px"
-			_hover={{ bg: 'blue' }}
+			bg={path === href ? 'purple.400' : { base: 'purple.400', sm: 'purple.700' }}
 			onClick={onClickHandler}
+			variant={onClickHandler ? 'logout' : 'solid'}
 		>
 			{children}
 		</Button>

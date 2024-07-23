@@ -58,9 +58,10 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 						height="100px"
 						borderRadius="10px"
 						bg="white"
-						color="black"
+						color="purple.700"
 						size="md"
 						placeholder="Add review"
+						_placeholder={{ color: 'purple.200' }}
 						padding="0px 0px 50px 10px"
 					/>
 					<FormErrorMessage>Comment is required!</FormErrorMessage>
@@ -77,16 +78,8 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 					<FormErrorMessage>Rating is required!</FormErrorMessage>
 				</Flex>
 			</FormControl>
-			<Button
-				isLoading={isSubmitting}
-				width="10%"
-				borderRadius="20px"
-				variant="solid"
-				bg="white"
-				color="black"
-				type="submit"
-			>
-				Post
+			<Button isLoading={isSubmitting} type="submit" variant={{ base: 'mobilePostForm', sm: 'postForm' }}>
+				POST
 			</Button>
 		</Flex>
 	);
