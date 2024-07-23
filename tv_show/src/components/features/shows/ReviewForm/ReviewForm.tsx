@@ -46,41 +46,48 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 	};
 
 	return (
-		<Flex direction="column" as="form" gap={4} width="60%" onSubmit={handleSubmit(onClickHandler)}>
-			<Heading mt="10px" borderRadius="10px" color="white" size="lg">
-				Reviews
-			</Heading>
-			<FormControl isInvalid={Boolean(errors.comment)}>
-				<Flex direction="column">
-					<Input
-						{...register('comment', { required: true })}
-						type="text"
-						height="100px"
-						borderRadius="10px"
-						bg="white"
-						color="purple.700"
-						size="md"
-						placeholder="Add review"
-						_placeholder={{ color: 'purple.200' }}
-						padding="0px 0px 50px 10px"
-					/>
-					<FormErrorMessage>Comment is required!</FormErrorMessage>
+		<Flex direction="column" as="form" padding="86px 0px 0px 0px" onSubmit={handleSubmit(onClickHandler)}>
+			<Flex>
+				<Heading borderRadius="10px" color="white">
+					Reviews
+				</Heading>
+				<Flex direction="column" width="100%" pl="26px">
+					<FormControl isInvalid={Boolean(errors.comment)}>
+						<Flex direction="column">
+							<Input
+								{...register('comment', { required: true })}
+								type="text"
+								height="80px"
+								width="100%"
+								borderRadius="10px"
+								bg="white"
+								color="purple.700"
+								size="md"
+								placeholder="Add review"
+								_placeholder={{ color: 'purple.200' }}
+								padding="28px 40px 28px 40px"
+							/>
+							<FormErrorMessage>Comment is required!</FormErrorMessage>
+						</Flex>
+					</FormControl>
+					<Flex alignItems="center" pt="22px" pl="40px">
+						<FormControl isInvalid={Boolean(errors.rating)}>
+							<Flex direction="column">
+								<CustomRatingInput
+									{...register('rating', { required: true })}
+									label="Rating"
+									value={internalValue}
+									onChange={onChange}
+								/>
+								<FormErrorMessage>Rating is required!</FormErrorMessage>
+							</Flex>
+						</FormControl>
+						<Button isLoading={isSubmitting} type="submit" variant={{ base: 'mobilePostForm', sm: 'postForm' }}>
+							POST
+						</Button>
+					</Flex>
 				</Flex>
-			</FormControl>
-			<FormControl isInvalid={Boolean(errors.rating)}>
-				<Flex direction="column">
-					<CustomRatingInput
-						{...register('rating', { required: true })}
-						label="Rating"
-						value={internalValue}
-						onChange={onChange}
-					/>
-					<FormErrorMessage>Rating is required!</FormErrorMessage>
-				</Flex>
-			</FormControl>
-			<Button isLoading={isSubmitting} type="submit" variant={{ base: 'mobilePostForm', sm: 'postForm' }}>
-				POST
-			</Button>
+			</Flex>
 		</Flex>
 	);
 };

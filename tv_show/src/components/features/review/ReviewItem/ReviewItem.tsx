@@ -26,13 +26,15 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
 	};
 
 	return (
-		<Flex bg="purple.400" direction="column" padding="20px" gap={4} borderRadius="10px">
-			<Flex justifyContent="space-between" alignItems="center">
-				<Text>{review.user?.email}</Text>
-				<Avatar src={review.user?.image_url} bg="purple.400" />
+		<Flex bg="purple.400" padding="28px 0px 28px 40px" gap="90px" borderRadius="24px">
+			<Flex justifyContent="space-between" alignItems="center" gap={5}>
+				<Avatar src={review.user?.image_url} bg="purple.400" boxSize={10} />
+				<Flex direction="column" gap="6px">
+					<Text>{review.user?.email}</Text>
+					<CustomRatingInput label={review.rating + '/5'} value={review.rating} />
+				</Flex>
 			</Flex>
 			<Text>{review.comment}</Text>
-			<CustomRatingInput label={review.rating + '/5'} value={review.rating} />
 			{data?.user.email === review.user?.email && (
 				<Flex gap={4}>
 					<Button width="15%" bg="white" color="black" variant="solid" borderRadius="20px" onClick={onDelete}>
