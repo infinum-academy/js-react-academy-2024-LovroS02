@@ -39,7 +39,7 @@ const Button = defineStyleConfig({
 
 			_disabled: {
 				_hover: {
-					bg: "white",
+					bg: 'white',
 				},
 			},
 		},
@@ -61,6 +61,25 @@ const Button = defineStyleConfig({
 			width: '90px',
 			height: '16px',
 			ml: '24px',
+		},
+
+		menu: {
+			bg: 'purple.400',
+			color: 'white',
+			fontsize: 'xl',
+			padding: '10px 10px 10px 10px',
+			height: '24px',
+			width: '24px',
+		},
+
+		menuItem: {
+			bg: 'white',
+			color: 'purple.400',
+			fontSize: 'xs',
+			padding: '0px 0px 0px 0px',
+			height: '14px',
+			width: '54px',
+			justifyContent: 'flex-start',
 		},
 	},
 });

@@ -45,8 +45,8 @@ export const UpdateReviewButton = ({ comment, rating, id, show_id }: IUpdateRevi
 
 	return (
 		<>
-			<Button width="15%" bg="white" color="black" variant="solid" borderRadius="20px" onClick={onOpen}>
-				Update
+			<Button variant="menuItem" onClick={onOpen}>
+				EDIT
 			</Button>
 
 			<Modal isOpen={isOpen} onClose={onClose}>
