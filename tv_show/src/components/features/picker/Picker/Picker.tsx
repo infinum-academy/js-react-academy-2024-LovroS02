@@ -13,9 +13,11 @@ import {
 } from '@chakra-ui/react';
 import { PickerProgress } from './components/PickerProgress';
 import { createContext, useState } from 'react';
+import { PickerButtons } from './components/PickerButtons';
 
 interface IPickerContext {
 	currentStep: number;
+	setCurrentStep: (newStep: number) => void;
 }
 
 export const PickerContext = createContext<IPickerContext>({} as IPickerContext);
@@ -26,7 +28,7 @@ export const Picker = () => {
 
 	return (
 		<>
-			<PickerContext.Provider value={{ currentStep }}>
+			<PickerContext.Provider value={{ currentStep, setCurrentStep }}>
 				<Button onClick={onOpen} bg={{ base: 'purple.400', sm: 'purple.700' }}>
 					Picker
 				</Button>
@@ -38,12 +40,7 @@ export const Picker = () => {
 							<ModalFooter>
 								<Flex direction="column" width="100%" gap={3}>
 									<PickerProgress />
-									<Flex width="100%" justifyContent="space-between">
-										<Button hidden={currentStep === 0} onClick={() => setCurrentStep(currentStep - 1)}>
-											Previous
-										</Button>
-										<Button onClick={() => setCurrentStep(currentStep + 1)}>Next</Button>
-									</Flex>
+									<PickerButtons />
 								</Flex>
 							</ModalFooter>
 						</ModalContent>
