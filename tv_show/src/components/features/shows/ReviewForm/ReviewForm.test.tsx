@@ -17,6 +17,6 @@ describe('ReviewForm', () => {
 	it('should render button', () => {
 		render(<ReviewForm id="106" />);
 
-		expect(screen.getByText('Post')).toBeInTheDocument();
+		expect(screen.getByText('POST')).toBeInTheDocument();
 	});
 });
