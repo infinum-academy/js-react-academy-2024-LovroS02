@@ -39,13 +39,12 @@ export const Picker = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [currentStep, setCurrentStep] = useState(0);
 	const [currentRound, setCurrentRound] = useState(1);
+	const [roundShows, setRoundShows] = useState();
 	const { data } = useSWR<IShowsListResponse>(swrKeys.allShows, fetcher);
 
 	if (!data) {
 		return null;
 	}
-
-	const [roundShows, setRoundShows] = useState(getRoundShows(8, data.shows));
 
 	return (
 		<>

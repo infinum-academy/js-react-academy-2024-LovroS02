@@ -1,4 +1,4 @@
-import { IShow } from "@/typings/show";
+import { IShow } from '@/typings/show';
 
 export const getRoundShows = (noOfShows: number, shows: Array<IShow>) => {
 	let counter = 0;
@@ -11,5 +11,5 @@ export const getRoundShows = (noOfShows: number, shows: Array<IShow>) => {
 		}
 	}
 
-	return shows;
+	return newShows;
 };
