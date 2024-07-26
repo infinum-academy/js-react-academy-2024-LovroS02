@@ -6,7 +6,7 @@ export const PickerButtons = () => {
 	const { currentStep, setCurrentStep } = useContext(PickerContext);
 
 	return (
-		<Flex width="100%" justifyContent="space-between">
+		<Flex width="100%" justifyContent="space-between" >
 			<Button hidden={currentStep === 0} onClick={() => setCurrentStep(currentStep - 1)}>
 				Previous
 			</Button>

@@ -4,7 +4,7 @@ import { PickerContext } from '../Picker';
 
 export const PickerProgress = () => {
 	const { currentStep } = useContext(PickerContext);
-	const progress = (currentStep / 4) * 100;
+	const progress = (currentStep / 11) * 100;
 
 	return <Progress value={progress} />;
 };

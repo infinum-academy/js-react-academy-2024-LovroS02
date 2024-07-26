@@ -55,6 +55,29 @@ const Card = helpers.defineMultiStyleConfig({
 				color: 'purple.400',
 			},
 		},
+
+		picker: {
+			container: {
+				width: '100%',
+				maxW: '200px',
+				height: '300px',
+				bg: 'white',
+				borderRadius: 'cardRadius.sm',
+				overflow: 'hidden',
+				cursor: 'pointer',
+			},
+			body: {
+				width: '100%',
+				maxW: '200px',
+				height: '240px',
+				padding: '0px',
+			},
+			footer: {
+				flexDirection: 'row',
+				alignItems: "center",
+				color: 'purple.400',
+			},
+		},
 	},
 });
 

@@ -19,6 +19,7 @@ import { swrKeys } from '@/fetchers/swrKeys';
 import useSWR from 'swr';
 import { IShow } from '@/typings/show';
 import { getRoundShows } from '@/services/getShows';
+import { PickerShowStep } from './components/PickerShowStep';
 
 interface IShowsListResponse {
 	shows: Array<IShow>;
@@ -39,26 +40,35 @@ export const Picker = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [currentStep, setCurrentStep] = useState(0);
 	const [currentRound, setCurrentRound] = useState(1);
-	const [roundShows, setRoundShows] = useState();
+	const [roundShows, setRoundShows] = useState<Array<IShow>>([]);
 	const { data } = useSWR<IShowsListResponse>(swrKeys.allShows, fetcher);
 
 	if (!data) {
 		return null;
 	}
 
+	const onClickHandler = () => {
+		onOpen();
+		setRoundShows(getRoundShows(8, data.shows));
+		setCurrentStep(0);
+		setCurrentRound(1);
+	};
+
 	return (
 		<>
 			<PickerContext.Provider
 				value={{ currentStep, setCurrentStep, currentRound, setCurrentRound, roundShows, setRoundShows }}
 			>
-				<Button onClick={onOpen} bg={{ base: 'purple.400', sm: 'purple.700' }}>
+				<Button onClick={onClickHandler} bg={{ base: 'purple.400', sm: 'purple.700' }}>
 					Picker
 				</Button>
 				<Modal isOpen={isOpen} onClose={onClose}>
 					<ModalOverlay>
-						<ModalContent>
+						<ModalContent bg="purple.700" color="white">
 							<ModalHeader>Picker</ModalHeader>
-							<ModalBody></ModalBody>
+							<ModalBody>
+								<PickerShowStep />
+							</ModalBody>
 							<ModalFooter>
 								<Flex direction="column" width="100%" gap={3}>
 									<PickerProgress />

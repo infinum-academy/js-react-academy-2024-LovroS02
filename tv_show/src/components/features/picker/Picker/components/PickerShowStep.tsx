@@ -3,15 +3,16 @@
 import { useContext } from 'react';
 import { PickerContext } from '../Picker';
 import { Card, CardBody, CardFooter, Flex, Image } from '@chakra-ui/react';
+import { createRoundShowsMatrix } from '@/services/createShowsMatrix';
 
 export const PickerShowStep = () => {
-	const { roundShows, currentRound } = useContext(PickerContext);
+	const { roundShows, currentRound, currentStep } = useContext(PickerContext);
 
 	return (
 		<Flex gap={3}>
-			{roundShows.map((show) => {
+			{createRoundShowsMatrix(currentRound, roundShows)[currentStep % (4 / currentRound)].map((show) => {
 				return (
-					<Card>
+					<Card variant="picker">
 						<CardBody>
 							<Image
 								src={show.image_url}
