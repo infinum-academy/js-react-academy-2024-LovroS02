@@ -17,7 +17,7 @@ export const PickerShowStep = () => {
 				return (
 					<Card
 						key={show.id}
-						variant={{ base: 'pickerMobile', sm: 'picker' }}
+						variant={{ base: 'pickerMobile', md: 'picker' }}
 						onClick={
 							isSelected
 								? () => {

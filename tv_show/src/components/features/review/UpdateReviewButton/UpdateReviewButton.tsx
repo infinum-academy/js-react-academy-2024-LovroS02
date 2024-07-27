@@ -60,10 +60,10 @@ export const UpdateReviewButton = ({ comment, rating, id, show_id }: IUpdateRevi
 
 					<ModalFooter>
 						<Flex gap={2}>
-							<Button variant={{ base: 'mobileModal', sm: 'modal' }} onClick={onClose}>
+							<Button variant={{ base: 'mobileModal', md: 'modal' }} onClick={onClose}>
 								No
 							</Button>
-							<Button variant={{ base: 'mobileModal', sm: 'modal' }} form="update-review-form" type="submit">
+							<Button variant={{ base: 'mobileModal', md: 'modal' }} form="update-review-form" type="submit">
 								Yes
 							</Button>
 						</Flex>

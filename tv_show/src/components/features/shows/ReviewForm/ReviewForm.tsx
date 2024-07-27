@@ -86,7 +86,7 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 						<Button
 							isLoading={isSubmitting}
 							type="submit"
-							variant={{ base: 'mobilePostForm', sm: 'postForm' }}
+							variant={{ base: 'mobilePostForm', md: 'postForm' }}
 							isDisabled={getValues('comment') === '' ? true : getValues('rating') === 0 ? true : false}
 						>
 							POST

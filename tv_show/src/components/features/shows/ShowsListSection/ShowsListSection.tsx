@@ -26,7 +26,7 @@ export const ShowsListSection = () => {
 
 	return (
 			<Flex
-				direction={{ base: 'column', sm: 'row' }}
+				direction={{ base: 'column', md: 'row' }}
 				overflowY="auto"
 				height="100vh"
 				bg="purple.700"

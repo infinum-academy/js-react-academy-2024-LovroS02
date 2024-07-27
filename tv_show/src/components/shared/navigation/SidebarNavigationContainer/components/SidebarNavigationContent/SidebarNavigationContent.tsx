@@ -15,7 +15,7 @@ export const SidebarNavigationContent = () => {
 			direction="column"
 			justifyContent="space-between"
 			height="100%"
-			padding={{ base: '0px 0px 0px 16px', sm: '78px 0px 0px 0px' }}
+			padding={{ base: '0px 0px 0px 16px', md: '78px 0px 0px 0px' }}
 		>
 			<Flex direction="column" gap="18px">
 				<SidebarNavigationItem href="/all-shows">All shows</SidebarNavigationItem>

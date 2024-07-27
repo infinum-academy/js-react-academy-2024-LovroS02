@@ -25,7 +25,7 @@ export const TopRatedShowsListSection = () => {
 	}
 
 	return (
-		<Flex direction={{ base: 'column', sm: 'row' }} overflowY="auto" height="100vh" bg="purple.700" width="100%">
+		<Flex direction={{ base: 'column', md: 'row' }} overflowY="auto" height="100vh" bg="purple.700" width="100%">
 			{data && <ShowsList shows={data.shows} />}
 			{data && <MobileShowsList shows={data.shows} />}
 		</Flex>

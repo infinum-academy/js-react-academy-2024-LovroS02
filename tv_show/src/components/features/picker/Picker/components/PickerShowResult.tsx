@@ -7,7 +7,7 @@ export const PickerShowResult = () => {
 
 	return (
 		<>
-			<Card variant={{ base: 'pickerMobile', sm: 'picker' }} mx="25%">
+			<Card variant={{ base: 'pickerMobile', md: 'picker' }} mx="25%">
 				<CardBody>
 					<Image
 						src={roundShows[0].image_url}
