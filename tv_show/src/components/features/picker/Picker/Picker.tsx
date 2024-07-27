@@ -22,6 +22,7 @@ import { IShow } from '@/typings/show';
 import { getRoundShows } from '@/services/getShows';
 import { PickerShowStep } from './components/PickerShowStep';
 import { PickerShowResult } from './components/PickerShowResult';
+import { PickerStepper } from './components/PickerStepper';
 
 interface IShowsListResponse {
 	shows: Array<IShow>;
@@ -91,7 +92,7 @@ export const Picker = () => {
 							</ModalHeader>
 							<ModalCloseButton />
 							<ModalBody alignContent="center">
-								{currentRound < 4 ? <PickerShowStep /> : <PickerShowResult />}
+								<PickerStepper />
 							</ModalBody>
 							<ModalFooter>
 								<Flex direction="column" width="100%" gap={3}>
