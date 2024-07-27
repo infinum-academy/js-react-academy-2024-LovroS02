@@ -12,7 +12,7 @@ export const PickerShowStep = () => {
 
 	return (
 		<Flex gap={3}>
-			{duels[currentStep % (4 / currentRound)].map((show) => {
+			{duels[currentStep % Math.floor(4 / currentRound)].map((show) => {
 				const isSelected = selectedShows.find((s) => s === show);
 				return (
 					<Card
@@ -26,7 +26,7 @@ export const PickerShowStep = () => {
 								: () => {
 										setSelectedShows([
 											...selectedShows.filter(
-												(s) => s !== duels[currentStep % (4 / currentRound)].find((s) => s !== show)
+												(s) => s !== duels[currentStep % Math.floor(4 / currentRound)].find((s) => s !== show)
 											),
 											show,
 										]);

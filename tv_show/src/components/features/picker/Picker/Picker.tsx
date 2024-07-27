@@ -5,6 +5,7 @@ import {
 	Flex,
 	Modal,
 	ModalBody,
+	ModalCloseButton,
 	ModalContent,
 	ModalFooter,
 	ModalHeader,
@@ -20,6 +21,7 @@ import useSWR from 'swr';
 import { IShow } from '@/typings/show';
 import { getRoundShows } from '@/services/getShows';
 import { PickerShowStep } from './components/PickerShowStep';
+import { PickerShowResult } from './components/PickerShowResult';
 
 interface IShowsListResponse {
 	shows: Array<IShow>;
@@ -78,9 +80,12 @@ export const Picker = () => {
 				<Modal isOpen={isOpen} onClose={onClose}>
 					<ModalOverlay>
 						<ModalContent bg="purple.700" color="white">
-							<ModalHeader>Picker: Round {currentRound}</ModalHeader>
-							<ModalBody>
-								<PickerShowStep />
+							<ModalHeader>
+								{currentRound < 4 ? `Picker: Round ${currentRound}` : 'Show that you have picked'}
+							</ModalHeader>
+							<ModalCloseButton />
+							<ModalBody alignContent="center">
+								{currentRound < 4 ? <PickerShowStep /> : <PickerShowResult />}
 							</ModalBody>
 							<ModalFooter>
 								<Flex direction="column" width="100%" gap={3}>
