@@ -13,7 +13,7 @@ export const PickerShowStep = () => {
 	return (
 		<Flex gap={3}>
 			{duels[currentStep % Math.floor(4 / currentRound)].map((show) => {
-				const isSelected = selectedShows.find((s) => s === show);
+				const isSelected = selectedShows[currentRound - 1].find((s) => s === show);
 				return (
 					<Card
 						key={show.id}
@@ -21,15 +21,17 @@ export const PickerShowStep = () => {
 						onClick={
 							isSelected
 								? () => {
-										setSelectedShows(selectedShows.filter((s) => s !== show));
+										const copySelectedShows = [...selectedShows];
+										copySelectedShows[currentRound - 1] = copySelectedShows[currentRound - 1].filter((s) => s !== show);
+										setSelectedShows(copySelectedShows);
 								  }
 								: () => {
-										setSelectedShows([
-											...selectedShows.filter(
-												(s) => s !== duels[currentStep % Math.floor(4 / currentRound)].find((s) => s !== show)
-											),
-											show,
-										]);
+										const copySelectedShows = [...selectedShows];
+										copySelectedShows[currentRound - 1] = copySelectedShows[currentRound - 1].filter(
+											(s) => s !== duels[currentStep % Math.floor(4 / currentRound)].find((s) => s !== show)
+										);
+										copySelectedShows[currentRound - 1].push(show);
+										setSelectedShows(copySelectedShows);
 								  }
 						}
 						borderColor={isSelected ? 'purple.200' : 'purple.700'}

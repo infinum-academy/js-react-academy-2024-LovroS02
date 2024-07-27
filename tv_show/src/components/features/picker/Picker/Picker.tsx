@@ -34,8 +34,10 @@ interface IPickerContext {
 	setCurrentRound: (newRound: number) => void;
 	roundShows: Array<IShow>;
 	setRoundShows: (newShows: Array<IShow>) => void;
-	selectedShows: Array<IShow>;
-	setSelectedShows: (newSelectedShows: Array<IShow>) => void;
+	selectedShows: Array<Array<IShow>>;
+	setSelectedShows: (newSelectedShows: Array<Array<IShow>>) => void;
+	unselectedShows: Array<Array<IShow>>;
+	setUnselectedShows: (newSelectedShows: Array<Array<IShow>>) => void;
 }
 
 export const PickerContext = createContext<IPickerContext>({} as IPickerContext);
@@ -45,7 +47,8 @@ export const Picker = () => {
 	const [currentStep, setCurrentStep] = useState(0);
 	const [currentRound, setCurrentRound] = useState(1);
 	const [roundShows, setRoundShows] = useState<Array<IShow>>([]);
-	const [selectedShows, setSelectedShows] = useState<Array<IShow>>([]);
+	const [selectedShows, setSelectedShows] = useState<Array<Array<IShow>>>([[]]);
+	const [unselectedShows, setUnselectedShows] = useState<Array<Array<IShow>>>([[]]);
 	const { data } = useSWR<IShowsListResponse>(swrKeys.allShows, fetcher);
 
 	if (!data) {
@@ -57,7 +60,8 @@ export const Picker = () => {
 		setRoundShows(getRoundShows(8, data.shows));
 		setCurrentStep(0);
 		setCurrentRound(1);
-		setSelectedShows([]);
+		setSelectedShows([[]]);
+		setUnselectedShows([[]]);
 	};
 
 	return (
@@ -72,6 +76,8 @@ export const Picker = () => {
 					setRoundShows,
 					selectedShows,
 					setSelectedShows,
+					unselectedShows,
+					setUnselectedShows,
 				}}
 			>
 				<Button onClick={onClickHandler} bg={{ base: 'purple.400', sm: 'purple.700' }}>
