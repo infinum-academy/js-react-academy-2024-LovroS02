@@ -17,15 +17,17 @@ export const SidebarNavigationContent = () => {
 			height="100%"
 			padding={{ base: '0px 0px 0px 16px', sm: '78px 0px 0px 0px' }}
 		>
-			<Picker />
 			<Flex direction="column" gap="18px">
 				<SidebarNavigationItem href="/all-shows">All shows</SidebarNavigationItem>
 				<SidebarNavigationItem href="/top-rated">Top rated</SidebarNavigationItem>
 				<SidebarNavigationItem href="/">My profile</SidebarNavigationItem>
 			</Flex>
-			<SidebarNavigationItem href="/login" onClickHandler={logout}>
-				Log out
-			</SidebarNavigationItem>
+			<Flex alignItems="center">
+				<SidebarNavigationItem href="/login" onClickHandler={logout}>
+					Log out
+				</SidebarNavigationItem>
+				<Picker />
+			</Flex>
 		</Flex>
 	);
 };
