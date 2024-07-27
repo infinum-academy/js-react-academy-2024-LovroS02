@@ -7,6 +7,7 @@ import Drawer from './components/drawer';
 import Card from './components/card';
 import radii from './foundations/radius';
 import Button from './components/button';
+import Modal from './components/modal';
 
 const fonts = {
 	body: 'Roboto, sans-serif',
@@ -14,7 +15,7 @@ const fonts = {
 };
 
 const theme = extendTheme({
-	components: { Drawer, Card, Button },
+	components: { Drawer, Card, Button, Modal },
 	colors,
 	fonts,
 	fontSizes,

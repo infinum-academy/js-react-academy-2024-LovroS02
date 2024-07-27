@@ -86,16 +86,16 @@ export const Picker = () => {
 				</Button>
 				<Modal isOpen={isOpen} onClose={onClose}>
 					<ModalOverlay>
-						<ModalContent bg="purple.700" color="white">
+						<ModalContent>
 							<ModalHeader>
 								{currentRound < 4 ? `Picker: Round ${currentRound}` : 'Show that you have picked'}
 							</ModalHeader>
 							<ModalCloseButton />
-							<ModalBody alignContent="center">
+							<ModalBody>
 								<PickerStepper />
 							</ModalBody>
 							<ModalFooter>
-								<Flex direction="column" width="100%" gap={3}>
+								<Flex direction="column" width="100%" gap="16px">
 									<PickerProgress />
 									<PickerButtons />
 								</Flex>

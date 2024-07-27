@@ -4,6 +4,7 @@ const radii = {
 		lg: '24px',
 	},
 	buttonRadius: '24px',
+	modalRadius: '24px',
 };
 
 export default radii;
