@@ -11,7 +11,7 @@ export const PickerShowStep = () => {
 	const duels = createRoundShowsMatrix(currentRound, roundShows);
 
 	return (
-		<Flex gap={3}>
+		<Flex gap={4}>
 			{duels[currentStep % Math.floor(4 / currentRound)].map((show) => {
 				const isSelected = selectedShows[currentRound - 1].find((s) => s === show);
 				return (

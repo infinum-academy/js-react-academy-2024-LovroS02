@@ -31,11 +31,7 @@ const Modal = helpers.defineMultiStyleConfig({
 			fontWeight: 'bold',
 		},
 		body: {
-			display: 'flex',
-			padding: '10px 0px 16px 0px',
-			alignItems: 'center',
-			justifyContent: 'center',
-			flexDirection: 'row',
+			padding: '10px 24px 16px 24px',
 		},
 		footer: {
 			padding: '0px',

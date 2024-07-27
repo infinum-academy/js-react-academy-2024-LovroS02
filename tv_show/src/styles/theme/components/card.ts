@@ -60,7 +60,7 @@ const Card = helpers.defineMultiStyleConfig({
 			container: {
 				width: '100%',
 				maxW: '200px',
-				height: '300px',
+				height: '320px',
 				bg: 'white',
 				borderRadius: 'cardRadius.sm',
 				overflow: 'hidden',
@@ -73,9 +73,9 @@ const Card = helpers.defineMultiStyleConfig({
 				padding: '0px',
 			},
 			footer: {
-				flexDirection: 'row',
-				alignItems: 'center',
+				display: 'block',
 				color: 'purple.400',
+				padding: '10px',
 			},
 		},
 	},

@@ -5,6 +5,7 @@ const radii = {
 	},
 	buttonRadius: '24px',
 	modalRadius: '24px',
+	progressRadius: '24px',
 };
 
 export default radii;
