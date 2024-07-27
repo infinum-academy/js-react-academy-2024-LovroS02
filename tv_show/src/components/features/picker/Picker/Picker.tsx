@@ -32,6 +32,8 @@ interface IPickerContext {
 	setCurrentRound: (newRound: number) => void;
 	roundShows: Array<IShow>;
 	setRoundShows: (newShows: Array<IShow>) => void;
+	selectedShows: Array<IShow>;
+	setSelectedShows: (newSelectedShows: Array<IShow>) => void;
 }
 
 export const PickerContext = createContext<IPickerContext>({} as IPickerContext);
@@ -41,6 +43,7 @@ export const Picker = () => {
 	const [currentStep, setCurrentStep] = useState(0);
 	const [currentRound, setCurrentRound] = useState(1);
 	const [roundShows, setRoundShows] = useState<Array<IShow>>([]);
+	const [selectedShows, setSelectedShows] = useState<Array<IShow>>([]);
 	const { data } = useSWR<IShowsListResponse>(swrKeys.allShows, fetcher);
 
 	if (!data) {
@@ -52,12 +55,22 @@ export const Picker = () => {
 		setRoundShows(getRoundShows(8, data.shows));
 		setCurrentStep(0);
 		setCurrentRound(1);
+		setSelectedShows([]);
 	};
 
 	return (
 		<>
 			<PickerContext.Provider
-				value={{ currentStep, setCurrentStep, currentRound, setCurrentRound, roundShows, setRoundShows }}
+				value={{
+					currentStep,
+					setCurrentStep,
+					currentRound,
+					setCurrentRound,
+					roundShows,
+					setRoundShows,
+					selectedShows,
+					setSelectedShows,
+				}}
 			>
 				<Button onClick={onClickHandler} bg={{ base: 'purple.400', sm: 'purple.700' }}>
 					Picker
@@ -65,7 +78,7 @@ export const Picker = () => {
 				<Modal isOpen={isOpen} onClose={onClose}>
 					<ModalOverlay>
 						<ModalContent bg="purple.700" color="white">
-							<ModalHeader>Picker</ModalHeader>
+							<ModalHeader>Picker: Round {currentRound}</ModalHeader>
 							<ModalBody>
 								<PickerShowStep />
 							</ModalBody>

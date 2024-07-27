@@ -74,7 +74,7 @@ const Card = helpers.defineMultiStyleConfig({
 			},
 			footer: {
 				flexDirection: 'row',
-				alignItems: "center",
+				alignItems: 'center',
 				color: 'purple.400',
 			},
 		},

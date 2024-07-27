@@ -6,13 +6,35 @@ import { Card, CardBody, CardFooter, Flex, Image } from '@chakra-ui/react';
 import { createRoundShowsMatrix } from '@/services/createShowsMatrix';
 
 export const PickerShowStep = () => {
-	const { roundShows, currentRound, currentStep } = useContext(PickerContext);
+	const { roundShows, currentRound, currentStep, selectedShows, setSelectedShows } = useContext(PickerContext);
+
+	const duels = createRoundShowsMatrix(currentRound, roundShows);
 
 	return (
 		<Flex gap={3}>
-			{createRoundShowsMatrix(currentRound, roundShows)[currentStep % (4 / currentRound)].map((show) => {
+			{duels[currentStep % (4 / currentRound)].map((show) => {
+				const isSelected = selectedShows.find((s) => s === show);
 				return (
-					<Card variant="picker">
+					<Card
+						key={show.id}
+						variant="picker"
+						onClick={
+							isSelected
+								? () => {
+										setSelectedShows(selectedShows.filter((s) => s !== show));
+								  }
+								: () => {
+										setSelectedShows([
+											...selectedShows.filter(
+												(s) => s !== duels[currentStep % (4 / currentRound)].find((s) => s !== show)
+											),
+											show,
+										]);
+								  }
+						}
+						borderColor={isSelected ? 'purple.200' : 'purple.700'}
+						borderWidth="thick"
+					>
 						<CardBody>
 							<Image
 								src={show.image_url}
