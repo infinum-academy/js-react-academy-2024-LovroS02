@@ -76,6 +76,31 @@ const Card = helpers.defineMultiStyleConfig({
 				display: 'block',
 				color: 'purple.400',
 				padding: '10px',
+				fontSize: 'md',
+			},
+		},
+
+		pickerMobile: {
+			container: {
+				width: '100%',
+				maxW: '240px',
+				height: '260px',
+				bg: 'white',
+				borderRadius: 'cardRadius.sm',
+				overflow: 'hidden',
+				cursor: 'pointer',
+			},
+			body: {
+				width: '100%',
+				maxW: '240px',
+				height: '200px',
+				padding: '0px',
+			},
+			footer: {
+				display: 'block',
+				color: 'purple.400',
+				padding: '10px',
+				fontSize: 'xs',
 			},
 		},
 	},

@@ -21,6 +21,7 @@ export const PickerButtons = () => {
 	return (
 		<Flex width="100%" justifyContent="space-between">
 			<Button
+				variant={{ base: 'mobileModal', sm: 'modal' }}
 				hidden={currentStep === 0}
 				onClick={
 					currentStep % Math.floor(4 / currentRound) === 0
@@ -35,6 +36,7 @@ export const PickerButtons = () => {
 				{currentStep % Math.floor(4 / currentRound) === 0 ? 'Previous Round' : 'Previous'}
 			</Button>
 			<Button
+				variant={{ base: 'mobileModal', sm: 'modal' }}
 				hidden={currentStep === 7}
 				onClick={
 					(selectedShows.length === 1 && currentRound === 3) ||

@@ -37,6 +37,28 @@ const Modal = helpers.defineMultiStyleConfig({
 			padding: '0px',
 		},
 	},
+
+	variants: {
+		mobile: {
+			dialog: {
+				padding: '16px',
+			},
+			header: {
+				fontSize: 'lg',
+				fontWeight: 'bold',
+			},
+			closeButton: {
+				top: '24px',
+				right: '24px',
+				color: 'white',
+				width: '16px',
+				height: '16px',
+				_hover: {
+					bg: 'inherit',
+				},
+			},
+		},
+	},
 });
 
 export default Modal;

@@ -84,7 +84,12 @@ export const Picker = () => {
 				<Button onClick={onClickHandler} bg={{ base: 'purple.400', sm: 'purple.700' }}>
 					Picker
 				</Button>
-				<Modal isOpen={isOpen} onClose={onClose}>
+				<Modal
+					isOpen={isOpen}
+					onClose={onClose}
+					size={{ base: 'sm', sm: 'lg' }}
+					variant={{ base: 'mobile', sm: 'default' }}
+				>
 					<ModalOverlay>
 						<ModalContent>
 							<ModalHeader>

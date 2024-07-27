@@ -81,6 +81,31 @@ const Button = defineStyleConfig({
 			width: '54px',
 			justifyContent: 'flex-start',
 		},
+
+		modal: {
+			bg: 'purple.700',
+			color: 'white',
+			fontSize: 'xl',
+			padding: '8px 12px 8px 12px',
+			height: '44px',
+			width: '200px',
+
+			_hover: {
+				bg: 'purple.400',
+			},
+		},
+
+		mobileModal: {
+			bg: 'purple.700',
+			color: 'white',
+			fontSize: 'xs',
+			padding: '8px 12px 8px 12px',
+			height: '26px',
+
+			_hover: {
+				bg: 'purple.400',
+			},
+		},
 	},
 });
 
