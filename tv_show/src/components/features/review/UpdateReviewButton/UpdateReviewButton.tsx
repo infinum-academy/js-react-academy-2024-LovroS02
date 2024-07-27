@@ -49,7 +49,7 @@ export const UpdateReviewButton = ({ comment, rating, id, show_id }: IUpdateRevi
 				EDIT
 			</Button>
 
-			<Modal isOpen={isOpen} onClose={onClose} variant={{ base: 'mobile', sm: 'default' }}>
+			<Modal isOpen={isOpen} onClose={onClose} variant={{ base: 'mobile', md: 'mobile', sm: 'default' }}>
 				<ModalOverlay />
 				<ModalContent>
 					<ModalHeader>Update review</ModalHeader>
@@ -60,10 +60,14 @@ export const UpdateReviewButton = ({ comment, rating, id, show_id }: IUpdateRevi
 
 					<ModalFooter>
 						<Flex gap={2}>
-							<Button variant={{ base: 'mobileModal', md: 'modal' }} onClick={onClose}>
+							<Button variant={{ base: 'mobileModal', sm: 'mobileModal', md: 'modal' }} onClick={onClose}>
 								No
 							</Button>
-							<Button variant={{ base: 'mobileModal', md: 'modal' }} form="update-review-form" type="submit">
+							<Button
+								variant={{ base: 'mobileModal', sm: 'mobileModal', md: 'modal' }}
+								form="update-review-form"
+								type="submit"
+							>
 								Yes
 							</Button>
 						</Flex>

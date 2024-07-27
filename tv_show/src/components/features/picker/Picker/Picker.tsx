@@ -81,14 +81,14 @@ export const Picker = () => {
 					setUnselectedShows,
 				}}
 			>
-				<Button onClick={onClickHandler} bg={{ base: 'purple.400', md: 'purple.700' }}>
+				<Button onClick={onClickHandler} bg={{ base: 'purple.400', sm: 'purple.400', md: 'purple.700' }}>
 					Picker
 				</Button>
 				<Modal
 					isOpen={isOpen}
 					onClose={onClose}
-					size={{ base: 'sm', md: 'lg' }}
-					variant={{ base: 'mobile', md: 'default' }}
+					size={{ base: 'sm', sm: 'sm', md: 'lg' }}
+					variant={{ base: 'mobile', sm: 'mobile', md: 'default' }}
 				>
 					<ModalOverlay>
 						<ModalContent>

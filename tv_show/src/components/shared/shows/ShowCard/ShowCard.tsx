@@ -30,12 +30,16 @@ export const ShowCard = ({ show }: IShowCardProps) => {
 				/>
 			</CardBody>
 			<CardFooter>
-				<Heading height={{ base: '20px', md: '16px' }} fontSize="lg" fontWeight="bold" color="darkblue">
+				<Heading height={{ base: '20px', sm: '20px', md: '16px' }} fontSize="lg" fontWeight="bold" color="darkblue">
 					{show.title}
 				</Heading>
-				<Flex pt={{ base: '0px', md: '8px' }} pr={{ base: '20px', md: '0px' }}>
-					<StarIcon boxSize={{ base: '24px', md: '16px' }} />
-					<Text fontSize="sm" pl={{ base: '5px', md: '4px' }} height={{ base: '15px', md: '20px' }}>
+				<Flex pt={{ base: '0px', sm: '0px', md: '8px' }} pr={{ base: '20px', sm: '20px', md: '0px' }}>
+					<StarIcon boxSize={{ base: '24px', sm: '24px', md: '16px' }} />
+					<Text
+						fontSize="sm"
+						pl={{ base: '5px', sm: '5px', md: '4px' }}
+						height={{ base: '15px', sm: '15px', md: '20px' }}
+					>
 						{checkAverageRating(show.average_rating)}
 					</Text>
 				</Flex>
