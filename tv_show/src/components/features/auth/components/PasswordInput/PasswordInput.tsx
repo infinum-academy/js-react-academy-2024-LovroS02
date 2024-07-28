@@ -9,17 +9,15 @@ import {
 	FormErrorMessage,
 	Flex,
 } from '@chakra-ui/react';
-import { ReactElement, useState } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { ReactElement, ReactNode, useState } from 'react';
 
 interface IPasswordInputProps {
-	placeholder: string;
-	expression: UseFormRegisterReturn<string>;
 	error?: string;
 	component?: ReactElement;
+	children: ReactNode;
 }
 
-export const PasswordInput = ({ placeholder, expression, error, component }: IPasswordInputProps) => {
+export const PasswordInput = ({ error, component, children, ...rest }: IPasswordInputProps) => {
 	const [visible, setVisible] = useState(false);
 
 	const onClickHandler = () => {
@@ -33,7 +31,7 @@ export const PasswordInput = ({ placeholder, expression, error, component }: IPa
 					<InputLeftElement>
 						<LockIcon />
 					</InputLeftElement>
-					<Input {...expression} type={visible ? 'text' : 'password'} placeholder={placeholder} borderRadius="20px" />
+					<Input type={visible ? 'text' : 'password'} borderRadius="20px" {...rest} />
 					<InputRightElement>
 						<IconButton
 							icon={visible ? <ViewOffIcon /> : <ViewIcon />}
@@ -46,7 +44,7 @@ export const PasswordInput = ({ placeholder, expression, error, component }: IPa
 				{error ? (
 					<FormErrorMessage pl={3}>
 						{error === 'required'
-							? `${expression.name} is required!`
+							? `${children} is required!`
 							: error === 'minLength'
 							? 'Password is too short!'
 							: 'Passwords are not matching!'}

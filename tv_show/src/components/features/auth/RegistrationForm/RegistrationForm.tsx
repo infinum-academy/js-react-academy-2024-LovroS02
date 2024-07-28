@@ -73,26 +73,34 @@ export const RegistrationForm = () => {
 				</Flex>
 			</FormControl>
 			<PasswordInput
-				placeholder="Password"
-				expression={register('password', {
-					required: true,
-					minLength: 8,
-				})}
+				{...{
+					...register('password', {
+						required: true,
+						minLength: 8,
+					}),
+					placeholder: 'Password',
+				}}
 				error={errors?.password?.type}
 				component={
 					<Text pl={3} pt={1} fontSize={10}>
 						At least 8 characters
 					</Text>
 				}
-			/>
+			>
+				Password
+			</PasswordInput>
 			<PasswordInput
-				placeholder="Confirm password"
-				expression={register('password_confirmation', {
-					required: true,
-					validate: (value) => value === watch('password'),
-				})}
+				{...{
+					...register('password_confirmation', {
+						required: true,
+						validate: (value) => value === watch('password'),
+					}),
+					placeholder: 'Confirm password',
+				}}
 				error={errors?.password_confirmation?.type}
-			/>
+			>
+				Confirm password
+			</PasswordInput>
 			<Button
 				isLoading={isSubmitting}
 				type="submit"

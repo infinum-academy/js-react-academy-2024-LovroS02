@@ -77,10 +77,11 @@ export const LoginForm = () => {
 				</Flex>
 			</FormControl>
 			<PasswordInput
-				placeholder="Password"
-				expression={register('password', { required: true })}
+				{...{ ...register('password', { required: true }), placeholder: 'Password' }}
 				error={errors?.password?.type}
-			/>
+			>
+				Password
+			</PasswordInput>
 			<Button
 				isLoading={isSubmitting}
 				type="submit"
