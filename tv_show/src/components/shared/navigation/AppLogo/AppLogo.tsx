@@ -4,7 +4,7 @@ import CIcon from '@coreui/icons-react';
 
 export const AppLogo = () => {
 	return (
-		<Flex fontStyle="italic" color="white" alignItems="center" gap={2} pb="50px" >
+		<Flex fontStyle="italic" color="white" alignItems="center" gap={2} >
 			<CIcon icon={cilTv} size="sm" height={30} />
 			<Text fontFamily="cursive" fontSize="20px">
 				TV SHOW APP

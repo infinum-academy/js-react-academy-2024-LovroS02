@@ -14,11 +14,10 @@ import { ReactElement, ReactNode, useState } from 'react';
 
 interface IPasswordInputProps {
 	error?: string;
-	component?: ReactElement;
 	children: ReactNode;
 }
 
-export const PasswordInput = forwardRef(({ error, component, children, ...rest }: IPasswordInputProps, ref) => {
+export const PasswordInput = forwardRef(({ error, children, ...rest }: IPasswordInputProps, ref) => {
 	const [visible, setVisible] = useState(false);
 
 	const onClickHandler = () => {
@@ -42,16 +41,14 @@ export const PasswordInput = forwardRef(({ error, component, children, ...rest }
 						/>
 					</InputRightElement>
 				</InputGroup>
-				{error ? (
-					<FormErrorMessage pl={3}>
+				{error && (
+					<FormErrorMessage pl={2} color="error">
 						{error === 'required'
 							? `${children} is required!`
 							: error === 'minLength'
 							? 'Password is too short!'
-							: 'Passwords are not matching!'}
+							: 'Password doesn`t match!'}
 					</FormErrorMessage>
-				) : (
-					component
 				)}
 			</Flex>
 		</FormControl>

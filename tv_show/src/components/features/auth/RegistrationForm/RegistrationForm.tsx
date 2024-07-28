@@ -44,75 +44,77 @@ export const RegistrationForm = () => {
 			as="form"
 			direction="column"
 			onSubmit={handleSubmit(onSignUp)}
-			bg="blue"
+			bg="purple.400"
 			color="white"
-			height="80vh"
-			width="400px"
+			height={{ base: '100%', sm: '100%', md: '564px' }}
+			width={{ base: '100%', sm: '100%', md: '494px' }}
 			alignItems="center"
-			borderRadius="20px"
-			padding={4}
-			justifyContent="center"
-			gap={10}
-			justifyItems="center"
+			borderRadius={{ base: '0px', sm: '0px', md: '24px' }}
+			padding={{ base: '110px 0px 110px 0px', sm: '110px 0px 110px 0px', md: '56px 0px 48px 0px' }}
 		>
 			{error && (
-				<Alert status="error" bg="blue" color="red">
+				<Alert status="error" bg="purple.400" color="error">
 					Email is not an email or email has already been taken.
 				</Alert>
 			)}
 			<AppLogo />
-			<FormControl isInvalid={Boolean(errors?.email)}>
-				<Flex direction="column">
-					<InputGroup size="md">
-						<InputLeftElement>
-							<Avatar size="xs" bg="blue" />
-						</InputLeftElement>
-						<Input {...register('email', { required: true })} type="email" placeholder="Email" borderRadius="20px" />
-					</InputGroup>
-					<FormErrorMessage pl={3}>Email is required!</FormErrorMessage>
+			<Flex
+				direction="column"
+				width="100%"
+				padding={{ base: '58px 44px 58px 44px', sm: '58px 44px 58px 44px', md: '50px 56px 36px 56px' }}
+				gap={{ base: '36px', sm: '30px', md: '30px' }}
+			>
+				<FormControl isInvalid={Boolean(errors?.email)}>
+					<Flex direction="column">
+						<InputGroup size="md">
+							<InputLeftElement padding="16px 0px 16px 24px">
+								<Avatar size="xs" bg="purple.400" />
+							</InputLeftElement>
+							<Input {...register('email', { required: true })} type="email" placeholder="Email" variant="auth" />
+						</InputGroup>
+						<FormErrorMessage pl={2} color="error">
+							Email is required!
+						</FormErrorMessage>
+					</Flex>
+				</FormControl>
+				<Flex direction="column" width="100%">
+					<PasswordInput
+						{...{
+							...register('password', {
+								required: true,
+								minLength: 8,
+							}),
+							placeholder: 'Password',
+							variant: 'auth',
+						}}
+						error={errors?.password?.type}
+					>
+						Password
+					</PasswordInput>
+					{watch('password') === '' && (
+						<Text pl="32px" pt={1} fontSize={10}>
+							At least 8 characters
+						</Text>
+					)}
 				</Flex>
-			</FormControl>
-			<PasswordInput
-				{...{
-					...register('password', {
-						required: true,
-						minLength: 8,
-					}),
-					placeholder: 'Password',
-				}}
-				error={errors?.password?.type}
-				component={
-					<Text pl={3} pt={1} fontSize={10}>
-						At least 8 characters
-					</Text>
-				}
-			>
-				Password
-			</PasswordInput>
-			<PasswordInput
-				{...{
-					...register('password_confirmation', {
-						required: true,
-						validate: (value) => value === watch('password'),
-					}),
-					placeholder: 'Confirm password',
-				}}
-				error={errors?.password_confirmation?.type}
-			>
-				Confirm password
-			</PasswordInput>
-			<Button
-				isLoading={isSubmitting}
-				type="submit"
-				borderRadius="20px"
-				fontSize={12}
-				bg="white"
-				color="blue"
-				width="100px"
-			>
+				<PasswordInput
+					{...{
+						...register('password_confirmation', {
+							required: true,
+							validate: (value) => value === watch('password'),
+						}),
+						placeholder: 'Confirm password',
+						variant: 'auth',
+					}}
+					error={errors?.password_confirmation?.type}
+				>
+					Confirm password
+				</PasswordInput>
+			</Flex>
+			<Button isLoading={isSubmitting} type="submit" variant="postForm">
 				SIGN UP
 			</Button>
-			<Text fontSize={12}>
+			<Text fontSize="xxs" pt="28px">
 				Already have an Account?{' '}
 				<Link href="/login" fontWeight="bold">
 					Login
