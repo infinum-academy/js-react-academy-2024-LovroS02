@@ -41,6 +41,40 @@ const Input = helpers.defineMultiStyleConfig({
 				},
 			},
 		},
+
+		form: {
+			field: {
+				height: '80px',
+				width: '100%',
+				borderRadius: 'inputRadius.md',
+				bg: 'white',
+				color: 'purple.700',
+				padding: '28px 40px 28px 40px',
+				fontSize: 'lg',
+				fontWeight: 'regular',
+
+				_placeholder: {
+					color: 'purple.200',
+				},
+			},
+		},
+
+		mobileForm: {
+			field: {
+				height: '52px',
+				width: '100%',
+				borderRadius: 'inputRadius.lg',
+				bg: 'white',
+				color: 'purple.700',
+				padding: '18px 24px 18px 24px',
+				fontSize: 'sm',
+				fontWeight: 'regular',
+
+				_placeholder: {
+					color: 'purple.200',
+				},
+			},
+		},
 	},
 });
 

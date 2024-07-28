@@ -52,31 +52,29 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 	};
 
 	return (
-		<Flex direction="column" as="form" padding="86px 0px 0px 0px" onSubmit={handleSubmit(onClickHandler)}>
-			<Flex>
-				<Heading borderRadius="10px" color="white">
+		<Flex
+			direction="column"
+			as="form"
+			padding={{ base: '40px 0px 0px 0px', sm: '40px 0px 0px 0px', md: '86px 0px 0px 0px' }}
+			onSubmit={handleSubmit(onClickHandler)}
+		>
+			<Flex direction={{ base: 'column', sm: 'column', md: 'row' }} gap={{ base: '22px', sm: '22px', md: '26px' }}>
+				<Heading fontSize={{ base: '24px', sm: '24px', md: '40px' }} height="44px" color="white">
 					Reviews
 				</Heading>
-				<Flex direction="column" width="100%" pl="26px">
+				<Flex direction="column" width="100%">
 					<FormControl isInvalid={Boolean(errors.comment)}>
-						<Flex direction="column">
+						<Flex direction="column" width="100%">
 							<Input
 								{...register('comment', { required: true })}
 								type="text"
-								height="80px"
-								width="100%"
-								borderRadius="10px"
-								bg="white"
-								color="purple.700"
-								size="md"
-								placeholder="Add review"
-								_placeholder={{ color: 'purple.200' }}
-								padding="28px 40px 28px 40px"
+								placeholder="Enter review"
+								variant={{ base: 'mobileForm', sm: 'mobileForm', md: 'form' }}
 							/>
 							<FormErrorMessage>Comment is required!</FormErrorMessage>
 						</Flex>
 					</FormControl>
-					<Flex alignItems="center" pt="22px" pl="40px">
+					<Flex alignItems="center" pt={{ base: '14px', sm: '14px', md: '22px' }}>
 						<FormControl isInvalid={Boolean(errors.rating)}>
 							<Flex direction="column">
 								<Controller
