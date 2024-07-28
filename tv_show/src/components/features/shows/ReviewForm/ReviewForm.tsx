@@ -3,8 +3,7 @@ import { createReview } from '@/fetchers/mutators';
 import { swrKeys } from '@/fetchers/swrKeys';
 import { useUser } from '@/hooks/useUser';
 import { Flex, Heading, Input, Button, FormControl, FormErrorMessage } from '@chakra-ui/react';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
 
@@ -19,7 +18,6 @@ interface IReviewFormInputs {
 
 export const ReviewForm = ({ id }: IReviewFormProps) => {
 	const { data: uid } = useUser();
-	const [internalValue, setInternalValue] = useState(0);
 
 	const { trigger } = useSWRMutation(swrKeys.createReview, createReview, {
 		onSuccess: () => {
@@ -30,7 +28,7 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 	const {
 		register,
 		handleSubmit,
-		setValue,
+		control,
 		getValues,
 		formState: { errors, isSubmitting },
 	} = useForm<IReviewFormInputs>();
@@ -39,11 +37,6 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 		if (uid) {
 			await trigger({ ...data, show_id: id });
 		}
-	};
-
-	const onChange = (index: number) => {
-		setInternalValue(index);
-		setValue('rating', index);
 	};
 
 	return (
@@ -74,11 +67,12 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 					<Flex alignItems="center" pt="22px" pl="40px">
 						<FormControl isInvalid={Boolean(errors.rating)}>
 							<Flex direction="column">
-								<CustomRatingInput
-									{...register('rating', { required: true })}
-									label="Rating"
-									value={internalValue}
-									onChange={onChange}
+								<Controller
+									control={control}
+									name="rating"
+									render={({ field: { onChange, value } }) => (
+										<CustomRatingInput label="Rating" value={value} onChange={onChange} />
+									)}
 								/>
 								<FormErrorMessage>Rating is required!</FormErrorMessage>
 							</Flex>
