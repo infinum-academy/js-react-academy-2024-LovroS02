@@ -50,11 +50,11 @@ export const LoginForm = () => {
 			onSubmit={handleSubmit(onSignUp)}
 			bg="purple.400"
 			color="white"
-			height="500px"
-			width="500px"
+			height={{ base: '100%', sm: '100%', md: '500px' }}
+			width={{ base: '100%', sm: '100%', md: '500px' }}
 			alignItems="center"
-			borderRadius="24px"
-			padding="56px 56px 52px 56px"
+			borderRadius={{ base: '0px', sm: '0px', md: '24px' }}
+			padding={{ base: '158px 44px 182px 44px', sm: '158px 44px 182px 44px', md: '56px 56px 52px 56px' }}
 		>
 			{error && (
 				<Alert status="error" bg="blue" color="red">

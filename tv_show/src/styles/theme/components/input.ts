@@ -13,7 +13,7 @@ const Input = helpers.defineMultiStyleConfig({
 			fontFamily: 'Roboto',
 			color: 'white',
 			fontSize: 'sm',
-			fontWeight: 'lightbold',
+			fontWeight: 'regular',
 			borderRadius: 'inputRadius',
 			bg: 'purple.400',
 			height: '56px',
