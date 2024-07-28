@@ -49,7 +49,12 @@ export const UpdateReviewButton = ({ comment, rating, id, show_id }: IUpdateRevi
 				EDIT
 			</Button>
 
-			<Modal isOpen={isOpen} onClose={onClose} variant={{ base: 'mobile', md: 'mobile', sm: 'default' }}>
+			<Modal
+				isOpen={isOpen}
+				onClose={onClose}
+				size={{ base: 'sm', sm: 'sm', md: 'lg' }}
+				variant={{ base: 'mobile', md: 'mobile', sm: 'default' }}
+			>
 				<ModalOverlay />
 				<ModalContent>
 					<ModalHeader>Update review</ModalHeader>
