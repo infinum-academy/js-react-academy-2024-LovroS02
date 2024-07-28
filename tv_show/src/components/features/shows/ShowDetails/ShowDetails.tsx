@@ -1,4 +1,5 @@
 import { IShow } from '@/typings/show';
+import { StarIcon } from '@chakra-ui/icons';
 import { Image, Heading, Text, Flex } from '@chakra-ui/react';
 
 interface ShowDetailsProps {
@@ -14,17 +15,33 @@ export const ShowDetails = ({ show }: ShowDetailsProps) => {
 	};
 
 	return (
-		<Flex direction="column" gap={8} bg="white" borderRadius="20px" overflow="hidden" color="darkblue">
-			<Image src={show.image_url} alt="Show image" fallbackSrc="https://fakeimg.pl/600x400" />
-			<Heading pl={8} size="lg">
-				{show.title}
-			</Heading>
-			<Text pl={8} pr={8}>
-				{show.description}
-			</Text>
-			<Text pl={8} mb={8}>
-				{rating()}
-			</Text>
+		<Flex
+			direction="column"
+			bg="white"
+			borderRadius="24px"
+			overflow="hidden"
+			color="purple.400"
+			width="1052px"
+			height="610px"
+		>
+			<Image
+				src={show.image_url}
+				alt="Show image"
+				fallbackSrc="https://fakeimg.pl/600x400"
+				width="100%"
+				height="440px"
+				objectFit="cover"
+			/>
+			<Flex justifyContent="space-between" alignItems="center" padding="40px 50px 50px 40px">
+				<Flex direction="column">
+					<Heading size="lg">{show.title}</Heading>
+					<Flex alignItems="baseline">
+						<StarIcon boxSize={6} />
+						<Text>{rating()}</Text>
+					</Flex>
+				</Flex>
+				<Text>{show.description}</Text>
+			</Flex>
 		</Flex>
 	);
 };

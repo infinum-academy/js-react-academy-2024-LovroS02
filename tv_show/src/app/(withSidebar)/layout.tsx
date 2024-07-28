@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { SidebarNavigation } from '@/components/shared/navigation/SidebarNavigation/SidebarNavigation';
 import { Flex } from '@chakra-ui/react';
+import { SidebarNavigationContainer } from '@/components/shared/navigation/SidebarNavigationContainer/SidebarNavigationContainer';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -13,8 +13,8 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<Flex bg="darkblue">
-			<SidebarNavigation />
+		<Flex direction={{ base: 'column', sm: 'row' }}>
+			<SidebarNavigationContainer />
 			{children}
 		</Flex>
 	);

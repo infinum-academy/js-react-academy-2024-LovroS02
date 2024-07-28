@@ -7,6 +7,7 @@ import { mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { UpdateReviewButton } from '../UpdateReviewButton/UpdateReviewButton';
 import { useUser } from '@/hooks/useUser';
+import { ReviewItemOptions } from './components/ReviewItemOptions';
 
 interface IReviewItemProps {
 	review: IReview;
@@ -15,32 +16,17 @@ interface IReviewItemProps {
 export const ReviewItem = ({ review }: IReviewItemProps) => {
 	const { data } = useUser();
 
-	const { trigger } = useSWRMutation(swrKeys.deleteReview(review.id), deleteReview, {
-		onSuccess: () => {
-			mutate(swrKeys.getReviews(review.show_id));
-		},
-	});
-
-	const onDelete = async () => {
-		await trigger();
-	};
-
 	return (
-		<Flex bg="blue" direction="column" padding="20px" gap={4} borderRadius="10px">
-			<Flex justifyContent="space-between" alignItems="center">
-				<Text>{review.user?.email}</Text>
-				<Avatar src={review.user?.image_url} bg="darkblue" />
+		<Flex bg="purple.400" padding="28px 0px 28px 40px" gap="80px" borderRadius="24px" alignItems="center">
+			<Flex justifyContent="space-between" alignItems="center" gap={5}>
+				<Avatar src={review.user?.image_url} bg="purple.400" boxSize={10} />
+				<Flex direction="column" gap="6px">
+					<Text>{review.user?.email}</Text>
+					<CustomRatingInput label={review.rating + '/5'} value={review.rating} />
+				</Flex>
 			</Flex>
 			<Text>{review.comment}</Text>
-			<CustomRatingInput label={review.rating + '/5'} value={review.rating} />
-			{data?.user.email === review.user?.email && (
-				<Flex gap={4}>
-					<Button width="15%" bg="white" color="black" variant="solid" borderRadius="20px" onClick={onDelete}>
-						Remove
-					</Button>
-					<UpdateReviewButton comment={review.comment} rating={review.rating} id={review.id} show_id={review.show_id} />
-				</Flex>
-			)}
+			{data?.user.email === review.user?.email && <ReviewItemOptions review={review} {...{}} />}
 		</Flex>
 	);
 };
