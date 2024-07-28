@@ -29,7 +29,7 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 		register,
 		handleSubmit,
 		control,
-		getValues,
+		watch,
 		formState: { errors, isSubmitting },
 	} = useForm<IReviewFormInputs>();
 
@@ -37,6 +37,18 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 		if (uid) {
 			await trigger({ ...data, show_id: id });
 		}
+	};
+
+	const isDisabled = () => {
+		if (watch('comment')) {
+			if (watch('rating')) {
+				return false;
+			}
+
+			return true;
+		}
+
+		return true;
 	};
 
 	return (
@@ -81,7 +93,7 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 							isLoading={isSubmitting}
 							type="submit"
 							variant={{ base: 'mobilePostForm', sm: 'mobilePostForm', md: 'postForm' }}
-							isDisabled={getValues('comment') === '' ? true : getValues('rating') === 0 ? true : false}
+							isDisabled={isDisabled()}
 						>
 							POST
 						</Button>

@@ -51,6 +51,12 @@ const Button = defineStyleConfig({
 			width: '96px',
 			height: '38px',
 			padding: '12px 28px 12px 28px',
+
+			_disabled: {
+				_hover: {
+					bg: 'white',
+				},
+			},
 		},
 
 		logout: {
