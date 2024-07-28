@@ -82,15 +82,7 @@ export const LoginForm = () => {
 			>
 				Password
 			</PasswordInput>
-			<Button
-				isLoading={isSubmitting}
-				type="submit"
-				borderRadius="20px"
-				fontSize={12}
-				bg="white"
-				color="blue"
-				width="100px"
-			>
+			<Button isLoading={isSubmitting} type="submit">
 				LOG IN
 			</Button>
 			<Text fontSize={12}>

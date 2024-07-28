@@ -8,6 +8,7 @@ import {
 	IconButton,
 	FormErrorMessage,
 	Flex,
+	forwardRef,
 } from '@chakra-ui/react';
 import { ReactElement, ReactNode, useState } from 'react';
 
@@ -17,7 +18,7 @@ interface IPasswordInputProps {
 	children: ReactNode;
 }
 
-export const PasswordInput = ({ error, component, children, ...rest }: IPasswordInputProps) => {
+export const PasswordInput = forwardRef(({ error, component, children, ...rest }: IPasswordInputProps, ref) => {
 	const [visible, setVisible] = useState(false);
 
 	const onClickHandler = () => {
@@ -31,7 +32,7 @@ export const PasswordInput = ({ error, component, children, ...rest }: IPassword
 					<InputLeftElement>
 						<LockIcon />
 					</InputLeftElement>
-					<Input type={visible ? 'text' : 'password'} borderRadius="20px" {...rest} />
+					<Input type={visible ? 'text' : 'password'} borderRadius="20px" {...rest} ref={ref} />
 					<InputRightElement>
 						<IconButton
 							icon={visible ? <ViewOffIcon /> : <ViewIcon />}
@@ -55,4 +56,4 @@ export const PasswordInput = ({ error, component, children, ...rest }: IPassword
 			</Flex>
 		</FormControl>
 	);
-};
+});
