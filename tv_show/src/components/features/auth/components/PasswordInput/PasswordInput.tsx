@@ -29,10 +29,10 @@ export const PasswordInput = forwardRef(({ error, component, children, ...rest }
 		<FormControl isInvalid={Boolean(error)}>
 			<Flex direction="column">
 				<InputGroup size="md">
-					<InputLeftElement>
+					<InputLeftElement padding="16px 0px 16px 24px">
 						<LockIcon />
 					</InputLeftElement>
-					<Input type={visible ? 'text' : 'password'} borderRadius="20px" {...rest} ref={ref} />
+					<Input type={visible ? 'text' : 'password'} {...rest} ref={ref} />
 					<InputRightElement>
 						<IconButton
 							icon={visible ? <ViewOffIcon /> : <ViewIcon />}

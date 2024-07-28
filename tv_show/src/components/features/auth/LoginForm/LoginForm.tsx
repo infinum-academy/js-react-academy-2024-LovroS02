@@ -48,16 +48,13 @@ export const LoginForm = () => {
 			as="form"
 			direction="column"
 			onSubmit={handleSubmit(onSignUp)}
-			bg="blue"
+			bg="purple.400"
 			color="white"
-			height="60vh"
-			width="400px"
+			height="500px"
+			width="500px"
 			alignItems="center"
-			borderRadius="20px"
-			padding={4}
-			justifyContent="center"
-			gap={10}
-			justifyItems="center"
+			borderRadius="24px"
+			padding="56px 56px 52px 56px"
 		>
 			{error && (
 				<Alert status="error" bg="blue" color="red">
@@ -65,27 +62,27 @@ export const LoginForm = () => {
 				</Alert>
 			)}
 			<AppLogo />
-			<FormControl isInvalid={Boolean(errors?.email)}>
+			<FormControl isInvalid={Boolean(errors?.email)} pb="36px">
 				<Flex direction="column">
 					<InputGroup size="md">
-						<InputLeftElement>
-							<Avatar size="xs" bg="blue" />
+						<InputLeftElement padding="16px 0px 16px 24px">
+							<Avatar size="xs" bg="purple.400" />
 						</InputLeftElement>
-						<Input {...register('email', { required: true })} type="email" placeholder="Email" borderRadius="20px" />
+						<Input {...register('email', { required: true })} type="email" placeholder="Email" variant="auth" />
 					</InputGroup>
 					<FormErrorMessage pl={3}>Email is required!</FormErrorMessage>
 				</Flex>
 			</FormControl>
 			<PasswordInput
-				{...{ ...register('password', { required: true }), placeholder: 'Password' }}
+				{...{ ...register('password', { required: true }), placeholder: 'Password', variant: 'auth' }}
 				error={errors?.password?.type}
 			>
 				Password
 			</PasswordInput>
-			<Button isLoading={isSubmitting} type="submit">
+			<Button isLoading={isSubmitting} type="submit" mt="60px">
 				LOG IN
 			</Button>
-			<Text fontSize={12}>
+			<Text fontSize={12} pt="28px">
 				Don`t have an account?{' '}
 				<Link href="/register" fontWeight="bold">
 					Register

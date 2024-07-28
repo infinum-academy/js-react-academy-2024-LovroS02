@@ -9,6 +9,7 @@ import radii from './foundations/radius';
 import Button from './components/button';
 import Modal from './components/modal';
 import Progress from './components/progress';
+import Input from './components/input';
 
 const fonts = {
 	body: 'Roboto, sans-serif',
@@ -16,7 +17,7 @@ const fonts = {
 };
 
 const theme = extendTheme({
-	components: { Drawer, Card, Button, Modal, Progress },
+	components: { Drawer, Card, Button, Modal, Progress, Input },
 	colors,
 	fonts,
 	fontSizes,
