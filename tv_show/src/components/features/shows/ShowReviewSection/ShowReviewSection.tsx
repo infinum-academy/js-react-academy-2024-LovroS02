@@ -46,7 +46,12 @@ export const ShowReviewSection = () => {
 				height="100vh"
 				direction="column"
 				bg="purple.700"
-				padding={{ base: '32px 16px 36px 16px', sm: '32px 16px 36px 16px', md: '30px 30px 64px 30px' }}
+				padding={{
+					base: '32px 16px 36px 16px',
+					sm: '32px 16px 36px 16px',
+					md: '32px 16px 36px 16px',
+					lg: '30px 30px 64px 30px',
+				}}
 			>
 				<Flex>
 					{data && <ShowDetails show={{ ...data.show, average_rating: calculateAverageRating(reviews.reviews) }} />}

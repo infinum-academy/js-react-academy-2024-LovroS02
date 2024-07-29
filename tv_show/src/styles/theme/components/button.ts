@@ -72,7 +72,7 @@ const Button = defineStyleConfig({
 		menu: {
 			bg: 'purple.400',
 			color: 'white',
-			fontsize: 'xl',
+			fontSize: 'xl',
 			padding: '10px 10px 10px 10px',
 			height: '24px',
 			width: '24px',

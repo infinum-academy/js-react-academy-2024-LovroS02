@@ -55,11 +55,14 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 		<Flex
 			direction="column"
 			as="form"
-			padding={{ base: '40px 0px 0px 0px', sm: '40px 0px 0px 0px', md: '86px 0px 0px 0px' }}
+			padding={{ base: '40px 0px 0px 0px', sm: '40px 0px 0px 0px', md: '40px 0px 0px 0px', lg: '86px 0px 0px 0px' }}
 			onSubmit={handleSubmit(onClickHandler)}
 		>
-			<Flex direction={{ base: 'column', sm: 'column', md: 'row' }} gap={{ base: '22px', sm: '22px', md: '26px' }}>
-				<Heading fontSize={{ base: '24px', sm: '24px', md: '40px' }} height="44px" color="white">
+			<Flex
+				direction={{ base: 'column', sm: 'column', md: 'column', lg: 'row' }}
+				gap={{ base: '22px', sm: '22px', md: '22px', lg: '26px' }}
+			>
+				<Heading fontSize={{ base: '24px', sm: '24px', md: '24px', lg: '40px' }} height="44px" color="white">
 					Reviews
 				</Heading>
 				<Flex direction="column" width="100%">
@@ -69,12 +72,12 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 								{...register('comment', { required: true })}
 								type="text"
 								placeholder="Enter review"
-								variant={{ base: 'mobileForm', sm: 'mobileForm', md: 'form' }}
+								variant={{ base: 'mobileForm', sm: 'mobileForm', md: 'mobileForm', lg: 'form' }}
 							/>
 							<FormErrorMessage>Comment is required!</FormErrorMessage>
 						</Flex>
 					</FormControl>
-					<Flex alignItems="center" pt={{ base: '14px', sm: '14px', md: '22px' }}>
+					<Flex alignItems="center" pt={{ base: '14px', sm: '14px', md: '14px', lg: '22px' }}>
 						<FormControl isInvalid={Boolean(errors.rating)}>
 							<Flex direction="column">
 								<Controller
@@ -90,7 +93,7 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 						<Button
 							isLoading={isSubmitting}
 							type="submit"
-							variant={{ base: 'mobilePostForm', sm: 'mobilePostForm', md: 'postForm' }}
+							variant={{ base: 'mobilePostForm', sm: 'mobilePostForm', md: 'mobilePostForm', lg: 'postForm' }}
 							isDisabled={isDisabled()}
 						>
 							POST
