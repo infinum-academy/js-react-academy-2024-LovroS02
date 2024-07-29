@@ -36,7 +36,7 @@ export const ShowReviewSection = () => {
 	}
 
 	if (isLoading || !data || reviewsLoading || !reviews) {
-		return <Spinner thickness="8px" emptyColor="darkblue" color="white" boxSize={100} mx="50%" />;
+		return <Spinner thickness="8px" emptyColor="darkblue" color="white" boxSize={100} ml="25%" mt="25%" />;
 	}
 
 	return (

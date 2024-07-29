@@ -5,7 +5,6 @@ import {
 	DrawerBody,
 	DrawerCloseButton,
 	DrawerContent,
-	DrawerFooter,
 	DrawerOverlay,
 	Flex,
 	IconButton,

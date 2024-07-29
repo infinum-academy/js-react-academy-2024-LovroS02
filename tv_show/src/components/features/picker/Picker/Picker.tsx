@@ -20,8 +20,6 @@ import { swrKeys } from '@/fetchers/swrKeys';
 import useSWR from 'swr';
 import { IShow } from '@/typings/show';
 import { getRoundShows } from '@/services/getShows';
-import { PickerShowStep } from './components/PickerShowStep';
-import { PickerShowResult } from './components/PickerShowResult';
 import { PickerStepper } from './components/PickerStepper';
 
 interface IShowsListResponse {
