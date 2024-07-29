@@ -52,7 +52,7 @@ export const UpdateReviewButton = ({ comment, rating, id, show_id }: IUpdateRevi
 				isOpen={isOpen}
 				onClose={onClose}
 				size={{ base: 'sm', sm: 'sm', md: 'lg' }}
-				variant={{ base: 'mobile', md: 'mobile', sm: 'default' }}
+				variant={{ base: 'mobile', sm: 'mobile', md: 'default' }}
 			>
 				<ModalOverlay />
 				<ModalContent>

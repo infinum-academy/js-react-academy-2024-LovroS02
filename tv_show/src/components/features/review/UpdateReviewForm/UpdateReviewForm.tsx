@@ -20,7 +20,6 @@ export const UpdateReviewForm = ({ onFormSubmit, comment, rating }: IReviewFormP
 	const {
 		register,
 		handleSubmit,
-		setValue,
 		control,
 		formState: { errors },
 	} = useForm<IUpdateReviewFormInputs>({
@@ -29,10 +28,6 @@ export const UpdateReviewForm = ({ onFormSubmit, comment, rating }: IReviewFormP
 			comment: comment,
 		},
 	});
-
-	useEffect(() => {
-		setValue('rating', rating);
-	}, [rating, setValue]);
 
 	const handleChange = (comment: string) => {
 		setCommentValue(comment);
@@ -53,7 +48,7 @@ export const UpdateReviewForm = ({ onFormSubmit, comment, rating }: IReviewFormP
 					<Input
 						{...register('comment', { required: true })}
 						type="text"
-						placeholder="Add review"
+						placeholder="Enter review"
 						value={commentValue}
 						onChange={(event) => handleChange(event.target.value)}
 						variant={{ base: 'mobileForm', sm: 'mobileForm', md: 'form' }}

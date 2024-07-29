@@ -28,7 +28,7 @@ const Modal = helpers.defineMultiStyleConfig({
 		header: {
 			padding: '0px',
 			fontSize: 'xl',
-			fontWeight: 'bold',
+			fontWeight: 'regular',
 		},
 		body: {
 			padding: '10px 24px 16px 24px',
@@ -45,7 +45,7 @@ const Modal = helpers.defineMultiStyleConfig({
 			},
 			header: {
 				fontSize: 'lg',
-				fontWeight: 'bold',
+				fontWeight: 'regular',
 			},
 			closeButton: {
 				top: '24px',
