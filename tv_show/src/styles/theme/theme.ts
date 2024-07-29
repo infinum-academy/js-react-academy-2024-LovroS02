@@ -8,8 +8,8 @@ import Card from './components/card';
 import radii from './foundations/radius';
 import Button from './components/button';
 import Modal from './components/modal';
-import Progress from './components/progress';
 import Input from './components/input';
+import Progress from './components/progress';
 
 const fonts = {
 	body: 'Roboto, sans-serif',
