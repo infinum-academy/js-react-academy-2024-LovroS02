@@ -62,7 +62,13 @@ export const ReviewForm = ({ id }: IReviewFormProps) => {
 				direction={{ base: 'column', sm: 'column', md: 'column', lg: 'row' }}
 				gap={{ base: '22px', sm: '22px', md: '22px', lg: '26px' }}
 			>
-				<Heading fontSize={{ base: '24px', sm: '24px', md: '24px', lg: '40px' }} height="44px" color="white">
+				<Heading
+					fontSize={{ base: 'lg', sm: 'lg', md: 'lg', lg: 'xl' }}
+					fontWeight="regular"
+					width="174px"
+					height="28px"
+					color="white"
+				>
 					Reviews
 				</Heading>
 				<Flex direction="column" width="100%">

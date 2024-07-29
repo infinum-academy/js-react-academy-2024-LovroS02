@@ -15,32 +15,50 @@ export const ShowDetails = ({ show }: ShowDetailsProps) => {
 	};
 
 	return (
-		<Flex
-			direction="column"
-			bg="white"
-			borderRadius="24px"
-			overflow="hidden"
-			color="purple.400"
-			width="1052px"
-			height="610px"
-		>
+		<Flex direction="column" bg="white" borderRadius="24px" overflow="hidden" color="purple.400" width="100%">
 			<Image
 				src={show.image_url}
 				alt="Show image"
 				fallbackSrc="https://fakeimg.pl/600x400"
 				width="100%"
-				height="440px"
+				height={{ base: '344px', sm: '344px', md: '344px', lg: '440px' }}
 				objectFit="cover"
 			/>
-			<Flex justifyContent="space-between" alignItems="center" padding="40px 50px 50px 40px">
-				<Flex direction="column">
-					<Heading size="lg">{show.title}</Heading>
-					<Flex alignItems="baseline">
-						<StarIcon boxSize={6} />
-						<Text>{rating()}</Text>
+			<Flex
+				padding={{
+					base: '24px 30px 28px 24px',
+					sm: '24px 30px 28px 24px',
+					md: '24px 30px 28px 24px',
+					lg: '40px 50px 40px 40px',
+				}}
+				direction={{ base: 'column', sm: 'column', md: 'column', lg: 'column', xl: 'row' }}
+				width="100%"
+				justifyContent="space-between"
+			>
+				<Flex direction="column" width="100%" pb={{ base: '16px', sm: '16px', md: '16px', lg: '16px', xl: '0px' }}>
+					<Heading
+						width="100%"
+						height={{ base: '20px', sm: '20px', md: '20px', lg: '40px' }}
+						fontSize={{ base: 'xl', sm: 'xl', md: 'xl', lg: 'xxl' }}
+						fontWeight="bold"
+					>
+						{show.title}
+					</Heading>
+					<Flex alignItems="baseline" gap={2.5} pt={{ base: 2.5, sm: 2.5, md: 2.5, lg: 1 }}>
+						<StarIcon boxSize={{ base: '14px', sm: '14px', md: '14px', lg: '18px' }} />
+						<Text fontSize={{ base: 'xs', sm: 'xs', md: 'xs', lg: 'xl' }} fontWeight="regular">
+							{rating()}
+						</Text>
 					</Flex>
 				</Flex>
-				<Text>{show.description}</Text>
+				<Text
+					width="100%"
+					textAlign="justify"
+					fontSize={{ base: 'xs', sm: 'xs', md: 'xs', lg: 'lg' }}
+					fontWeight="regular"
+				>
+					{show.description}
+				</Text>
 			</Flex>
 		</Flex>
 	);

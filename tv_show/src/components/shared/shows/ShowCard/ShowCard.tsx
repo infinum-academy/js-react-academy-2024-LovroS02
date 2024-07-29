@@ -33,12 +33,16 @@ export const ShowCard = ({ show }: IShowCardProps) => {
 				<Heading height={{ base: '20px', sm: '20px', md: '16px' }} fontSize="lg" fontWeight="bold" color="darkblue">
 					{show.title}
 				</Heading>
-				<Flex pt={{ base: '0px', sm: '0px', md: '8px' }} pr={{ base: '20px', sm: '20px', md: '0px' }}>
-					<StarIcon boxSize={{ base: '24px', sm: '24px', md: '16px' }} />
+				<Flex
+					pt={{ base: '0px', sm: '0px', md: '8px' }}
+					pr={{ base: '20px', sm: '20px', md: '0px' }}
+					alignItems={{ base: 'center', sm: 'center', md: 'baseline' }}
+				>
+					<StarIcon boxSize={{ base: '20px', sm: '20px', md: '14px' }} />
 					<Text
 						fontSize="sm"
-						pl={{ base: '5px', sm: '5px', md: '4px' }}
-						height={{ base: '15px', sm: '15px', md: '20px' }}
+						pl="4px"
+						height={{ base: '20px', sm: '20px', md: '16px' }}
 					>
 						{checkAverageRating(show.average_rating)}
 					</Text>
