@@ -1,11 +1,6 @@
 import { CustomRatingInput } from '@/components/shared/input/CustomRatingInput/CustomRatingInput';
-import { deleteReview } from '@/fetchers/mutators';
-import { swrKeys } from '@/fetchers/swrKeys';
 import { IReview } from '@/typings/review';
-import { Flex, Text, Avatar, Button } from '@chakra-ui/react';
-import { mutate } from 'swr';
-import useSWRMutation from 'swr/mutation';
-import { UpdateReviewButton } from '../UpdateReviewButton/UpdateReviewButton';
+import { Flex, Text, Avatar } from '@chakra-ui/react';
 import { useUser } from '@/hooks/useUser';
 import { ReviewItemOptions } from './components/ReviewItemOptions';
 

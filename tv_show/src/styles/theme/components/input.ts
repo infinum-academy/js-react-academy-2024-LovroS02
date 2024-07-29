@@ -14,7 +14,7 @@ const Input = helpers.defineMultiStyleConfig({
 			color: 'white',
 			fontSize: 'sm',
 			fontWeight: 'regular',
-			borderRadius: 'inputRadius',
+			borderRadius: 'inputRadius.md',
 			bg: 'purple.400',
 			height: '56px',
 		},
@@ -73,6 +73,30 @@ const Input = helpers.defineMultiStyleConfig({
 				_placeholder: {
 					color: 'purple.200',
 				},
+			},
+		},
+
+		profile: {
+			field: {
+				height: '400px',
+				width: '600px',
+				borderRadius: 'inputRadius.md',
+				bg: 'purple.400',
+				borderColor: 'purple.200',
+				border: '2px dashed',
+				color: 'purple.200',
+			},
+		},
+
+		profileMobile: {
+			field: {
+				height: '270px',
+				width: '270px',
+				borderRadius: 'inputRadius.md',
+				bg: 'purple.400',
+				borderColor: 'purple.200',
+				border: '2px dashed',
+				color: 'purple.200',
 			},
 		},
 	},

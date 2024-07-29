@@ -20,7 +20,7 @@ export const SidebarNavigationContent = () => {
 			<Flex direction="column" gap="18px">
 				<SidebarNavigationItem href="/all-shows">All shows</SidebarNavigationItem>
 				<SidebarNavigationItem href="/top-rated">Top rated</SidebarNavigationItem>
-				<SidebarNavigationItem href="/">My profile</SidebarNavigationItem>
+				<SidebarNavigationItem href="/my-profile">My profile</SidebarNavigationItem>
 			</Flex>
 			<Flex alignItems="center">
 				<SidebarNavigationItem href="/login" onClickHandler={logout}>
