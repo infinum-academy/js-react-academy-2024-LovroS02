@@ -1,7 +1,7 @@
 import { CustomRatingInput } from '@/components/shared/input/CustomRatingInput/CustomRatingInput';
-import { Flex, Input, Button, Checkbox, IconButton, FormControl, FormErrorMessage } from '@chakra-ui/react';
+import { Flex, Input, FormControl, FormErrorMessage } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 interface IReviewFormProps {
 	onFormSubmit: (data: IUpdateReviewFormInputs) => void;
@@ -15,24 +15,19 @@ interface IUpdateReviewFormInputs {
 }
 
 export const UpdateReviewForm = ({ onFormSubmit, comment, rating }: IReviewFormProps) => {
-	const [internalValue, setInternalValue] = useState(rating);
 	const [commentValue, setCommentValue] = useState(comment);
 
 	const {
 		register,
 		handleSubmit,
-		setValue,
+		control,
 		formState: { errors },
-	} = useForm<IUpdateReviewFormInputs>();
-
-	useEffect(() => {
-		setValue('rating', rating);
-	}, [rating, setValue]);
-
-	const onChange = (index: number) => {
-		setInternalValue(index);
-		setValue('rating', index);
-	};
+	} = useForm<IUpdateReviewFormInputs>({
+		values: {
+			rating: rating,
+			comment: comment,
+		},
+	});
 
 	const handleChange = (comment: string) => {
 		setCommentValue(comment);
@@ -53,26 +48,22 @@ export const UpdateReviewForm = ({ onFormSubmit, comment, rating }: IReviewFormP
 					<Input
 						{...register('comment', { required: true })}
 						type="text"
-						height="100px"
-						borderRadius="10px"
-						bg="white"
-						color="black"
-						size="md"
-						placeholder="Add review"
+						placeholder="Enter review"
 						value={commentValue}
 						onChange={(event) => handleChange(event.target.value)}
-						padding="0px 0px 50px 10px"
+						variant={{ base: 'mobileForm', sm: 'mobileForm', md: 'form' }}
 					/>
 					<FormErrorMessage>Comment is required!</FormErrorMessage>
 				</Flex>
 			</FormControl>
 			<FormControl isInvalid={Boolean(errors.rating)}>
 				<Flex direction="column">
-					<CustomRatingInput
-						{...register('rating', { required: true })}
-						label="Rating"
-						value={internalValue}
-						onChange={onChange}
+					<Controller
+						control={control}
+						name="rating"
+						render={({ field: { onChange, value } }) => (
+							<CustomRatingInput label="Rating" value={value} onChange={onChange} />
+						)}
 					/>
 					<FormErrorMessage>Rating is required!</FormErrorMessage>
 				</Flex>

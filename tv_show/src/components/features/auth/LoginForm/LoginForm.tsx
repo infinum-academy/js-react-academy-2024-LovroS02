@@ -48,51 +48,50 @@ export const LoginForm = () => {
 			as="form"
 			direction="column"
 			onSubmit={handleSubmit(onSignUp)}
-			bg="blue"
+			bg="purple.400"
 			color="white"
-			height="60vh"
-			width="400px"
+			height={{ base: '100%', sm: '100%', md: '500px' }}
+			width={{ base: '100%', sm: '100%', md: '500px' }}
 			alignItems="center"
-			borderRadius="20px"
-			padding={4}
-			justifyContent="center"
-			gap={10}
-			justifyItems="center"
+			borderRadius={{ base: '0px', sm: '0px', md: '24px' }}
+			padding={{ base: '158px 0px 182px 0px', sm: '158px 0px 182px 0px', md: '56px 0px 52px 0px' }}
 		>
 			{error && (
-				<Alert status="error" bg="blue" color="red">
+				<Alert status="error" bg="purple.400" color="error">
 					Invalid login credentials. Please try again.
 				</Alert>
 			)}
 			<AppLogo />
-			<FormControl isInvalid={Boolean(errors?.email)}>
-				<Flex direction="column">
-					<InputGroup size="md">
-						<InputLeftElement>
-							<Avatar size="xs" bg="blue" />
-						</InputLeftElement>
-						<Input {...register('email', { required: true })} type="email" placeholder="Email" borderRadius="20px" />
-					</InputGroup>
-					<FormErrorMessage pl={3}>Email is required!</FormErrorMessage>
-				</Flex>
-			</FormControl>
-			<PasswordInput
-				placeholder="Password"
-				expression={register('password', { required: true })}
-				error={errors?.password?.type}
-			/>
-			<Button
-				isLoading={isSubmitting}
-				type="submit"
-				borderRadius="20px"
-				fontSize={12}
-				bg="white"
-				color="blue"
-				width="100px"
+			<Flex
+				direction="column"
+				width="100%"
+				padding={{ base: '58px 44px 44px 44px', sm: '58px 44px 44px 44px', md: '50px 56px 58px 56px' }}
+				gap={{ base: '22px', sm: '22px', md: '30px' }}
 			>
+				<FormControl isInvalid={Boolean(errors?.email)}>
+					<Flex direction="column">
+						<InputGroup size="md">
+							<InputLeftElement padding="16px 0px 16px 24px">
+								<Avatar size="xs" bg="purple.400" />
+							</InputLeftElement>
+							<Input {...register('email', { required: true })} type="email" placeholder="Email" variant="auth" />
+						</InputGroup>
+						<FormErrorMessage pl={2} color="error">
+							Email is required!
+						</FormErrorMessage>
+					</Flex>
+				</FormControl>
+				<PasswordInput
+					{...{ ...register('password', { required: true }), placeholder: 'Password', variant: 'auth' }}
+					error={errors?.password?.type}
+				>
+					Password
+				</PasswordInput>
+			</Flex>
+			<Button isLoading={isSubmitting} type="submit" variant="postForm">
 				LOG IN
 			</Button>
-			<Text fontSize={12}>
+			<Text fontSize={12} pt="28px">
 				Don`t have an account?{' '}
 				<Link href="/register" fontWeight="bold">
 					Register

@@ -17,15 +17,21 @@ export const TopRatedShowsListSection = () => {
 	const { data, isLoading, error } = useSWR<ITopRatedShowsListResponse>(swrKeys.topRatedShows, fetcher);
 
 	if (error) {
-		return <WarningIcon color="white" boxSize={100} mx="50%" />;
+		return <WarningIcon color="purple.700" boxSize={100} mx="50%" />;
 	}
 
 	if (isLoading) {
-		return <Spinner thickness="8px" emptyColor="darkblue" color="white" boxSize={100} mx="50%" />;
+		return <Spinner thickness="8px" emptyColor="purple.700" color="white" boxSize={100} ml="25%" mt="25%" />;
 	}
 
 	return (
-		<Flex direction={{ base: 'column', sm: 'row' }} overflowY="auto" height="100vh" bg="purple.700" width="100%">
+		<Flex
+			direction={{ base: 'column', sm: 'column', md: 'row' }}
+			overflowY="auto"
+			height="100vh"
+			bg="purple.700"
+			width="100%"
+		>
 			{data && <ShowsList shows={data.shows} />}
 			{data && <MobileShowsList shows={data.shows} />}
 		</Flex>

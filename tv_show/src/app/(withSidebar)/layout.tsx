@@ -13,7 +13,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<Flex direction={{ base: 'column', sm: 'row' }}>
+		<Flex direction={{ base: 'column', sm: 'column', md: 'row' }}>
 			<SidebarNavigationContainer />
 			{children}
 		</Flex>

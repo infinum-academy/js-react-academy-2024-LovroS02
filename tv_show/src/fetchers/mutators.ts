@@ -1,4 +1,3 @@
-import { IReview } from '@/typings/review';
 import { fetcher } from './fetcher';
 
 interface IProps {
