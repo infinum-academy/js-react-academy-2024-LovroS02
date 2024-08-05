@@ -14,9 +14,9 @@ export const PickerButtons = () => {
 		setSelectedShows,
 		unselectedShows,
 		setUnselectedShows,
+		selected,
+		setSelected,
 	} = useContext(PickerContext);
-
-	console.log(currentStep, currentRound, unselectedShows, selectedShows, roundShows);
 
 	return (
 		<Flex width="100%" justifyContent="space-between">
@@ -36,6 +36,7 @@ export const PickerButtons = () => {
 				{currentStep % Math.floor(4 / currentRound) === 0 ? 'Previous Round' : 'Previous'}
 			</Button>
 			<Button
+				isDisabled={!selected}
 				variant={{ base: 'mobileModal', sm: 'mobileModal', md: 'modal' }}
 				hidden={currentStep === 7}
 				onClick={
@@ -51,8 +52,12 @@ export const PickerButtons = () => {
 								const copySelectedShows = [...selectedShows];
 								copySelectedShows[currentRound] = [];
 								setSelectedShows(copySelectedShows);
+								setSelected(false);
 						  }
-						: () => setCurrentStep(currentStep + 1)
+						: () => {
+								setCurrentStep(currentStep + 1);
+								setSelected(false);
+						  }
 				}
 			>
 				{selectedShows.length === 1 && currentRound === 3

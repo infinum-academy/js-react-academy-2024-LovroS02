@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react';
+import { background, extendTheme } from '@chakra-ui/react';
 import '@fontsource/roboto';
 import colors from './foundations/colors';
 import fontSizes from './foundations/fontSizes';
@@ -17,6 +17,14 @@ const fonts = {
 };
 
 const theme = extendTheme({
+	styles: {
+		global: () => ({
+			'html, body': {
+				background: 'purple.700',
+				height: '100%',
+			},
+		}),
+	},
 	components: { Drawer, Card, Button, Modal, Progress, Input },
 	colors,
 	fonts,
