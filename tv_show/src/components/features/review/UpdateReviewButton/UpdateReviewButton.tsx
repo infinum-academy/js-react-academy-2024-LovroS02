@@ -9,7 +9,6 @@ import {
 	ModalBody,
 	ModalFooter,
 	Button,
-	Text,
 	useDisclosure,
 	Flex,
 } from '@chakra-ui/react';
@@ -49,9 +48,14 @@ export const UpdateReviewButton = ({ comment, rating, id, show_id }: IUpdateRevi
 				EDIT
 			</Button>
 
-			<Modal isOpen={isOpen} onClose={onClose}>
+			<Modal
+				isOpen={isOpen}
+				onClose={onClose}
+				size={{ base: 'sm', sm: 'sm', md: 'lg' }}
+				variant={{ base: 'mobile', sm: 'mobile', md: 'default' }}
+			>
 				<ModalOverlay />
-				<ModalContent bg="blue" color="white" borderRadius="10px">
+				<ModalContent>
 					<ModalHeader>Update review</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
@@ -60,10 +64,14 @@ export const UpdateReviewButton = ({ comment, rating, id, show_id }: IUpdateRevi
 
 					<ModalFooter>
 						<Flex gap={2}>
-							<Button borderRadius="20px" onClick={onClose} bg="white">
+							<Button variant={{ base: 'mobileModal', sm: 'mobileModal', md: 'modal' }} onClick={onClose}>
 								No
 							</Button>
-							<Button borderRadius="20px" bg="white" form="update-review-form" type="submit">
+							<Button
+								variant={{ base: 'mobileModal', sm: 'mobileModal', md: 'modal' }}
+								form="update-review-form"
+								type="submit"
+							>
 								Yes
 							</Button>
 						</Flex>

@@ -10,7 +10,8 @@ const Card = helpers.defineMultiStyleConfig({
 	defaultProps,
 	baseStyle: {
 		container: {
-			width: '240px',
+			width: '100%',
+			maxW: '240px',
 			height: '374px',
 			bg: 'white',
 			borderRadius: 'cardRadius.lg',
@@ -18,7 +19,8 @@ const Card = helpers.defineMultiStyleConfig({
 			cursor: 'pointer',
 		},
 		body: {
-			width: '240px',
+			width: '100%',
+			maxW: '240px',
 			height: '300px',
 			padding: '0px',
 		},
@@ -32,7 +34,8 @@ const Card = helpers.defineMultiStyleConfig({
 	variants: {
 		mobile: {
 			container: {
-				width: '342px',
+				width: '100%',
+				maxW: '342px',
 				height: '480px',
 				bg: 'white',
 				borderRadius: 'cardRadius.sm',
@@ -40,7 +43,8 @@ const Card = helpers.defineMultiStyleConfig({
 				cursor: 'pointer',
 			},
 			body: {
-				width: '342px',
+				width: '100%',
+				maxW: '342px',
 				height: '428px',
 				padding: '0px',
 			},
@@ -49,6 +53,54 @@ const Card = helpers.defineMultiStyleConfig({
 				justifyContent: 'space-between',
 				padding: '16px 0px 16px 21px',
 				color: 'purple.400',
+			},
+		},
+
+		picker: {
+			container: {
+				width: '100%',
+				maxW: '200px',
+				height: '320px',
+				bg: 'white',
+				borderRadius: 'cardRadius.sm',
+				overflow: 'hidden',
+				cursor: 'pointer',
+			},
+			body: {
+				width: '100%',
+				maxW: '200px',
+				height: '240px',
+				padding: '0px',
+			},
+			footer: {
+				display: 'block',
+				color: 'purple.400',
+				padding: '10px',
+				fontSize: 'md',
+			},
+		},
+
+		pickerMobile: {
+			container: {
+				width: '100%',
+				maxW: '240px',
+				height: '260px',
+				bg: 'white',
+				borderRadius: 'cardRadius.sm',
+				overflow: 'hidden',
+				cursor: 'pointer',
+			},
+			body: {
+				width: '100%',
+				maxW: '240px',
+				height: '200px',
+				padding: '0px',
+			},
+			footer: {
+				display: 'block',
+				color: 'purple.400',
+				padding: '10px',
+				fontSize: 'xs',
 			},
 		},
 	},

@@ -8,7 +8,7 @@ interface CustomRatingInputProps {
 	onChange?: (index: number) => void;
 }
 
-export const CustomRatingInput = ({ label, value, onChange}: CustomRatingInputProps) => {
+export const CustomRatingInput = ({ label, value, onChange, ...rest }: CustomRatingInputProps) => {
 	const [hoveredIndex, setHoveredIndex] = useState(0);
 
 	const onHover = (index: number) => {
@@ -32,7 +32,7 @@ export const CustomRatingInput = ({ label, value, onChange}: CustomRatingInputPr
 
 	return (
 		<Flex alignItems="center">
-			<Text color="white" size="lg" pr={4}>
+			<Text color="white" pr={4} {...rest}>
 				{label}
 			</Text>
 			<Flex gap={1} onMouseLeave={() => setHoveredIndex(0)}>
@@ -40,7 +40,7 @@ export const CustomRatingInput = ({ label, value, onChange}: CustomRatingInputPr
 					return (
 						<StarIcon
 							key={index}
-							boxSize={6}
+							boxSize={onChange ? '18px' : '14px'}
 							color={getColor(index + 1)}
 							onMouseOver={() => onHover(index + 1)}
 							cursor={onChange ? 'pointer' : 'default'}

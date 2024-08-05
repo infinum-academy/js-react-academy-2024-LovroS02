@@ -51,6 +51,12 @@ const Button = defineStyleConfig({
 			width: '96px',
 			height: '38px',
 			padding: '12px 28px 12px 28px',
+
+			_disabled: {
+				_hover: {
+					bg: 'white',
+				},
+			},
 		},
 
 		logout: {
@@ -66,7 +72,7 @@ const Button = defineStyleConfig({
 		menu: {
 			bg: 'purple.400',
 			color: 'white',
-			fontsize: 'xl',
+			fontSize: 'xl',
 			padding: '10px 10px 10px 10px',
 			height: '24px',
 			width: '24px',
@@ -80,6 +86,31 @@ const Button = defineStyleConfig({
 			height: '14px',
 			width: '54px',
 			justifyContent: 'flex-start',
+		},
+
+		modal: {
+			bg: 'purple.700',
+			color: 'white',
+			fontSize: 'xl',
+			padding: '8px 12px 8px 12px',
+			height: '44px',
+			width: '200px',
+
+			_hover: {
+				bg: 'purple.400',
+			},
+		},
+
+		mobileModal: {
+			bg: 'purple.700',
+			color: 'white',
+			fontSize: 'xs',
+			padding: '8px 12px 8px 12px',
+			height: '26px',
+
+			_hover: {
+				bg: 'purple.400',
+			},
 		},
 	},
 });

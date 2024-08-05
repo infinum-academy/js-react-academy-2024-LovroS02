@@ -5,7 +5,6 @@ import {
 	DrawerBody,
 	DrawerCloseButton,
 	DrawerContent,
-	DrawerFooter,
 	DrawerOverlay,
 	Flex,
 	IconButton,
@@ -19,7 +18,7 @@ export const MobileSidebarNavigation = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
-		<Flex hideFrom="sm" bg="purple.700" padding="36px 8px 0px 16px" justifyContent="space-between">
+		<Flex hideFrom="md" bg="purple.700" padding="36px 8px 0px 16px" justifyContent="space-between">
 			<AppLogo />
 			<IconButton aria-label="drawer-button" icon={<HamburgerIcon />} variant="hamburger" onClick={onOpen} />
 			<Drawer isOpen={isOpen} placement="right" onClose={onClose}>
